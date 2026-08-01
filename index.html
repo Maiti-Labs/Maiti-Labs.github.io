@@ -13,8 +13,9 @@
   :root {
     --green: #204028;
     --cream: #f0e8cc;
-    --bg: #f4f0e4;
-    --bg-white: #faf7ef;
+    --bg: #ffffff;
+    --bg-white: #ffffff;
+    --bg-soft: #f6f7f6;
     --ink: #204028;
     --muted: #5a6a5c;
     --faint: #7a8a7c;
@@ -47,7 +48,7 @@
     position: sticky;
     top: 0;
     z-index: 40;
-    background: rgba(244, 240, 228, 0.82);
+    background: rgba(255, 255, 255, 0.86);
     backdrop-filter: saturate(180%) blur(18px);
     -webkit-backdrop-filter: saturate(180%) blur(18px);
     border-bottom: 1px solid transparent;
@@ -112,8 +113,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 70% 55% at 50% 0%, rgba(32, 64, 40, 0.07) 0%, transparent 60%),
-      linear-gradient(180deg, #faf7ef 0%, #f4f0e4 55%, #ebe4d2 100%);
+      radial-gradient(ellipse 70% 55% at 50% 0%, rgba(32, 64, 40, 0.05) 0%, transparent 60%),
+      linear-gradient(180deg, #ffffff 0%, #ffffff 55%, #f6f7f6 100%);
     pointer-events: none;
   }
   .hero-inner { position: relative; z-index: 1; width: 100%; }
@@ -170,7 +171,7 @@
   .section {
     padding: clamp(4.25rem, 10vh, 6.75rem) 0;
   }
-  .section-white { background: var(--bg-white); }
+  .section-white { background: var(--bg-soft); }
   #research {
     padding: clamp(5.75rem, 14vh, 9.5rem) 0;
   }

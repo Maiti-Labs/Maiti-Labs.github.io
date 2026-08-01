@@ -9,8 +9,8 @@ _uid_gen = itertools.count()
 FOREST = "#204028"
 SOFT = "#2d5640"
 CREAM = "#f0e8cc"
-BG = "#faf7ef"
-BG_ALT = "#f4f0e4"
+BG = "#ffffff"
+BG_ALT = "#f6f7f6"
 MUTED = "#5a6a5c"
 FONT = "Outfit,sans-serif"
 
