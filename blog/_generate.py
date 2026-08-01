@@ -161,6 +161,8 @@ def page(title, description, body_html):
 </html>
 '''
 
+AUTHOR = "Shryas Bhurat"
+
 def article(meta, title, dek, body, refs, viz_html=""):
     ref_items = "\n".join(f"<li>{r}</li>" for r in refs)
     viz_block = f"\n{viz_html}\n" if viz_html else ""
@@ -168,6 +170,7 @@ def article(meta, title, dek, body, refs, viz_html=""):
     <div class="wrap-narrow">
       <a class="back-link" href="index.html">‹ All research notes</a>
       <p class="article-meta">{meta}</p>
+      <p class="article-author">By {AUTHOR}</p>
       <h1>{title}</h1>
       <p class="dek">{dek}</p>{viz_block}
       <div class="body">
@@ -192,7 +195,7 @@ POSTS.append({
     "viz_key": "weather",
     "card_title": "AI weather models are becoming the new forecast stack",
     "card_blurb": "GraphCast, Aurora, and ClimaX match classic supercomputer forecasts on many scores, in a fraction of the time.",
-    "meta": "Research note · August 1, 2026 · Sector 01",
+    "meta": "Research note · August 1, 2026 · Sector 01 · Shryas Bhurat",
     "title": "AI weather models are becoming the new forecast stack",
     "dek": "Pretrained atmospheric models are changing who can run good forecasts, and how fast those forecasts arrive.",
     "description": "Emerging weather foundation models from DeepMind, Microsoft, ECMWF, and university labs, with citations.",
@@ -258,7 +261,7 @@ POSTS.append({
     "viz_key": "aerospace",
     "card_title": "Earth observation is moving from sensors to foundation models",
     "card_blurb": "Berkeley Panopticon, Caltech-led Carbon-I, and large-scale pretraining are making satellite analysis work across missions.",
-    "meta": "Research note · August 1, 2026 · Sector 02",
+    "meta": "Research note · August 1, 2026 · Sector 02 · Shryas Bhurat",
     "title": "Earth observation is moving from sensors to foundation models",
     "dek": "Satellites still collect the data. Foundation models are starting to define how quickly that data becomes usable maps and metrics.",
     "description": "Emerging aerospace and satellite Earth observation foundation models, with university citations.",
@@ -315,7 +318,7 @@ POSTS.append({
     "viz_key": "materials",
     "card_title": "Low-carbon materials research is rewriting cement and concrete",
     "card_blurb": "Stanford, Berkeley, and Caltech work on cement chemistry, solar-driven catalytic materials, and abatement cost curves shows materials science is now a climate lever.",
-    "meta": "Research note · August 1, 2026 · Sector 03",
+    "meta": "Research note · August 1, 2026 · Sector 03 · Shryas Bhurat",
     "title": "Low-carbon materials research is rewriting cement and concrete",
     "dek": "Cement is still one of the hardest industrial emissions problems. University labs are attacking the chemistry, the kiln, and the cost curve at once.",
     "description": "Emerging low-carbon materials research from Stanford, Berkeley, and related labs.",
@@ -366,7 +369,7 @@ POSTS.append({
     "viz_key": "energy",
     "card_title": "Long-duration storage is the quiet center of clean grids",
     "card_blurb": "Stanford and Berkeley grid models, plus Caltech storage chemistry and Pasadena smart-grid pilots, show when multi-day storage and local integration actually earn their keep.",
-    "meta": "Research note · August 1, 2026 · Sector 04",
+    "meta": "Research note · August 1, 2026 · Sector 04 · Shryas Bhurat",
     "title": "Long-duration storage is the quiet center of clean grids",
     "dek": "Solar and wind are cheaper in many regions. Keeping a zero-emissions grid reliable across nights and calm weeks is the harder part.",
     "description": "Emerging energy systems research on long-duration storage and clean grids from Stanford and Berkeley.",
@@ -415,7 +418,7 @@ POSTS.append({
     "viz_key": "manufacturing",
     "card_title": "Advanced manufacturing is becoming a decarbonization toolkit",
     "card_blurb": "NSF and university work on electrification, process substitution, and factory data is turning manufacturing into a climate research domain.",
-    "meta": "Research note · August 1, 2026 · Sector 05",
+    "meta": "Research note · August 1, 2026 · Sector 05 · Shryas Bhurat",
     "title": "Advanced manufacturing is becoming a decarbonization toolkit",
     "dek": "Factories are no longer only an emissions source to regulate. They are a design space for lower-carbon process technology.",
     "description": "Emerging green manufacturing and industrial electrification research from leading universities.",
@@ -464,7 +467,7 @@ POSTS.append({
     "viz_key": "built",
     "card_title": "Whole-life carbon is replacing energy-only building metrics",
     "card_blurb": "Stanford CIFE and Berkeley-linked building research show embodied carbon now rivals operations as grids clean up.",
-    "meta": "Research note · August 1, 2026 · Sector 06",
+    "meta": "Research note · August 1, 2026 · Sector 06 · Shryas Bhurat",
     "title": "Whole-life carbon is replacing energy-only building metrics",
     "dek": "As grids decarbonize, the carbon locked into steel, concrete, and interiors becomes impossible to ignore.",
     "description": "Emerging built environment research on whole-life and embodied carbon from Stanford and related labs.",
@@ -512,7 +515,7 @@ POSTS.append({
     "viz_key": "mobility",
     "card_title": "EV scale-up is constrained by finance and charging reliability",
     "card_blurb": "Wharton, Harvard, and Caltech research show that loans, broken chargers, and oversubscribed charging networks shape electric mobility adoption.",
-    "meta": "Research note · August 1, 2026 · Sector 07",
+    "meta": "Research note · August 1, 2026 · Sector 07 · Shryas Bhurat",
     "title": "EV scale-up is constrained by finance and charging reliability",
     "dek": "Battery packs get the headlines. Household credit and uptime statistics may decide the adoption curve.",
     "description": "Emerging mobility research from Wharton and Harvard on EV finance and charging infrastructure.",
@@ -562,7 +565,7 @@ POSTS.append({
     "viz_key": "industrial",
     "card_title": "Hard-to-abate industry is shifting from pilots to playbooks",
     "card_blurb": "Stanford and Berkeley research on steel, cement, heat, and abatement costs is turning industrial decarbonization into transferable methods.",
-    "meta": "Research note · August 1, 2026 · Sector 08",
+    "meta": "Research note · August 1, 2026 · Sector 08 · Shryas Bhurat",
     "title": "Hard-to-abate industry is shifting from pilots to playbooks",
     "dek": "Cement, steel, and chemicals will not decarbonize through one breakthrough. They need sequenced process options with public cost evidence.",
     "description": "Emerging industrial process decarbonization research from Stanford, Berkeley, and related groups.",
@@ -620,7 +623,7 @@ def write_posts():
 
     card_html = "\n".join(
         f'''        <a class="post-card" href="{p['slug']}.html">
-          <p class="meta">{p['num']} · {p['sector']}</p>
+          <p class="meta">{p['num']} · {p['sector']} · {AUTHOR}</p>
           <h2>{p['card_title']}</h2>
           <p>{p['card_blurb']}</p>
         </a>'''
@@ -629,12 +632,12 @@ def write_posts():
 
     index = page(
         "Research notes",
-        "Maiti Labs research notes on emerging technologies across climate sectors.",
+        "Maiti Labs research notes on emerging technologies across climate sectors, by Shryas Bhurat.",
         f'''  <header class="page-hero">
     <div class="wrap">
       <p class="eyebrow">Research notes</p>
       <h1>Emerging tech, by sector.</h1>
-      <p class="lede">Easy-to-read notes with visuals on climate tech, with research from Stanford, Berkeley, Caltech, Harvard, Wharton, and leading labs.</p>
+      <p class="lede">Easy-to-read notes with visuals on climate tech, by {AUTHOR}. Research drawn from Stanford, Berkeley, Caltech, Harvard, Wharton, and leading labs.</p>
     </div>
   </header>
   <section class="wrap">
