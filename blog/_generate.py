@@ -2,6 +2,8 @@
 """Generate sector research posts in Physical Intelligence-inspired format."""
 from pathlib import Path
 
+from _viz import VIZ
+
 ROOT = Path(__file__).resolve().parent
 
 NAV = '''  <nav class="nav" id="nav">
@@ -60,14 +62,15 @@ def page(title, description, body_html):
 </html>
 '''
 
-def article(meta, title, dek, body, refs):
+def article(meta, title, dek, body, refs, viz_html=""):
     ref_items = "\n".join(f"<li>{r}</li>" for r in refs)
+    viz_block = f"\n{viz_html}\n" if viz_html else ""
     return f'''  <article class="article">
     <div class="wrap-narrow">
       <a class="back-link" href="index.html">‹ All research notes</a>
       <p class="article-meta">{meta}</p>
       <h1>{title}</h1>
-      <p class="dek">{dek}</p>
+      <p class="dek">{dek}</p>{viz_block}
       <div class="body">
 {body}
       </div>
@@ -87,14 +90,18 @@ POSTS.append({
     "slug": "weather-foundation-models",
     "num": "01",
     "sector": "Weather Foundation Models",
-    "card_title": "Weather foundation models are becoming the new forecasting stack",
-    "card_blurb": "From GraphCast and Aurora to ClimaX, data-driven models now match or beat classical NWP on key scores, at a fraction of the compute.",
+    "viz_key": "weather",
+    "card_title": "AI weather models are becoming the new forecast stack",
+    "card_blurb": "GraphCast, Aurora, and ClimaX match classic supercomputer forecasts on many scores, in a fraction of the time.",
     "meta": "Research note · August 1, 2026 · Sector 01",
-    "title": "Weather foundation models are becoming the new forecasting stack",
-    "dek": "A new class of pretrained atmospheric models is changing who can run skillful forecasts, and how fast those forecasts can be produced.",
+    "title": "AI weather models are becoming the new forecast stack",
+    "dek": "Pretrained atmospheric models are changing who can run good forecasts, and how fast those forecasts arrive.",
     "description": "Emerging weather foundation models from DeepMind, Microsoft, ECMWF, and university labs, with citations.",
     "body": '''
-        <p>For most of modern meteorology, skillful medium-range forecasts meant one thing: a physics-based numerical weather prediction (NWP) system run on a supercomputer. That stack still matters. What has changed is that data-driven models trained on decades of reanalysis can now produce competitive deterministic forecasts in minutes on commodity accelerators.</p>
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Weather AI learns patterns from decades of global data, then rolls out a forecast in minutes on a single machine. Classic physics models on supercomputers still set the quality bar, but they take hours and sit behind agency walls.</p>
+        </div>
+        <p>For decades, skillful medium-range forecasts meant one thing: a physics-based numerical weather prediction (NWP) system on a supercomputer. That stack still matters. Data-driven models trained on reanalysis archives can now produce competitive forecasts in minutes on commodity hardware.</p>
         <p>This is not a cosmetic speedup. It changes access. University labs, national agencies, and climate-risk teams that could never operate a full IFS-class system can now evaluate ensemble-scale experiments, downscaling pipelines, and early-warning prototypes. The research question has shifted from "can AI forecast weather?" to "which foundation-model designs generalize under climate change, extremes, and sparse observations?"</p>
 
         <h2>What "foundation model" means in weather</h2>
@@ -103,21 +110,21 @@ POSTS.append({
 
         <h2>The current frontier models</h2>
         <h3>Graph neural networks and transformers at global scale</h3>
-        <p>Google DeepMind's <a href="https://www.science.org/doi/10.1126/science.adi2336">GraphCast</a> encodes the atmosphere as a multi-scale mesh and rolls out 6-hour steps to produce 10-day forecasts. On WeatherBench-style evaluations it matched or exceeded ECMWF's high-resolution IFS on many variables while running orders of magnitude faster [<a href="#r2">2</a>]. Huawei's <a href="https://www.nature.com/articles/s41586-023-06185-3">Pangu-Weather</a> uses a 3D Earth Transformer and hierarchical temporal aggregation, again reporting deterministic skill competitive with operational IFS on reanalysis benchmarks [<a href="#r3">3</a>].</p>
-        <p>NVIDIA's FourCastNet line and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) push the same idea into operational settings. Independent comparisons using WeatherBench2 place Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
+        <p>Google DeepMind's <a href="https://www.science.org/doi/10.1126/science.adi2336">GraphCast</a> (Lam et al.) encodes the atmosphere as a multi-scale mesh and rolls out 6-hour steps to produce 10-day forecasts. On WeatherBench-style evaluations it matched or exceeded ECMWF's high-resolution IFS on many variables while running orders of magnitude faster [<a href="#r2">2</a>]. Huawei's <a href="https://www.nature.com/articles/s41586-023-06185-3">Pangu-Weather</a> (Bi et al.) uses a 3D Earth Transformer and hierarchical temporal aggregation, again reporting deterministic skill competitive with operational IFS on reanalysis benchmarks [<a href="#r3">3</a>].</p>
+        <p>NVIDIA's FourCastNet line and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) push the same idea into operational settings. Feldmann et al. use WeatherBench2 to compare Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
 
         <h3>Toward multi-domain atmospheric foundation models</h3>
-        <p>Microsoft's <a href="https://arxiv.org/abs/2405.13063">Aurora</a> is important because it widens the pretraining mixture beyond ERA5 weather fields, incorporating air quality, ocean, and climate-model outputs into one flexible backbone [<a href="#r5">5</a>]. That is closer to a true Earth-system foundation model than a single-task emulator.</p>
+        <p>Microsoft Research's <a href="https://doi.org/10.1038/s41586-025-09005-y">Aurora</a> (Bodnar et al.) widens the pretraining mixture beyond ERA5 weather fields, incorporating air quality, ocean, and climate-model outputs into one flexible backbone [<a href="#r5">5</a>]. That is closer to a true Earth-system foundation model than a single-task emulator.</p>
         <div class="callout">
           <p>The practical implication for accessibility: once a strong pretrained checkpoint exists, fine-tuning for a regional hazard, an agricultural index, or an air-quality product becomes a research project rather than a national computing program.</p>
         </div>
 
         <h2>What top labs are stressing next</h2>
-        <p>Skill on ERA5 is necessary but not sufficient. A 2024 study examining GraphCast, Pangu-Weather, and AIFS under climate-change-like conditions asks whether models trained on the recent past remain reliable as the climate shifts [<a href="#r6">6</a>]. Extremes remain a hard edge: AI forecasts can be overly smooth and can understate record-breaking events even when mean scores look excellent.</p>
+        <p>Skill on ERA5 is necessary but not sufficient. Rackow et al. examine GraphCast, Pangu-Weather, and AIFS under climate-change-like conditions and ask whether models trained on the recent past remain reliable as the climate shifts [<a href="#r6">6</a>]. Extremes remain a hard edge: AI forecasts can be overly smooth and can understate record-breaking events even when mean scores look excellent.</p>
         <p>University groups are therefore focusing on hybrid designs, probabilistic ensembles, and observation-informed fine-tuning. Stanford's Doerr School and related atmospheric research communities emphasize that operational value depends on calibration for hazards people actually manage: heat, flood precursors, wind extremes, and compound events, not only RMSE on 500 hPa geopotential.</p>
 
-        <h2>Physics-constrained climate modeling at Caltech CliMA</h2>
-        <p>Parallel to the pure data-driven weather foundation model wave, Caltech's Climate Modeling Alliance (CliMA), led by Tapio Schneider, pursues hybrid physics–machine learning parameterizations that keep dynamical constraints explicit while learning subgrid closures from data. Lopez-Gomez and colleagues report dynamical-generative downscaling of climate model ensembles that preserves large-scale circulation while generating high-resolution fields suitable for impact studies [<a href="#r7">7</a>]. Related work on online learning of entrainment closures shows how hybrid ML parameterizations can be updated as observations stream in, a design point that differs from frozen pretrained forecasters [<a href="#r8">8</a>].</p>
+        <h2>Hybrid climate modeling: Google Research and Caltech CliMA</h2>
+        <p>Parallel to the data-driven weather wave, Caltech's Climate Modeling Alliance (CliMA), led by Tapio Schneider, pursues hybrid physics–machine learning parameterizations that keep dynamical constraints explicit while learning subgrid closures from data. Lopez-Gomez et al., with Google Research and Caltech authors, report dynamical-generative downscaling of climate model ensembles that preserves large-scale circulation while generating high-resolution fields suitable for impact studies [<a href="#r7">7</a>]. Christopoulos et al. show hybrid ML parameterizations for cloud entrainment that can be updated as observations stream in, a design point that differs from frozen pretrained forecasters [<a href="#r8">8</a>].</p>
         <p>The two agendas are complementary. Weather foundation models excel at fast, global deterministic forecasts from reanalysis. Caltech's physics-constrained climate modeling agenda targets long-horizon ensembles, process fidelity, and downscaling that remains tied to conservation laws. Accessible climate research needs both: open checkpoints for short-range hazard work and open process models for scenario stress-testing.</p>
 
         <h2>Why this matters for accessible climate research</h2>
@@ -130,11 +137,11 @@ POSTS.append({
         '<span id="r1"></span>Nguyen, T., Brandstetter, J., Kapoor, A., Gupta, J. K., & Grover, A. (2023). ClimaX: A foundation model for weather and climate. <em>ICML</em>. <a href="https://arxiv.org/abs/2301.10343">arXiv:2301.10343</a>',
         '<span id="r2"></span>Lam, R., et al. (2023). Learning skillful medium-range global weather forecasting. <em>Science</em>. <a href="https://www.science.org/doi/10.1126/science.adi2336">doi:10.1126/science.adi2336</a>',
         '<span id="r3"></span>Bi, K., et al. (2023). Accurate medium-range global weather forecasting with 3D neural networks. <em>Nature</em>. <a href="https://www.nature.com/articles/s41586-023-06185-3">doi:10.1038/s41586-023-06185-3</a>',
-        '<span id="r4"></span>Feldmann, M., et al. (2024). Lightning-fast convective outlooks: Predicting severe convective environments with global AI-based weather models. <em>Geophysical Research Letters</em>. <a href="https://doi.org/10.1029/2024GL110960">doi:10.1029/2024GL110960</a>',
-        '<span id="r5"></span>Bodnar, C., et al. (2024). Aurora: A foundation model of the atmosphere. <a href="https://arxiv.org/abs/2405.13063">arXiv:2405.13063</a>',
-        '<span id="r6"></span>Rackow, T., et al. (2024). Robustness of AI-based weather forecasts in a changing climate. <a href="https://arxiv.org/abs/2409.18529">arXiv:2409.18529</a>',
-        '<span id="r7"></span>Lopez-Gomez, I., et al. (2025). Dynamical-generative downscaling of climate model ensembles. <em>PNAS</em>. <a href="https://doi.org/10.1073/pnas.2420288122">doi:10.1073/pnas.2420288122</a> (Caltech CliMA).',
-        '<span id="r8"></span>Online learning of entrainment closures for hybrid ML parameterization. <em>Journal of Advances in Modeling Earth Systems</em>. <a href="https://doi.org/10.1029/2024MS004485">doi:10.1029/2024MS004485</a>',
+        '<span id="r4"></span>Feldmann, M., Beucler, T., Gomez, M., et al. (2024). Lightning-fast convective outlooks: Predicting severe convective environments with global AI-based weather models. <em>Geophysical Research Letters</em>. <a href="https://doi.org/10.1029/2024GL110960">doi:10.1029/2024GL110960</a>',
+        '<span id="r5"></span>Bodnar, C., Bruinsma, W. P., Lucic, A., et al. (2025). A foundation model for the Earth system. <em>Nature</em>. <a href="https://doi.org/10.1038/s41586-025-09005-y">doi:10.1038/s41586-025-09005-y</a> (Microsoft Research).',
+        '<span id="r6"></span>Rackow, T., Koldunov, N., Lessig, C., et al. (2024). Robustness of AI-based weather forecasts in a changing climate. <a href="https://arxiv.org/abs/2409.18529">arXiv:2409.18529</a> (ECMWF / AWI).',
+        '<span id="r7"></span>Lopez-Gomez, I., Wan, Z. Y., Zepeda-Núñez, L., et al. (2025). Dynamical-generative downscaling of climate model ensembles. <em>PNAS</em>. <a href="https://doi.org/10.1073/pnas.2420288122">doi:10.1073/pnas.2420288122</a> (Google Research; Tapio Schneider, Caltech).',
+        '<span id="r8"></span>Christopoulos, C., Lopez-Gomez, I., Beucler, T., et al. (2024). Online learning of entrainment closures for hybrid ML parameterization. <em>Journal of Advances in Modeling Earth Systems</em>. <a href="https://doi.org/10.1029/2024MS004485">doi:10.1029/2024MS004485</a> (Caltech CliMA).',
     ],
 })
 
@@ -143,19 +150,23 @@ POSTS.append({
     "slug": "aerospace-satellites",
     "num": "02",
     "sector": "Aerospace & Satellites",
+    "viz_key": "aerospace",
     "card_title": "Earth observation is moving from sensors to foundation models",
-    "card_blurb": "Multi-modal EO models from Berkeley and Caltech-led Carbon-I, plus NASA–IBM and Copernicus-scale pretraining, are making satellite analysis transferable across missions.",
+    "card_blurb": "Berkeley Panopticon, Caltech-led Carbon-I, and large-scale pretraining are making satellite analysis work across missions.",
     "meta": "Research note · August 1, 2026 · Sector 02",
     "title": "Earth observation is moving from sensors to foundation models",
-    "dek": "Satellite programs still define the data. Foundation models are starting to define how that data becomes usable knowledge.",
+    "dek": "Satellites still collect the data. Foundation models are starting to define how quickly that data becomes usable maps and metrics.",
     "description": "Emerging aerospace and satellite Earth observation foundation models, with university citations.",
     "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Satellites produce huge image streams. New AI models train once on many sensor types, then adapt to floods, crops, or emissions with far less hand labeling.</p>
+        </div>
         <p>Aerospace climate research used to mean flying instruments and writing task-specific classifiers for each sensor. That work remains essential. The new layer is sensor-agnostic representation learning: models pretrained across optical, SAR, and atmospheric products that can be adapted to flood mapping, crop monitoring, or land-cover change with far less labeled data.</p>
         <p>For accessibility, this matters as much as launch cadence. A municipality does not need a custom deep-learning team for every Sentinel product if a strong pretrained encoder already understands multi-spectral structure.</p>
 
         <h2>From fixed-sensor models to any-sensor models</h2>
         <p>Most early remote-sensing foundation models were locked to one constellation or band set. The field is now pivoting to models that accept arbitrary channel combinations.</p>
-        <p><a href="https://arxiv.org/abs/2503.10845">Panopticon</a>, led with contributors from UC Berkeley and collaborators at the Technical University of Munich, extends DINOv2 for Earth observation. It treats co-located multi-sensor views as natural augmentations, subsamples spectral channels during training, and uses cross-attention over channels so the model can embed optical and SAR inputs with wavelength and mode metadata [<a href="#r1">1</a>]. On GEO-Bench it reports strong results on Sentinel-1 and Sentinel-2 while remaining usable on unusual sensor configurations. That is the aerospace analogue of a generalist policy: one backbone, many instruments.</p>
+        <p><a href="https://arxiv.org/abs/2503.10845">Panopticon</a> (Waldmann et al.), from UC Berkeley and the Technical University of Munich, extends DINOv2 for Earth observation. It treats co-located multi-sensor views as natural augmentations, subsamples spectral channels during training, and uses cross-attention over channels so the model can embed optical and SAR inputs with wavelength and mode metadata [<a href="#r1">1</a>]. On GEO-Bench it reports strong results on Sentinel-1 and Sentinel-2 while remaining usable on unusual sensor configurations. That is the aerospace analogue of a generalist policy: one backbone, many instruments.</p>
 
         <h2>Scale pretraining on public satellite archives</h2>
         <h3>SkySense and SkySense++</h3>
@@ -165,7 +176,7 @@ POSTS.append({
         <p><a href="https://arxiv.org/abs/2412.02732">Prithvi-EO-2.0</a>, trained on 4.2 million global HLS time-series samples from NASA Landsat–Sentinel archives, adds explicit temporal and location embeddings. The 600M variant improves over prior Prithvi checkpoints across GEO-Bench-style evaluations and is released openly for downstream use [<a href="#r4">4</a>]. In parallel, <a href="https://arxiv.org/abs/2503.11849">Copernicus-FM</a> targets unified modeling across Sentinel missions with 18.7 million aligned observations and dynamic hypernetworks that ingest spectral and non-spectral modalities plus metadata [<a href="#r5">5</a>].</p>
 
         <h2>Mission science: Carbon-I and observation continuity</h2>
-        <p>Foundation models interpret archives. New missions define what enters those archives. <a href="https://carbon-i.github.io/">Carbon-I</a>, a Caltech-led NASA Earth System Explorer finalist, would map CO<sub>2</sub>, CH<sub>4</sub>, and CO at roughly 300 m globally with roughly 30 m resolution over priority targets, closing tropical greenhouse-gas observation gaps that limit attribution of emissions to sources [<a href="#r7">7</a>]. That sensor layer complements Berkeley-style any-sensor encoders: one supplies trace-gas structure at scale, the other supplies transferable visual representations.</p>
+        <p>Foundation models interpret archives. New missions define what enters those archives. <a href="https://carbon-i.github.io/">Carbon-I</a>, a Caltech-led NASA Earth System Explorer finalist with Bethany Ehlmann among the collaborators, would map CO<sub>2</sub>, CH<sub>4</sub>, and CO at roughly 300 m globally with roughly 30 m resolution over priority targets, closing tropical greenhouse-gas observation gaps that limit attribution of emissions to sources [<a href="#r7">7</a>]. That sensor layer complements Berkeley-style any-sensor encoders: one supplies trace-gas structure at scale, the other supplies transferable visual representations.</p>
         <p>Continuity planning matters as much as any single mission. Waliser and the KISS Continuity Study Team outline a U.S. framework for continuity of satellite observations so climate records remain comparable across instrument generations [<a href="#r8">8</a>]. Accessible aerospace research therefore spans pretrained models, flagship trace-gas missions, and governance for long-term records.</p>
 
         <h2>What universities are contributing</h2>
@@ -178,13 +189,13 @@ POSTS.append({
         <p>The emerging aerospace research stack is a public satellite archive, a sensor-flexible foundation model, and a thin task head. That is how Earth observation becomes accessible climate infrastructure rather than a sequence of one-off image-processing projects.</p>
 ''',
     "refs": [
-        '<span id="r1"></span>Waldmann, L., Shah, A., et al. (2025). Panopticon: Advancing any-sensor foundation models for Earth observation. <em>CVPR Workshops</em>. <a href="https://arxiv.org/abs/2503.10845">arXiv:2503.10845</a> (UC Berkeley &amp; TUM).',
+        '<span id="r1"></span>Waldmann, L., Shah, A., Wang, Y., et al. (2025). Panopticon: Advancing any-sensor foundation models for Earth observation. <em>CVPR Workshops</em>. <a href="https://arxiv.org/abs/2503.10845">arXiv:2503.10845</a> (UC Berkeley &amp; TUM).',
         '<span id="r2"></span>Guo, X., et al. (2024). SkySense: A multi-modal remote sensing foundation model towards universal interpretation for Earth observation imagery. <em>CVPR</em>.',
         '<span id="r3"></span>Wu, K., Zhang, Y., Ru, L., et al. (2025). A semantic-enhanced multi-modal remote sensing foundation model for Earth observation. <em>Nature Machine Intelligence</em>. <a href="https://doi.org/10.1038/s42256-025-01078-8">doi:10.1038/s42256-025-01078-8</a>',
         '<span id="r4"></span>Szwarcman, D., et al. (2024). Prithvi-EO-2.0: A versatile multi-temporal foundation model for Earth observation applications. <a href="https://arxiv.org/abs/2412.02732">arXiv:2412.02732</a>',
         '<span id="r5"></span>Wang, Y., et al. (2025). Towards a unified Copernicus foundation model for Earth vision. <a href="https://arxiv.org/abs/2503.11849">arXiv:2503.11849</a>',
         '<span id="r6"></span>Lu, S., et al. (2024). Foundation models for remote sensing and Earth observation: A survey. <a href="https://arxiv.org/abs/2410.16602">arXiv:2410.16602</a>',
-        '<span id="r7"></span>Caltech-led mission to map greenhouse gas emissions named NASA Earth System Explorer finalist. <a href="https://www.caltech.edu/about/news/caltech-led-mission-to-map-greenhouse-gas-emissions-named-finalist-by-nasa">caltech.edu</a>; Carbon-I mission. <a href="https://carbon-i.github.io/">carbon-i.github.io</a>',
+        '<span id="r7"></span>Carbon-I mission (Caltech-led NASA Earth System Explorer finalist; Bethany Ehlmann among collaborators). <a href="https://carbon-i.github.io/">carbon-i.github.io</a>; <a href="https://www.caltech.edu/about/news/caltech-led-mission-to-map-greenhouse-gas-emissions-named-finalist-by-nasa">Caltech news</a>',
         '<span id="r8"></span>Waliser, D. E., &amp; KISS Continuity Study Team (2024). Toward a US framework for continuity of satellite observations of Earth\'s changing climate. <em>Earth\'s Future</em>. <a href="https://doi.org/10.1029/2023EF003757">doi:10.1029/2023EF003757</a>',
     ],
 })
@@ -194,6 +205,7 @@ POSTS.append({
     "slug": "materials",
     "num": "03",
     "sector": "Materials",
+    "viz_key": "materials",
     "card_title": "Low-carbon materials research is rewriting cement and concrete",
     "card_blurb": "Stanford, Berkeley, and Caltech work on cement chemistry, solar-driven catalytic materials, and abatement cost curves shows materials science is now a climate lever.",
     "meta": "Research note · August 1, 2026 · Sector 03",
@@ -201,18 +213,21 @@ POSTS.append({
     "dek": "Cement is still one of the hardest industrial emissions problems. University labs are attacking the chemistry, the kiln, and the cost curve at once.",
     "description": "Emerging low-carbon materials research from Stanford, Berkeley, and related labs.",
     "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Cement releases CO<sub>2</sub> when limestone is heated, not only from fuel. Researchers are testing new rock recipes, recycled concrete, and solar-driven chemistry to shrink that footprint.</p>
+        </div>
         <p>Concrete is the world's most-used building material. Cement production alone accounts for roughly 8% of global CO<sub>2</sub> emissions, much of it from limestone calcination rather than fuel burn. That chemistry constraint is why incremental kiln efficiency is not enough, and why materials research has become central to climate strategy.</p>
         <p>The emerging technologies worth watching are not marketing labels. They are process inventions that remove carbonate feedstock, recycle existing concrete, or quantify which substitutions actually scale.</p>
 
         <h2>Replacing limestone chemistry</h2>
-        <p>At Stanford, Tiziana Vanorio and collaborators have pursued clinker routes inspired by volcanic and hydrothermal systems. Their <strong>Phlego</strong> cement concept replaces carbonate-heavy limestone pathways with carbonate-free igneous rock blends, targeting large emissions cuts while remaining compatible with existing cement infrastructure [<a href="#r1">1</a>][<a href="#r2">2</a>]. Reported project targets include emissions reductions on the order of three-quarters and production-cost reductions around one-fifth, alongside in situ fiber entanglement that improves ductility.</p>
+        <p>At Stanford, Vanorio et al. have pursued clinker routes inspired by volcanic and hydrothermal systems. Their <strong>Phlego</strong> cement concept replaces carbonate-heavy limestone pathways with carbonate-free igneous rock blends, targeting large emissions cuts while remaining compatible with existing cement infrastructure [<a href="#r1">1</a>][<a href="#r2">2</a>]. Reported project targets include emissions reductions on the order of three-quarters and production-cost reductions around one-fifth, alongside in situ fiber entanglement that improves ductility.</p>
         <p>That combination matters. A low-carbon binder that requires an entirely new construction ecosystem rarely leaves the lab. A binder that drops into existing kilns and standards has a path to use.</p>
 
         <h2>Circular concrete and co-product carbon</h2>
         <p>Yi Cui's group at Stanford has worked on electromagnetic induction processes that convert waste concrete back into high-performance clinker using renewable electricity, aiming to cut both virgin limestone demand and process emissions [<a href="#r3">3</a>]. Separately, Stanford Sustainability Accelerator work on methane pyrolysis links low-emissions hydrogen to cement-grade solid carbon co-products designed for direct incorporation into cement matrices [<a href="#r4">4</a>]. The industrial logic is important: hydrogen scale-up often fails when the solid carbon has no market. Cement is a market large enough to absorb it.</p>
 
         <h2>Solar-driven catalytic materials at Caltech</h2>
-        <p>Not all low-carbon materials research targets structural binders. The Liquid Sunlight Alliance at Caltech, with Harry Atwater and collaborators, develops photothermocatalytic reactors and selective solar absorbers that couple sunlight to fuel chemistry. Su and colleagues report integrated reactor designs that concentrate solar flux and drive catalytic conversion of CO<sub>2</sub> and water toward industrial feedstocks [<a href="#r6">6</a>]. The materials story is dual: engineered absorbers and catalyst supports that survive high flux, plus the catalytic systems that turn sunlight and CO<sub>2</sub> into storable molecules rather than only electricity.</p>
+        <p>Not all low-carbon materials research targets structural binders. The Liquid Sunlight Alliance at Caltech, with Harry Atwater and collaborators, develops photothermocatalytic reactors and selective solar absorbers that couple sunlight to fuel chemistry. Su et al. report integrated reactor designs that concentrate solar flux and drive catalytic conversion of CO<sub>2</sub> and water toward industrial feedstocks [<a href="#r6">6</a>]. The materials story is dual: engineered absorbers and catalyst supports that survive high flux, plus the catalytic systems that turn sunlight and CO<sub>2</sub> into storable molecules rather than only electricity.</p>
 
         <h2>Berkeley's systems view: which alternatives are worth buying</h2>
         <p>UC Berkeley's Center for the Built Environment has focused on cost-effectiveness and mitigation potential for low-carbon building material alternatives in California, including marginal abatement cost curves for material efficiency, reuse, and substitution [<a href="#r5">5</a>]. This is the research layer practitioners actually need: not only "is the material greener," but "at what cost, with which supply-chain constraints, and with what constructability penalty."</p>
@@ -229,7 +244,7 @@ POSTS.append({
         '<span id="r3"></span>Cui, Y., Zheng, Q., Bhatia, M. Reinventing Cement. Stanford Office of Technology Licensing / HIT Fund. <a href="https://otl.stanford.edu/researchers/high-impact-technology-hit-fund/hit-portfolio">OTL portfolio</a>',
         '<span id="r4"></span>Cargnello, M., Moise, H. Low-emissions hydrogen and low-cost performance cement via methane pyrolysis. Stanford Sustainability Accelerator.',
         '<span id="r5"></span>UC Berkeley Center for the Built Environment. Cost-Effectiveness and Mitigation Potential of Low-Carbon Building Material Alternatives. <a href="https://cbe.berkeley.edu/research/low-carbon-building-material-alternatives/">cbe.berkeley.edu</a>',
-        '<span id="r6"></span>Su, et al. Photothermocatalytic reactor and selective solar absorbers for sustainable fuels (Liquid Sunlight Alliance). <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; Caltech news. <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>',
+        '<span id="r6"></span>Su, M. P., Aitbekova, A., Salazar, M., et al. (2024). Photothermocatalytic reactor and selective solar absorbers for sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; Caltech news. <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>',
     ],
 })
 
@@ -238,18 +253,22 @@ POSTS.append({
     "slug": "energy-systems",
     "num": "04",
     "sector": "Energy Systems",
-    "card_title": "Long-duration storage is becoming the quiet center of clean grids",
+    "viz_key": "energy",
+    "card_title": "Long-duration storage is the quiet center of clean grids",
     "card_blurb": "Stanford and Berkeley grid models, plus Caltech storage chemistry and Pasadena smart-grid pilots, show when multi-day storage and local integration actually earn their keep.",
     "meta": "Research note · August 1, 2026 · Sector 04",
-    "title": "Long-duration storage is becoming the quiet center of clean grids",
-    "dek": "Solar and wind are no longer the hard part. Keeping a zero-emissions grid reliable across nights, calm weeks, and seasons is.",
+    "title": "Long-duration storage is the quiet center of clean grids",
+    "dek": "Solar and wind are cheaper in many regions. Keeping a zero-emissions grid reliable across nights and calm weeks is the harder part.",
     "description": "Emerging energy systems research on long-duration storage and clean grids from Stanford and Berkeley.",
     "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Batteries that last a few hours cover evening peaks. Multi-day storage fills the gaps when wind and sun dip for days or weeks. Grid models now spell out when each layer pays for itself.</p>
+        </div>
         <p>Variable renewables have won the cheap-electron contest in many regions. The research frontier has moved to balancing: how much lithium-ion is enough, when multi-day storage becomes valuable, and which firm resources reduce total system cost.</p>
         <p>University capacity-expansion models are doing the unglamorous work of answering those questions with geographic detail rather than slogans.</p>
 
         <h2>What grid models now show about LDES</h2>
-        <p>A <em>Nature Communications</em> study using the SWITCH model on a zero-emissions Western Interconnect finds that long-duration energy storage (LDES) is especially valuable in wind-heavy regions and places losing hydropower. Seasonal storage becomes cost-effective if capital costs fall below about $5/kWh, and large LDES mandates can cut prices in high-demand hours dramatically by reducing scarcity [<a href="#r1">1</a>]. Duration needs are not uniform: solar-dominant Southwest systems often want 6–10 hour assets, while wind-dominant systems lean toward 10–20 hours.</p>
+        <p>Staadecker et al. use the SWITCH model on a zero-emissions Western Interconnect and find that long-duration energy storage (LDES) is especially valuable in wind-heavy regions and places losing hydropower. Seasonal storage becomes cost-effective if capital costs fall below about $5/kWh, and large LDES mandates can cut prices in high-demand hours dramatically by reducing scarcity [<a href="#r1">1</a>]. Duration needs are not uniform: solar-dominant Southwest systems often want 6–10 hour assets, while wind-dominant systems lean toward 10–20 hours.</p>
         <p>Stanford work led with Sally Benson and colleagues examines multi-day to seasonal storage in transmission-constrained systems. When clean firm generation is limited, short-duration storage still delivers more energy in many cases, but LDES plays a distinct role as a dispatchable substitute. Their substitution-ratio framing is useful: one megawatt of LDES can carry system value comparable to many megawatts of renewables paired only with short-duration storage [<a href="#r2">2</a>].</p>
 
         <h2>California as a laboratory</h2>
@@ -267,7 +286,7 @@ POSTS.append({
         <p>The emerging technology set is broader than batteries: LDES chemistries and mechanical systems, hydrogen storage in existing gas infrastructure, firm resources such as EGS, and next-generation electrochemistry from Caltech. Stanford, Berkeley, and Caltech research is clarifying the conditions under which each earns a place on a real transmission map and in local grids.</p>
 ''',
     "refs": [
-        '<span id="r1"></span>Staadecker, M., Szinai, J., Sánchez-Pérez, P. A., et al. (2024). The value of long-duration energy storage under various grid conditions in a zero-emissions future. <em>Nature Communications</em>. <a href="https://doi.org/10.1038/s41467-024-53274-6">doi:10.1038/s41467-024-53274-6</a>',
+        '<span id="r1"></span>Staadecker, M., Szinai, J., Sánchez-Pérez, P. A., et al. (2024). The value of long-duration energy storage under various grid conditions in a zero-emissions future. <em>Nature Communications</em>. <a href="https://doi.org/10.1038/s41467-024-53274-6">doi:10.1038/s41467-024-53274-6</a> (UCSD, LBNL, NREL, UC Merced).',
         '<span id="r2"></span>Chu, A., Baik, E., Benson, S. M. (2024). Long-duration energy storage in transmission-constrained variable renewable energy systems. <em>Cell Reports Sustainability</em>. <a href="https://doi.org/10.1016/j.crsus.2024.100285">doi:10.1016/j.crsus.2024.100285</a> (Stanford).',
         '<span id="r3"></span>Energy storage in combined gas-electric energy transitions models: The case of California. BRIDGES model results summarized via OSTI. <a href="https://www.osti.gov/biblio/2562162">OSTI 2562162</a>',
         '<span id="r4"></span>Aljubran, M. J., et al. (2025). Enhanced Geothermal Systems for Reliable Decarbonization of the California Energy Grid. Stanford Geothermal Workshop. <a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Aljubran.pdf">PDF</a>',
@@ -280,6 +299,7 @@ POSTS.append({
     "slug": "manufacturing",
     "num": "05",
     "sector": "Manufacturing",
+    "viz_key": "manufacturing",
     "card_title": "Advanced manufacturing is becoming a decarbonization toolkit",
     "card_blurb": "NSF and university work on electrification, process substitution, and factory data is turning manufacturing into a climate research domain.",
     "meta": "Research note · August 1, 2026 · Sector 05",
@@ -287,13 +307,16 @@ POSTS.append({
     "dek": "Factories are no longer only an emissions source to regulate. They are a design space for lower-carbon process technology.",
     "description": "Emerging green manufacturing and industrial electrification research from leading universities.",
     "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Factories emit heavily because they burn fuel for high-temperature heat. Researchers are swapping flames for electric and solar reactors, and publishing cost curves so plants know what clears a carbon price.</p>
+        </div>
         <p>Manufacturing sits at the intersection of materials, energy, and process control. The emerging research agenda treats decarbonization as an advanced-manufacturing problem: replace inefficient unit operations, electrify heat, redesign products so they need less energy in use, and measure abatement costs with the same rigor used for financial capital budgeting.</p>
 
         <h2>Four pillars, one manufacturing lens</h2>
         <p>An NSF workshop report on advanced manufacturing for industrial decarbonization organizes the field into energy efficiency, industrial electrification, low-carbon fuels and feedstocks, and carbon capture, utilization, and storage [<a href="#r1">1</a>]. The important contribution is not the taxonomy. It is the insistence that manufacturing research and techno-economic analysis must be co-designed. A beautiful reactor that never clears a factory's hurdle rate is not climate infrastructure.</p>
 
         <h2>Electrified process heat enters the factory</h2>
-        <p>Stanford engineers have demonstrated a compact thermochemical reactor that uses high-efficiency power electronics and inductively heated ceramic metamaterial lattices to deliver industrial-grade heat without combustion [<a href="#r2">2</a>]. Because catalysts can sit inside the lattice voids, heat transfer improves and reactors can shrink relative to furnace baselines. Parallel Stanford work on firebrick thermal storage shows that renewable electricity can be stored as high-temperature heat for cement, steel, glass, and paper processes at a small fraction of battery cost per thermal kilowatt-hour [<a href="#r3">3</a>].</p>
+        <p>Stanford engineers led by Fan et al. have demonstrated a compact thermochemical reactor that uses high-efficiency power electronics and inductively heated ceramic metamaterial lattices to deliver industrial-grade heat without combustion [<a href="#r2">2</a>]. Because catalysts can sit inside the lattice voids, heat transfer improves and reactors can shrink relative to furnace baselines. Jacobson et al. show that firebrick thermal storage can store renewable electricity as high-temperature heat for cement, steel, glass, and paper processes at a small fraction of battery cost per thermal kilowatt-hour [<a href="#r3">3</a>].</p>
         <p>Berkeley research on off-grid renewable heat with thermal storage and heat pumps estimates that local renewable configurations could economically supply on the order of one-third of U.S. industrial heat demand by 2035 under studied scenarios, with especially strong near-term economics for mid- and high-temperature thermal electric storage [<a href="#r4">4</a>].</p>
 
         <h2>Solar-thermal process chemistry at Caltech</h2>
@@ -314,7 +337,7 @@ POSTS.append({
         '<span id="r3"></span>Jacobson, M. Z., Sambor, D. J., et al. (2024). Effects of firebricks for industrial process heat... <em>PNAS Nexus</em>. <a href="https://web.stanford.edu/group/efmh/jacobson/Articles/Others/24-Firebricks.pdf">PDF</a>',
         '<span id="r4"></span>UC Berkeley Goldman School working paper (2025 draft). Integrating renewable energy with industrial heat demand. <a href="https://gspp.berkeley.edu/archived/files/page/Integrating_Renewable_Energy_with_Industrial_Heat_Demand_-_V20251212.pdf">PDF</a>',
         '<span id="r5"></span>Glenk, G., Meier, R., Reichelstein, S. J. (2024). Assessing the Costs of Industrial Decarbonization. Stanford GSB Working Paper 4202. <a href="https://www.gsb.stanford.edu/faculty-research/working-papers/assessing-costs-industrial-decarbonization">gsb.stanford.edu</a>',
-        '<span id="r6"></span>Atwater, H., Liquid Sunlight Alliance. Solar-thermal reactor for ethylene oligomerization and sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>',
+        '<span id="r6"></span>Su, M. P., Aitbekova, A., Salazar, M., et al. (2024). Photothermocatalytic reactor and selective solar absorbers for sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>',
     ],
 })
 
@@ -323,6 +346,7 @@ POSTS.append({
     "slug": "built-environment",
     "num": "06",
     "sector": "Built Environment",
+    "viz_key": "built",
     "card_title": "Whole-life carbon is replacing energy-only building metrics",
     "card_blurb": "Stanford CIFE and Berkeley-linked building research show embodied carbon now rivals operations as grids clean up.",
     "meta": "Research note · August 1, 2026 · Sector 06",
@@ -330,6 +354,9 @@ POSTS.append({
     "dek": "As grids decarbonize, the carbon locked into steel, concrete, and interiors becomes impossible to ignore.",
     "description": "Emerging built environment research on whole-life and embodied carbon from Stanford and related labs.",
     "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Buildings used to be judged mainly on energy bills. As grids get cleaner, the carbon in steel, concrete, and interiors often matters just as much over a building's life.</p>
+        </div>
         <p>Building climate research spent decades optimizing operational energy. That work succeeded enough to change the problem. In many new projects, embodied carbon from materials and construction is now comparable to, or larger than, lifetime operational carbon, especially on cleaner grids.</p>
 
         <h2>Measuring the whole life of a building</h2>
@@ -364,6 +391,7 @@ POSTS.append({
     "slug": "mobility",
     "num": "07",
     "sector": "Mobility",
+    "viz_key": "mobility",
     "card_title": "EV scale-up is constrained by finance and charging reliability",
     "card_blurb": "Wharton, Harvard, and Caltech research show that loans, broken chargers, and oversubscribed charging networks shape electric mobility adoption.",
     "meta": "Research note · August 1, 2026 · Sector 07",
@@ -371,10 +399,13 @@ POSTS.append({
     "dek": "Battery packs get the headlines. Household credit and uptime statistics may decide the adoption curve.",
     "description": "Emerging mobility research from Wharton and Harvard on EV finance and charging infrastructure.",
     "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Electric cars improve every year, but buyers still face stricter loans and chargers that fail too often. Fixing finance and uptime may matter as much as battery chemistry for mass adoption.</p>
+        </div>
         <p>Electric mobility research often starts with energy density, charging speed, and vehicle cost. Those remain first-order. Wharton and Harvard work adds two less visible constraints that determine whether climate-aligned transport actually reaches households: financing terms and charger reliability.</p>
 
         <h2>The EV financing gap</h2>
-        <p>Research affiliated with Wharton, <em>Financing the Global Shift to Electric Mobility</em>, finds that early-stage EVs receive tighter loan terms than comparable internal-combustion vehicles: higher interest rates, lower loan-to-value ratios, and shorter durations [<a href="#r1">1</a>][<a href="#r2">2</a>]. The dominant mechanism is technological obsolescence risk. Rapid battery and powertrain innovation lowers expected resale values, which raises collateral risk for lenders. Buyer demographics, lender market power, and macro conditions explain little of the spread once technology risk is accounted for.</p>
+        <p>Research by Bena et al., <em>Financing the Global Shift to Electric Mobility</em>, finds that early-stage EVs receive tighter loan terms than comparable internal-combustion vehicles: higher interest rates, lower loan-to-value ratios, and shorter durations [<a href="#r1">1</a>][<a href="#r2">2</a>]. The dominant mechanism is technological obsolescence risk. Rapid battery and powertrain innovation lowers expected resale values, which raises collateral risk for lenders. Buyer demographics, lender market power, and macro conditions explain little of the spread once technology risk is accounted for.</p>
         <p>That result reframes climate policy. Purchase subsidies address sticker price. They do not automatically repair the credit spread created by uncertain residual values. Accessible mobility research therefore includes open measurement of residual-value risk and financing products designed for transition technologies.</p>
 
         <h2>Charging as infrastructure, not amenity</h2>
@@ -382,7 +413,7 @@ POSTS.append({
         <p>Policy follow-ups from the same research community emphasize that no single private actor is fully incentivized to build and maintain a national network at climate-relevant speed [<a href="#r4">4</a>]. Reliability data, maintenance accountability, and targeted public finance become research outputs as important as new connector standards.</p>
 
         <h2>Caltech Adaptive Charging Network</h2>
-        <p>Steven Low and colleagues at Caltech built the Adaptive Charging Network (ACN) to study oversubscribed charging infrastructure: more vehicles than ports, limited campus power, and the need for fair, grid-aware schedules. The system uses model predictive control for charging allocation and publishes open research through ACN-Data and ACN-Sim, with technology transfer via PowerFlex [<a href="#r5">5</a>][<a href="#r6">6</a>]. This is mobility research at the intersection of algorithms and hardware: not how fast one car charges, but how a fleet shares constrained capacity without blackouts or arbitrary queuing.</p>
+        <p>Lee et al. and Steven Low at Caltech built the Adaptive Charging Network (ACN) to study oversubscribed charging infrastructure: more vehicles than ports, limited campus power, and the need for fair, grid-aware schedules. The system uses model predictive control for charging allocation and publishes open research through ACN-Data and ACN-Sim, with technology transfer via PowerFlex [<a href="#r5">5</a>][<a href="#r6">6</a>]. This is mobility research at the intersection of algorithms and hardware: not how fast one car charges, but how a fleet shares constrained capacity without blackouts or arbitrary queuing.</p>
         <p>Wharton and Harvard document financing and public reliability frictions. Caltech documents how to operate dense charging when demand exceeds installed capacity. Together they describe why EV scale-up is a systems problem.</p>
         <div class="callout">
           <p>Emerging mobility technology is not only solid-state batteries. It is also credit models, reliability analytics, and grid-aware charging that make electrification usable.</p>
@@ -396,7 +427,7 @@ POSTS.append({
         '<span id="r2"></span>Knowledge at Wharton. Why Are Electric Vehicle Loans More Expensive? <a href="https://knowledge.wharton.upenn.edu/article/why-are-electric-vehicle-loans-more-expensive/">knowledge.wharton.upenn.edu</a>',
         '<span id="r3"></span>Asensio, O. I., et al. Harvard Business School BiGS. The state of EV charging in America. <a href="https://www.hbs.edu/bigs/the-state-of-ev-charging-in-america">hbs.edu/bigs</a>',
         '<span id="r4"></span>Harvard BiGS. Can government fix the EV infrastructure gap? <a href="https://www.hbs.edu/bigs/can-government-fix-the-ev-infrastructure-gap">hbs.edu/bigs</a>',
-        '<span id="r5"></span>Low, S. H., et al. Adaptive Charging Network (ACN). <a href="https://arxiv.org/abs/2012.02636">arXiv:2012.02636</a>',
+        '<span id="r5"></span>Lee, Z. J., Low, S. H., et al. Adaptive Charging Network (ACN). <a href="https://arxiv.org/abs/2012.02636">arXiv:2012.02636</a> (Caltech).',
         '<span id="r6"></span>Caltech ACN portal (ACN-Data, ACN-Sim). <a href="https://ev.caltech.edu/">ev.caltech.edu</a>',
     ],
 })
@@ -406,6 +437,7 @@ POSTS.append({
     "slug": "industrial-processes",
     "num": "08",
     "sector": "Industrial Processes",
+    "viz_key": "industrial",
     "card_title": "Hard-to-abate industry is shifting from pilots to playbooks",
     "card_blurb": "Stanford and Berkeley research on steel, cement, heat, and abatement costs is turning industrial decarbonization into transferable methods.",
     "meta": "Research note · August 1, 2026 · Sector 08",
@@ -413,6 +445,9 @@ POSTS.append({
     "dek": "Cement, steel, and chemicals will not decarbonize through one breakthrough. They need sequenced process options with public cost evidence.",
     "description": "Emerging industrial process decarbonization research from Stanford, Berkeley, and related groups.",
     "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Cement, steel, and chemicals cannot wait for one miracle technology. Labs are publishing step-by-step playbooks: cleaner heat, new inputs, and cost tools tied to real carbon prices.</p>
+        </div>
         <p>Industrial process emissions are concentrated in a few sectors that are both economically essential and thermodynamically stubborn. The emerging research pattern from Stanford, Berkeley, and collaborating universities is to stop waiting for a single silver bullet and instead publish process pathways, heat options, and abatement costs that operators can compare. The Resnick Sustainability Institute at Caltech frames industrial and climate initiatives around the same principle: sequenced, measurable process change rather than undifferentiated ambition.</p>
 
         <h2>Solar-to-fuel industrial chemistry at Caltech</h2>
@@ -440,7 +475,7 @@ POSTS.append({
         '<span id="r4"></span>UC Berkeley GSPP working paper draft (2025). Integrating renewable energy with industrial heat demand. <a href="https://gspp.berkeley.edu/archived/files/page/Integrating_Renewable_Energy_with_Industrial_Heat_Demand_-_V20251212.pdf">PDF</a>',
         '<span id="r5"></span>Stanford Sustainability Accelerator. Phlego cement. <a href="https://sustainability-accelerator.stanford.edu/phlego-cement-sustainable-innovation-seamless-integration">Project page</a>',
         '<span id="r6"></span>Glenk, G., Meier, R., Reichelstein, S. J. (2024). Assessing the Costs of Industrial Decarbonization. Stanford GSB Working Paper 4202.',
-        '<span id="r7"></span>Liquid Sunlight Alliance / Atwater. Solar-driven CO<sub>2</sub> conversion toward ethylene and sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>; Resnick Sustainability Institute industrial and climate initiatives.',
+        '<span id="r7"></span>Su, M. P., Aitbekova, A., Salazar, M., et al. (2024). Photothermocatalytic reactor and selective solar absorbers for sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>; Resnick Sustainability Institute industrial and climate initiatives.',
     ],
 })
 
@@ -448,10 +483,11 @@ POSTS.append({
 def write_posts():
     cards = []
     for p in POSTS:
+        viz_html = VIZ.get(p.get("viz_key", ""), "")
         html = page(
             p["title"],
             p["description"],
-            article(p["meta"], p["title"], p["dek"], p["body"], p["refs"]),
+            article(p["meta"], p["title"], p["dek"], p["body"], p["refs"], viz_html=viz_html),
         )
         (ROOT / f"{p['slug']}.html").write_text(html, encoding="utf-8")
         cards.append(p)
@@ -473,7 +509,7 @@ def write_posts():
     <div class="wrap">
       <p class="eyebrow">Research notes</p>
       <h1>Emerging tech, by sector.</h1>
-      <p class="lede">Crisp field notes on the technologies reshaping climate research, with citations drawn from Stanford, Berkeley, Caltech, Harvard, Wharton, and leading labs.</p>
+      <p class="lede">Easy-to-read notes with visuals on climate tech, with research from Stanford, Berkeley, Caltech, Harvard, Wharton, and leading labs.</p>
     </div>
   </header>
   <section class="wrap">

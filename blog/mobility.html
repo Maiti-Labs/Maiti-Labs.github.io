@@ -32,12 +32,33 @@
       <p class="article-meta">Research note · August 1, 2026 · Sector 07</p>
       <h1>EV scale-up is constrained by finance and charging reliability</h1>
       <p class="dek">Battery packs get the headlines. Household credit and uptime statistics may decide the adoption curve.</p>
+      <figure class="viz">
+        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="220" fill="#faf7ef" rx="8"/>
+          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Two gates to EV adoption</text>
+          <rect x="240" y="55" width="160" height="50" rx="10" fill="#204028"/>
+          <text x="320" y="85" text-anchor="middle" fill="#f0e8cc" font-size="12" font-family="Outfit,sans-serif">Electric car</text>
+          <line class="viz-draw" x1="280" y1="105" x2="200" y2="140" stroke="#204028" stroke-width="2"/>
+          <line class="viz-draw" x1="360" y1="105" x2="440" y2="140" stroke="#204028" stroke-width="2"/>
+          <rect class="viz-pulse" x="100" y="140" width="200" height="56" rx="12" fill="#f0e8cc" stroke="#204028" stroke-width="1.2"/>
+          <text x="200" y="165" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Charger reliability</text>
+          <text x="200" y="182" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">works when you need it</text>
+          <rect class="viz-pulse" x="340" y="140" width="200" height="56" rx="12" fill="#f0e8cc" stroke="#204028" stroke-width="1.2" style="animation-delay:.25s"/>
+          <text x="440" y="165" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Loan terms</text>
+          <text x="440" y="182" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">affordable financing</text>
+        </svg>
+        <figcaption class="viz-caption">Better batteries help, but drivers also need chargers that work and loans that match gasoline-car terms.</figcaption>
+      </figure>
+
       <div class="body">
 
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Electric cars improve every year, but buyers still face stricter loans and chargers that fail too often. Fixing finance and uptime may matter as much as battery chemistry for mass adoption.</p>
+        </div>
         <p>Electric mobility research often starts with energy density, charging speed, and vehicle cost. Those remain first-order. Wharton and Harvard work adds two less visible constraints that determine whether climate-aligned transport actually reaches households: financing terms and charger reliability.</p>
 
         <h2>The EV financing gap</h2>
-        <p>Research affiliated with Wharton, <em>Financing the Global Shift to Electric Mobility</em>, finds that early-stage EVs receive tighter loan terms than comparable internal-combustion vehicles: higher interest rates, lower loan-to-value ratios, and shorter durations [<a href="#r1">1</a>][<a href="#r2">2</a>]. The dominant mechanism is technological obsolescence risk. Rapid battery and powertrain innovation lowers expected resale values, which raises collateral risk for lenders. Buyer demographics, lender market power, and macro conditions explain little of the spread once technology risk is accounted for.</p>
+        <p>Research by Bena et al., <em>Financing the Global Shift to Electric Mobility</em>, finds that early-stage EVs receive tighter loan terms than comparable internal-combustion vehicles: higher interest rates, lower loan-to-value ratios, and shorter durations [<a href="#r1">1</a>][<a href="#r2">2</a>]. The dominant mechanism is technological obsolescence risk. Rapid battery and powertrain innovation lowers expected resale values, which raises collateral risk for lenders. Buyer demographics, lender market power, and macro conditions explain little of the spread once technology risk is accounted for.</p>
         <p>That result reframes climate policy. Purchase subsidies address sticker price. They do not automatically repair the credit spread created by uncertain residual values. Accessible mobility research therefore includes open measurement of residual-value risk and financing products designed for transition technologies.</p>
 
         <h2>Charging as infrastructure, not amenity</h2>
@@ -45,7 +66,7 @@
         <p>Policy follow-ups from the same research community emphasize that no single private actor is fully incentivized to build and maintain a national network at climate-relevant speed [<a href="#r4">4</a>]. Reliability data, maintenance accountability, and targeted public finance become research outputs as important as new connector standards.</p>
 
         <h2>Caltech Adaptive Charging Network</h2>
-        <p>Steven Low and colleagues at Caltech built the Adaptive Charging Network (ACN) to study oversubscribed charging infrastructure: more vehicles than ports, limited campus power, and the need for fair, grid-aware schedules. The system uses model predictive control for charging allocation and publishes open research through ACN-Data and ACN-Sim, with technology transfer via PowerFlex [<a href="#r5">5</a>][<a href="#r6">6</a>]. This is mobility research at the intersection of algorithms and hardware: not how fast one car charges, but how a fleet shares constrained capacity without blackouts or arbitrary queuing.</p>
+        <p>Lee et al. and Steven Low at Caltech built the Adaptive Charging Network (ACN) to study oversubscribed charging infrastructure: more vehicles than ports, limited campus power, and the need for fair, grid-aware schedules. The system uses model predictive control for charging allocation and publishes open research through ACN-Data and ACN-Sim, with technology transfer via PowerFlex [<a href="#r5">5</a>][<a href="#r6">6</a>]. This is mobility research at the intersection of algorithms and hardware: not how fast one car charges, but how a fleet shares constrained capacity without blackouts or arbitrary queuing.</p>
         <p>Wharton and Harvard document financing and public reliability frictions. Caltech documents how to operate dense charging when demand exceeds installed capacity. Together they describe why EV scale-up is a systems problem.</p>
         <div class="callout">
           <p>Emerging mobility technology is not only solid-state batteries. It is also credit models, reliability analytics, and grid-aware charging that make electrification usable.</p>
@@ -62,7 +83,7 @@
 <li><span id="r2"></span>Knowledge at Wharton. Why Are Electric Vehicle Loans More Expensive? <a href="https://knowledge.wharton.upenn.edu/article/why-are-electric-vehicle-loans-more-expensive/">knowledge.wharton.upenn.edu</a></li>
 <li><span id="r3"></span>Asensio, O. I., et al. Harvard Business School BiGS. The state of EV charging in America. <a href="https://www.hbs.edu/bigs/the-state-of-ev-charging-in-america">hbs.edu/bigs</a></li>
 <li><span id="r4"></span>Harvard BiGS. Can government fix the EV infrastructure gap? <a href="https://www.hbs.edu/bigs/can-government-fix-the-ev-infrastructure-gap">hbs.edu/bigs</a></li>
-<li><span id="r5"></span>Low, S. H., et al. Adaptive Charging Network (ACN). <a href="https://arxiv.org/abs/2012.02636">arXiv:2012.02636</a></li>
+<li><span id="r5"></span>Lee, Z. J., Low, S. H., et al. Adaptive Charging Network (ACN). <a href="https://arxiv.org/abs/2012.02636">arXiv:2012.02636</a> (Caltech).</li>
 <li><span id="r6"></span>Caltech ACN portal (ACN-Data, ACN-Sim). <a href="https://ev.caltech.edu/">ev.caltech.edu</a></li>
         </ol>
       </section>

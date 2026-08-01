@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Long-duration storage is becoming the quiet center of clean grids · Maiti Labs</title>
+<title>Long-duration storage is the quiet center of clean grids · Maiti Labs</title>
 <meta name="description" content="Emerging energy systems research on long-duration storage and clean grids from Stanford and Berkeley." />
 <link rel="icon" href="../logo.png" type="image/png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,15 +30,46 @@
     <div class="wrap-narrow">
       <a class="back-link" href="index.html">‹ All research notes</a>
       <p class="article-meta">Research note · August 1, 2026 · Sector 04</p>
-      <h1>Long-duration storage is becoming the quiet center of clean grids</h1>
-      <p class="dek">Solar and wind are no longer the hard part. Keeping a zero-emissions grid reliable across nights, calm weeks, and seasons is.</p>
+      <h1>Long-duration storage is the quiet center of clean grids</h1>
+      <p class="dek">Solar and wind are cheaper in many regions. Keeping a zero-emissions grid reliable across nights and calm weeks is the harder part.</p>
+      <figure class="viz">
+        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="220" fill="#faf7ef" rx="8"/>
+          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Balancing sun and wind on the grid</text>
+          <g class="viz-float">
+            <circle cx="80" cy="100" r="28" fill="#f0e8cc" stroke="#204028"/>
+            <text x="80" y="105" text-anchor="middle" fill="#204028" font-size="18">☀</text>
+          </g>
+          <g class="viz-float" style="animation-delay:.3s">
+            <path d="M140 115 Q155 85 175 100 Q195 70 210 115" fill="none" stroke="#204028" stroke-width="2"/>
+            <text x="175" y="135" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">wind</text>
+          </g>
+          <line class="viz-draw" x1="220" y1="100" x2="270" y2="100" stroke="#204028" stroke-width="2"/>
+          <rect x="270" y="72" width="100" height="56" rx="10" fill="#204028"/>
+          <text x="320" y="96" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">Short battery</text>
+          <text x="320" y="112" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">hours</text>
+          <line class="viz-draw" x1="370" y1="100" x2="420" y2="100" stroke="#204028" stroke-width="2"/>
+          <rect class="viz-pulse" x="420" y="68" width="110" height="64" rx="10" fill="#2d5640"/>
+          <text x="475" y="94" text-anchor="middle" fill="#f0e8cc" font-size="10" font-weight="600" font-family="Outfit,sans-serif">Long storage</text>
+          <text x="475" y="110" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">days to weeks</text>
+          <line class="viz-draw" x1="530" y1="100" x2="580" y2="100" stroke="#204028" stroke-width="2"/>
+          <rect x="560" y="85" width="60" height="30" rx="6" fill="#f0e8cc" stroke="#204028"/>
+          <text x="590" y="104" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Grid</text>
+          <text x="320" y="175" text-anchor="middle" fill="#5a6a5c" font-size="11" font-family="Outfit,sans-serif">Steady power through nights and calm weeks</text>
+        </svg>
+        <figcaption class="viz-caption">Solar and wind vary by hour and season. Short batteries cover evenings; long-duration storage helps keep clean grids reliable over multi-day gaps.</figcaption>
+      </figure>
+
       <div class="body">
 
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Batteries that last a few hours cover evening peaks. Multi-day storage fills the gaps when wind and sun dip for days or weeks. Grid models now spell out when each layer pays for itself.</p>
+        </div>
         <p>Variable renewables have won the cheap-electron contest in many regions. The research frontier has moved to balancing: how much lithium-ion is enough, when multi-day storage becomes valuable, and which firm resources reduce total system cost.</p>
         <p>University capacity-expansion models are doing the unglamorous work of answering those questions with geographic detail rather than slogans.</p>
 
         <h2>What grid models now show about LDES</h2>
-        <p>A <em>Nature Communications</em> study using the SWITCH model on a zero-emissions Western Interconnect finds that long-duration energy storage (LDES) is especially valuable in wind-heavy regions and places losing hydropower. Seasonal storage becomes cost-effective if capital costs fall below about $5/kWh, and large LDES mandates can cut prices in high-demand hours dramatically by reducing scarcity [<a href="#r1">1</a>]. Duration needs are not uniform: solar-dominant Southwest systems often want 6–10 hour assets, while wind-dominant systems lean toward 10–20 hours.</p>
+        <p>Staadecker et al. use the SWITCH model on a zero-emissions Western Interconnect and find that long-duration energy storage (LDES) is especially valuable in wind-heavy regions and places losing hydropower. Seasonal storage becomes cost-effective if capital costs fall below about $5/kWh, and large LDES mandates can cut prices in high-demand hours dramatically by reducing scarcity [<a href="#r1">1</a>]. Duration needs are not uniform: solar-dominant Southwest systems often want 6–10 hour assets, while wind-dominant systems lean toward 10–20 hours.</p>
         <p>Stanford work led with Sally Benson and colleagues examines multi-day to seasonal storage in transmission-constrained systems. When clean firm generation is limited, short-duration storage still delivers more energy in many cases, but LDES plays a distinct role as a dispatchable substitute. Their substitution-ratio framing is useful: one megawatt of LDES can carry system value comparable to many megawatts of renewables paired only with short-duration storage [<a href="#r2">2</a>].</p>
 
         <h2>California as a laboratory</h2>
@@ -59,7 +90,7 @@
       <section class="refs">
         <h2>References</h2>
         <ol>
-<li><span id="r1"></span>Staadecker, M., Szinai, J., Sánchez-Pérez, P. A., et al. (2024). The value of long-duration energy storage under various grid conditions in a zero-emissions future. <em>Nature Communications</em>. <a href="https://doi.org/10.1038/s41467-024-53274-6">doi:10.1038/s41467-024-53274-6</a></li>
+<li><span id="r1"></span>Staadecker, M., Szinai, J., Sánchez-Pérez, P. A., et al. (2024). The value of long-duration energy storage under various grid conditions in a zero-emissions future. <em>Nature Communications</em>. <a href="https://doi.org/10.1038/s41467-024-53274-6">doi:10.1038/s41467-024-53274-6</a> (UCSD, LBNL, NREL, UC Merced).</li>
 <li><span id="r2"></span>Chu, A., Baik, E., Benson, S. M. (2024). Long-duration energy storage in transmission-constrained variable renewable energy systems. <em>Cell Reports Sustainability</em>. <a href="https://doi.org/10.1016/j.crsus.2024.100285">doi:10.1016/j.crsus.2024.100285</a> (Stanford).</li>
 <li><span id="r3"></span>Energy storage in combined gas-electric energy transitions models: The case of California. BRIDGES model results summarized via OSTI. <a href="https://www.osti.gov/biblio/2562162">OSTI 2562162</a></li>
 <li><span id="r4"></span>Aljubran, M. J., et al. (2025). Enhanced Geothermal Systems for Reliable Decarbonization of the California Energy Grid. Stanford Geothermal Workshop. <a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Aljubran.pdf">PDF</a></li>
