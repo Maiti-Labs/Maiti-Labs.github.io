@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maiti Labs</title>
+<meta name="description" content="Maiti Labs is a research organization studying the climate impact of emerging technologies, from energy systems to artificial intelligence." />
+<link rel="icon" href="logo.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f4ee;
+    --fg: #171717;
+    --muted: #6b6b63;
+    --line: #d4d3cb;
+    --line-hover: #c0bdad;
+    --card: #ffffff;
+    --card-soft: rgba(255,255,255,0.6);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .page {
+    padding: 1rem;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .page { padding: 3rem; }
+  }
+  .col {
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    header {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 1.875rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .brand img {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    display: block;
+  }
+  nav {
+    display: flex;
+    gap: 1rem;
+  }
+  nav a {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 2px;
+    color: var(--muted);
+  }
+  nav a:hover,
+  nav a[aria-current="page"] {
+    color: var(--fg);
+    text-decoration-color: var(--fg);
+  }
+
+  .intro {
+    margin: 2rem 0;
+    max-width: 36rem;
+  }
+
+  .feed {
+    position: relative;
+    padding: 1rem 0 1rem 0.5rem;
+    border-left: 1px solid var(--line);
+  }
+  .feed::before,
+  .feed::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    width: 1px;
+    height: 1.5rem;
+  }
+  .feed::before {
+    top: 0;
+    background: linear-gradient(to top, transparent, var(--bg));
+  }
+  .feed::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+  }
+  .feed-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 1.5rem;
+  }
+  .item {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid transparent;
+    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .item .dot {
+    position: absolute;
+    left: -40px;
+    top: 7px;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+    background: #171717;
+    outline: 2px solid var(--bg);
+  }
+  .item-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .item-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.35;
+    min-width: 0;
+  }
+  .item-meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .item-desc {
+    margin-top: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .item--feature {
+    background: var(--card);
+    border-color: #000;
+    box-shadow: 3px 3px 0 #000;
+  }
+  .item--feature:hover {
+    box-shadow: 5px 5px 0 #000;
+  }
+  .item--soft {
+    background: var(--card-soft);
+    border-color: var(--line);
+  }
+  .item--soft:hover {
+    background: var(--card);
+    border-color: var(--line-hover);
+    box-shadow: 3px 3px 0 var(--line-hover);
+  }
+  .item--plain:hover {
+    background: rgba(0,0,0,0.03);
+  }
+
+  .section-label {
+    margin: 2.5rem 0 1rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+  footer a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  footer p + p { margin-top: 0.75rem; }
+
+  a:focus-visible {
+    outline: 2px solid var(--fg);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="col">
+      <header>
+        <a class="brand" href="#top" id="top">
+          <img src="logo.png" alt="" width="28" height="28" />
+          Maiti Labs
+        </a>
+        <nav>
+          <a href="#top" aria-current="page">Home</a>
+          <a href="#research">Research</a>
+          <a href="#sectors">Sectors</a>
+        </nav>
+      </header>
+
+      <p class="intro">
+        Maiti Labs is a research organization studying the climate impact of emerging technologies.
+        We measure how breakthroughs reshape the carbon budget, from energy systems to artificial intelligence,
+        and deep-dive every sector where innovation remakes the planet.
+      </p>
+
+      <div class="feed" id="research">
+        <ul class="feed-list">
+          <li>
+            <a class="item item--feature" href="#approach">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">A breakthrough only counts if the planet can afford it</div>
+                <div class="item-meta">Approach</div>
+              </div>
+              <p class="item-desc">Climate is not a footnote to innovation. It is the constraint that decides whether innovation is progress.</p>
+            </a>
+          </li>
+
+          <li>
+            <div class="item item--soft">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Measurement</div>
+                <div class="item-meta">Pillar</div>
+              </div>
+              <p class="item-desc">Life-cycle methods, energy accounting, and open datasets that quantify the climate load of models, machines, materials, and infrastructure.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="item item--soft">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Foresight</div>
+                <div class="item-meta">Pillar</div>
+              </div>
+              <p class="item-desc">Scenario research on how emerging tech scales: what demand it creates, what emissions it avoids, and which pathways stay inside planetary limits.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="item item--soft">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Transition</div>
+                <div class="item-meta">Pillar</div>
+              </div>
+              <p class="item-desc">Evidence for builders and policymakers: where technology accelerates decarbonization, and where it quietly works against it.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <p class="section-label" id="sectors">Sector deep dives</p>
+
+      <div class="feed">
+        <ul class="feed-list">
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Artificial Intelligence</div>
+                <div class="item-meta">01</div>
+              </div>
+              <p class="item-desc">Training and inference energy, data-center load, model efficiency, and the climate cost of scale.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Energy Systems</div>
+                <div class="item-meta">02</div>
+              </div>
+              <p class="item-desc">Generation, grids, storage, industrial heat, and the technologies that move the power system.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Compute &amp; Cloud</div>
+                <div class="item-meta">03</div>
+              </div>
+              <p class="item-desc">Hardware roadmaps, cooling, water use, and the infrastructure beneath digital growth.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Materials &amp; Manufacturing</div>
+                <div class="item-meta">04</div>
+              </div>
+              <p class="item-desc">Critical minerals, low-carbon processes, and the embodied emissions of new hardware.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Mobility</div>
+                <div class="item-meta">05</div>
+              </div>
+              <p class="item-desc">Electrification, logistics, aviation fuels, and the climate math of moving people and goods.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Built Environment</div>
+                <div class="item-meta">06</div>
+              </div>
+              <p class="item-desc">Construction tech, smart buildings, and the long-lived carbon locked into cities.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Agriculture &amp; Land</div>
+                <div class="item-meta">07</div>
+              </div>
+              <p class="item-desc">AgTech, biochar, land-use change, and climate outcomes at the farm and forest edge.</p>
+            </div>
+          </li>
+          <li>
+            <div class="item item--plain">
+              <span class="dot" aria-hidden="true"></span>
+              <div class="item-head">
+                <div class="item-title">Finance &amp; Markets</div>
+                <div class="item-meta">08</div>
+              </div>
+              <p class="item-desc">Carbon markets, transition capital, and how capital allocation shapes technology pathways.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <footer id="approach">
+        <p>
+          Our planet deserves research equal to the technologies remaking it.
+          We make the climate signature of emerging technology visible, before the impacts are irreversible.
+        </p>
+        <p>© 2026 Maiti Labs.</p>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
