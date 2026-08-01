@@ -171,6 +171,28 @@
     padding: clamp(4.25rem, 10vh, 6.75rem) 0;
   }
   .section-white { background: var(--bg-white); }
+  #research {
+    padding: clamp(5.75rem, 14vh, 9.5rem) 0;
+  }
+  #research h2 {
+    font-size: clamp(2.15rem, 4.6vw, 3.45rem);
+    max-width: 12ch;
+  }
+  #research .eyebrow {
+    font-size: 0.9rem;
+    margin-bottom: 0.85rem;
+  }
+  #research .prose p {
+    font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+    line-height: 1.5;
+  }
+  #research .prose p + p { margin-top: 1.15rem; }
+  @media (min-width: 860px) {
+    #research .split {
+      gap: clamp(2.75rem, 6vw, 5.5rem);
+    }
+    #research .split h2 { max-width: 12ch; }
+  }
   .eyebrow {
     font-size: 0.8rem;
     font-weight: 600;
