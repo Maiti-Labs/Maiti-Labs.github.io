@@ -56,6 +56,10 @@
         <p>Skill on ERA5 is necessary but not sufficient. A 2024 study examining GraphCast, Pangu-Weather, and AIFS under climate-change-like conditions asks whether models trained on the recent past remain reliable as the climate shifts [<a href="#r6">6</a>]. Extremes remain a hard edge: AI forecasts can be overly smooth and can understate record-breaking events even when mean scores look excellent.</p>
         <p>University groups are therefore focusing on hybrid designs, probabilistic ensembles, and observation-informed fine-tuning. Stanford's Doerr School and related atmospheric research communities emphasize that operational value depends on calibration for hazards people actually manage: heat, flood precursors, wind extremes, and compound events, not only RMSE on 500 hPa geopotential.</p>
 
+        <h2>Physics-constrained climate modeling at Caltech CliMA</h2>
+        <p>Parallel to the pure data-driven weather foundation model wave, Caltech's Climate Modeling Alliance (CliMA), led by Tapio Schneider, pursues hybrid physics–machine learning parameterizations that keep dynamical constraints explicit while learning subgrid closures from data. Lopez-Gomez and colleagues report dynamical-generative downscaling of climate model ensembles that preserves large-scale circulation while generating high-resolution fields suitable for impact studies [<a href="#r7">7</a>]. Related work on online learning of entrainment closures shows how hybrid ML parameterizations can be updated as observations stream in, a design point that differs from frozen pretrained forecasters [<a href="#r8">8</a>].</p>
+        <p>The two agendas are complementary. Weather foundation models excel at fast, global deterministic forecasts from reanalysis. Caltech's physics-constrained climate modeling agenda targets long-horizon ensembles, process fidelity, and downscaling that remains tied to conservation laws. Accessible climate research needs both: open checkpoints for short-range hazard work and open process models for scenario stress-testing.</p>
+
         <h2>Why this matters for accessible climate research</h2>
         <p>Weather foundation models compress a capability that used to sit behind agency firewalls. Open weights, public reanalysis, and benchmarks such as WeatherBench2 let students at Berkeley, researchers in the Global South, and municipal risk teams reproduce modern forecast skill. The open problem is not whether these models exist. It is how to document uncertainty, couple them to impact models, and keep evaluation honest as the climate moves.</p>
 
@@ -72,6 +76,8 @@
 <li><span id="r4"></span>Feldmann, M., et al. (2024). Lightning-fast convective outlooks: Predicting severe convective environments with global AI-based weather models. <em>Geophysical Research Letters</em>. <a href="https://doi.org/10.1029/2024GL110960">doi:10.1029/2024GL110960</a></li>
 <li><span id="r5"></span>Bodnar, C., et al. (2024). Aurora: A foundation model of the atmosphere. <a href="https://arxiv.org/abs/2405.13063">arXiv:2405.13063</a></li>
 <li><span id="r6"></span>Rackow, T., et al. (2024). Robustness of AI-based weather forecasts in a changing climate. <a href="https://arxiv.org/abs/2409.18529">arXiv:2409.18529</a></li>
+<li><span id="r7"></span>Lopez-Gomez, I., et al. (2025). Dynamical-generative downscaling of climate model ensembles. <em>PNAS</em>. <a href="https://doi.org/10.1073/pnas.2420288122">doi:10.1073/pnas.2420288122</a> (Caltech CliMA).</li>
+<li><span id="r8"></span>Online learning of entrainment closures for hybrid ML parameterization. <em>Journal of Advances in Modeling Earth Systems</em>. <a href="https://doi.org/10.1029/2024MS004485">doi:10.1029/2024MS004485</a></li>
         </ol>
       </section>
     </div>
