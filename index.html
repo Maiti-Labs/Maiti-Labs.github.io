@@ -8,411 +8,570 @@
 <link rel="icon" href="logo.png" type="image/png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f4ee;
-    --fg: #171717;
-    --muted: #6b6b63;
-    --line: #d4d3cb;
-    --line-hover: #c0bdad;
-    --card: #ffffff;
-    --card-soft: rgba(255,255,255,0.65);
+    --bg: #fbfbfd;
+    --bg-elevated: #ffffff;
+    --bg-soft: #f5f5f7;
+    --ink: #1d1d1f;
+    --muted: #6e6e73;
+    --faint: #86868b;
+    --line: rgba(0,0,0,0.08);
+    --brand: #006d4e;
+    --brand-hover: #00835d;
+    --sky: #14919b;
+    --max: 980px;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
-    color: var(--fg);
-    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.875rem;
-    line-height: 1.5;
+    color: var(--ink);
+    font-family: "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.47;
   }
-  a { color: inherit; }
-
-  .page {
-    width: min(100% - 2rem, 72rem);
-    margin: 0 auto;
-    padding: 1.25rem 0 3rem;
+  a { color: inherit; text-decoration: none; }
+  .wrap {
+    width: min(100% - 2.5rem, var(--max));
+    margin-inline: auto;
   }
-  @media (min-width: 768px) {
-    .page { padding: 2.5rem 0 4rem; width: min(100% - 4rem, 72rem); }
-  }
-  @media (min-width: 1100px) {
-    .page { width: min(100% - 6rem, 76rem); padding: 3rem 0 5rem; }
+  @media (min-width: 740px) {
+    .wrap { width: min(100% - 4rem, var(--max)); }
   }
 
-  header {
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(251,251,253,0.72);
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s ease, background .25s ease;
+  }
+  .nav.scrolled {
+    border-bottom-color: var(--line);
+    background: rgba(251,251,253,0.86);
+  }
+  .nav-inner {
+    min-height: 52px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.85rem 1.5rem;
-    margin-bottom: 1.75rem;
+    gap: 1rem;
   }
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
-    text-decoration: none;
-    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-    font-size: clamp(1.55rem, 2.5vw, 1.9rem);
+    gap: 0.55rem;
+    font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    line-height: 1.1;
   }
   .brand img {
-    width: 28px;
-    height: 28px;
-    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
     display: block;
   }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.85rem 1.25rem;
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: 1.6rem;
   }
-  nav a {
-    text-decoration: underline;
-    text-underline-offset: 8px;
-    text-decoration-thickness: 2px;
+  @media (min-width: 720px) {
+    .nav-links { display: flex; }
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
     color: var(--muted);
+    transition: color .2s ease;
   }
-  nav a:hover,
-  nav a[aria-current="page"] {
-    color: var(--fg);
-    text-decoration-color: var(--fg);
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--brand);
+    padding: 0.45rem 0.9rem;
+    border-radius: 980px;
+    transition: background .2s ease, transform .2s ease;
   }
+  .nav-cta:hover { background: var(--brand-hover); }
 
-  .intro {
-    max-width: 46rem;
-    margin: 0 0 2rem;
-    font-size: 0.95rem;
-    line-height: 1.55;
-  }
-  @media (min-width: 900px) {
-    .intro { font-size: 1rem; max-width: 52rem; }
-  }
-
-  .section-label {
-    margin: 2.25rem 0 1rem;
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.02em;
-  }
-
-  .feed {
+  /* Hero */
+  .hero {
     position: relative;
-    padding: 0.75rem 0 0.75rem 0.5rem;
-    border-left: 1px solid var(--line);
+    overflow: hidden;
+    min-height: min(92vh, 820px);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: clamp(4.5rem, 12vh, 7.5rem) 0 clamp(4rem, 10vh, 6.5rem);
   }
-  .feed::before,
-  .feed::after {
+  .hero-visual {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 18%, rgba(20,145,155,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 55% at 18% 78%, rgba(0,109,78,0.14) 0%, transparent 50%),
+      radial-gradient(ellipse 65% 50% at 85% 72%, rgba(120,190,140,0.16) 0%, transparent 52%),
+      linear-gradient(180deg, #fbfbfd 0%, #f3f7f5 55%, #eef4f1 100%);
+  }
+  .hero-visual::after {
     content: "";
     position: absolute;
-    left: -1px;
-    width: 1px;
-    height: 1.25rem;
+    left: 50%;
+    top: 42%;
+    width: min(720px, 92vw);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(180,230,210,0.35) 35%, rgba(20,145,155,0.12) 58%, transparent 72%);
+    filter: blur(6px);
+    animation: pulse 8s ease-in-out infinite;
   }
-  .feed::before {
-    top: 0;
-    background: linear-gradient(to top, transparent, var(--bg));
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+    50% { transform: translate(-50%, -50%) scale(1.06); opacity: 1; }
   }
-  .feed::after {
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent, var(--bg));
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-brand {
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.35rem;
+    animation: rise 0.9s cubic-bezier(.16,1,.3,1) both;
   }
-  .feed-list {
-    list-style: none;
-    display: grid;
-    gap: 0.85rem;
-    margin-left: 1.35rem;
+  .hero h1 {
+    max-width: 12ch;
+    margin: 0 auto;
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+    animation: rise 0.95s cubic-bezier(.16,1,.3,1) 0.08s both;
   }
-  @media (min-width: 900px) {
-    .feed-list--pillars {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
-    .feed-list--pillars .item--feature {
-      grid-column: 1 / -1;
-      max-width: 40rem;
-    }
+  .hero-sub {
+    max-width: 34rem;
+    margin: 1.4rem auto 0;
+    font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: -0.015em;
+    animation: rise 0.95s cubic-bezier(.16,1,.3,1) 0.16s both;
   }
-  @media (min-width: 900px) {
-    .feed-list--sectors {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem 1.25rem;
-    }
-  }
-  @media (min-width: 1200px) {
-    .feed-list--sectors {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  .item {
-    position: relative;
-    display: block;
-    height: 100%;
-    text-decoration: none;
-    padding: 0.65rem 0.8rem;
-    border: 1px solid transparent;
-    transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
-  }
-  .item .dot {
-    position: absolute;
-    left: -38px;
-    top: 10px;
-    width: 7px;
-    height: 7px;
-    border-radius: 2px;
-    background: #171717;
-    outline: 2px solid var(--bg);
-  }
-  @media (min-width: 900px) {
-    .feed-list--pillars .item .dot,
-    .feed-list--sectors .item .dot {
-      display: none;
-    }
-    .feed-list--pillars,
-    .feed-list--sectors {
-      margin-left: 0;
-    }
-    .feed--grid {
-      border-left: none;
-      padding-left: 0;
-    }
-    .feed--grid::before,
-    .feed--grid::after { display: none; }
-  }
-
-  .item-head {
+  .hero-actions {
+    margin-top: 2rem;
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.65rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.1rem;
+    animation: rise 0.95s cubic-bezier(.16,1,.3,1) 0.24s both;
   }
-  .item-title {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    min-height: 44px;
+    padding: 0.7rem 1.25rem;
+    border-radius: 980px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn-primary {
+    background: var(--brand);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--brand-hover); transform: scale(1.02); }
+  .btn-secondary {
+    color: var(--brand);
+  }
+  .btn-secondary:hover { color: var(--brand-hover); }
+  .chev { font-size: 1.05em; line-height: 1; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Sections */
+  .section {
+    padding: clamp(4.5rem, 11vh, 7.5rem) 0;
+  }
+  .section-soft { background: var(--bg-soft); }
+  .eyebrow {
     font-size: 0.8rem;
     font-weight: 600;
-    line-height: 1.35;
-    min-width: 0;
+    color: var(--brand);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
   }
-  .item-meta {
-    font-size: 0.75rem;
-    color: var(--muted);
-    white-space: nowrap;
-    flex-shrink: 0;
+  .section h2 {
+    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    max-width: 14ch;
   }
-  .item-desc {
-    margin-top: 0.4rem;
-    font-size: 0.75rem;
+  .lede {
+    margin-top: 1.1rem;
+    max-width: 36rem;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
     color: var(--muted);
-    line-height: 1.45;
+    letter-spacing: -0.015em;
   }
 
-  .item--feature {
-    background: var(--card);
-    border-color: #000;
-    box-shadow: 3px 3px 0 #000;
+  .split {
+    display: grid;
+    gap: 1.75rem;
   }
-  .item--feature:hover { box-shadow: 5px 5px 0 #000; }
-  .item--soft {
-    background: var(--card-soft);
-    border-color: var(--line);
+  @media (min-width: 860px) {
+    .split {
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: start;
+    }
+    .split h2 { max-width: 11ch; }
   }
-  .item--soft:hover {
-    background: var(--card);
-    border-color: var(--line-hover);
-    box-shadow: 3px 3px 0 var(--line-hover);
+  .prose p {
+    font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+    color: var(--muted);
+    letter-spacing: -0.01em;
   }
-  .item--plain {
-    background: transparent;
-    border-color: transparent;
+  .prose p + p { margin-top: 1rem; }
+  .prose strong {
+    color: var(--ink);
+    font-weight: 600;
   }
-  @media (min-width: 900px) {
-    .item--plain {
-      background: var(--card-soft);
-      border-color: var(--line);
+
+  .pillars {
+    margin-top: clamp(2.5rem, 6vh, 3.75rem);
+    display: grid;
+    gap: 2rem;
+    border-top: 1px solid var(--line);
+    padding-top: clamp(2rem, 5vh, 3rem);
+  }
+  @media (min-width: 800px) {
+    .pillars {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 4vw, 2.75rem);
     }
   }
-  .item--plain:hover {
-    background: var(--card);
-    border-color: var(--line-hover);
-    box-shadow: 3px 3px 0 var(--line-hover);
+  .pillar h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.55rem;
   }
-
-  footer {
-    margin-top: 2.75rem;
-    padding-top: 1.35rem;
-    border-top: 1px solid var(--line);
+  .pillar p {
     color: var(--muted);
-    font-size: 0.75rem;
-    max-width: 46rem;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
   }
-  footer p + p { margin-top: 0.65rem; }
 
-  a:focus-visible {
-    outline: 2px solid var(--fg);
+  .sectors-head {
+    margin-bottom: clamp(2rem, 5vh, 3rem);
+  }
+  .sectors-head h2 { max-width: 16ch; }
+  .sector-grid {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  @media (min-width: 700px) {
+    .sector-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1000px) {
+    .sector-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .sector {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 700px) {
+    .sector {
+      padding: 1.5rem 1.25rem 1.5rem 0;
+    }
+    .sector:nth-child(even) {
+      padding-left: 1.25rem;
+      padding-right: 0;
+      border-left: 1px solid var(--line);
+    }
+  }
+  @media (min-width: 1000px) {
+    .sector {
+      padding: 1.6rem 1.2rem;
+      border-right: 1px solid var(--line);
+    }
+    .sector:nth-child(even) {
+      padding-left: 1.2rem;
+      border-left: none;
+    }
+    .sector:nth-child(4n) { border-right: none; }
+    .sector:nth-child(4n + 1) { padding-left: 0; }
+  }
+  .sector .num {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--faint);
+    margin-bottom: 0.45rem;
+  }
+  .sector h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+  .sector p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+  }
+
+  .belief {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: clamp(5.5rem, 14vh, 9rem) 0;
+    background: #061611;
+    color: #f5f5f7;
+  }
+  .belief::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 60% at 50% 40%, rgba(20,145,155,0.28) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 45% at 20% 80%, rgba(0,109,78,0.35) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .belief .wrap { position: relative; z-index: 1; }
+  .belief .eyebrow { color: #8fd0c0; }
+  .belief-quote {
+    margin: 1rem auto 0;
+    max-width: 14ch;
+    font-size: clamp(2rem, 5.2vw, 3.6rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+  .belief-quote .soft {
+    color: rgba(245,245,247,0.55);
+    font-weight: 500;
+  }
+
+  .footer {
+    padding: 2.5rem 0 2.75rem;
+    border-top: 1px solid var(--line);
+    background: var(--bg-soft);
+  }
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer .brand { font-size: 0.95rem; }
+  .footer .brand img { width: 18px; height: 18px; }
+  .footer-tag {
+    color: var(--faint);
+    font-size: 0.85rem;
+  }
+  .copyright {
+    margin-top: 1.25rem;
+    color: var(--faint);
+    font-size: 0.75rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+
+  a:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--brand);
     outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-visual::after { animation: none; }
+    .hero-brand, .hero h1, .hero-sub, .hero-actions {
+      opacity: 1; animation: none;
+    }
+    .reveal { opacity: 1; transform: none; transition: none; }
   }
 </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <a class="brand" href="#top" id="top">
-        <img src="logo.png" alt="" width="28" height="28" />
-        Maiti Labs
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top" aria-label="Maiti Labs home">
+        <img src="logo.png" alt="" width="22" height="22" />
+        <span>Maiti Labs</span>
       </a>
-      <nav>
-        <a href="#top" aria-current="page">Home</a>
+      <div class="nav-links">
         <a href="#research">Research</a>
         <a href="#sectors">Sectors</a>
-      </nav>
-    </header>
-
-    <p class="intro">
-      Maiti Labs researches the climate impact of emerging technologies across energy, AI, compute, materials, and related sectors.
-    </p>
-
-    <div class="feed feed--grid" id="research">
-      <ul class="feed-list feed-list--pillars">
-        <li>
-          <a class="item item--feature" href="#approach">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">A breakthrough only counts if the planet can afford it</div>
-              <div class="item-meta">Approach</div>
-            </div>
-            <p class="item-desc">Climate is the constraint on whether innovation is progress.</p>
-          </a>
-        </li>
-        <li>
-          <div class="item item--soft">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Measurement</div>
-              <div class="item-meta">01</div>
-            </div>
-            <p class="item-desc">Life-cycle methods, energy accounting, and open datasets for models, machines, materials, and infrastructure.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--soft">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Foresight</div>
-              <div class="item-meta">02</div>
-            </div>
-            <p class="item-desc">Scenarios for scale: demand created, emissions avoided, and pathways within planetary limits.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--soft">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Transition</div>
-              <div class="item-meta">03</div>
-            </div>
-            <p class="item-desc">Evidence for builders and policymakers on where technology accelerates or undermines decarbonization.</p>
-          </div>
-        </li>
-      </ul>
+        <a href="#approach">Approach</a>
+      </div>
+      <a class="nav-cta" href="#research">Explore</a>
     </div>
+  </nav>
 
-    <p class="section-label" id="sectors">Sectors</p>
-
-    <div class="feed feed--grid">
-      <ul class="feed-list feed-list--sectors">
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Artificial Intelligence</div>
-              <div class="item-meta">01</div>
-            </div>
-            <p class="item-desc">Training and inference energy, data-center load, and model efficiency.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Energy Systems</div>
-              <div class="item-meta">02</div>
-            </div>
-            <p class="item-desc">Generation, grids, storage, and industrial heat.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Compute &amp; Cloud</div>
-              <div class="item-meta">03</div>
-            </div>
-            <p class="item-desc">Hardware, cooling, water use, and digital infrastructure.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Materials &amp; Manufacturing</div>
-              <div class="item-meta">04</div>
-            </div>
-            <p class="item-desc">Critical minerals, process emissions, and embodied carbon.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Mobility</div>
-              <div class="item-meta">05</div>
-            </div>
-            <p class="item-desc">Electrification, logistics, and aviation fuels.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Built Environment</div>
-              <div class="item-meta">06</div>
-            </div>
-            <p class="item-desc">Construction technology and carbon locked into cities.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Agriculture &amp; Land</div>
-              <div class="item-meta">07</div>
-            </div>
-            <p class="item-desc">AgTech, land-use change, and farm-to-forest outcomes.</p>
-          </div>
-        </li>
-        <li>
-          <div class="item item--plain">
-            <span class="dot" aria-hidden="true"></span>
-            <div class="item-head">
-              <div class="item-title">Finance &amp; Markets</div>
-              <div class="item-meta">08</div>
-            </div>
-            <p class="item-desc">Carbon markets and capital allocation for transition.</p>
-          </div>
-        </li>
-      </ul>
+  <header class="hero" id="top">
+    <div class="hero-visual" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="hero-brand">Maiti Labs</p>
+      <h1>Our planet deserves our best research.</h1>
+      <p class="hero-sub">We study the climate impact of emerging technology across energy, AI, and every sector that remakes the atmosphere.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#research">Explore research</a>
+        <a class="btn btn-secondary" href="#sectors">View sectors <span class="chev" aria-hidden="true">›</span></a>
+      </div>
     </div>
+  </header>
 
-    <footer id="approach">
-      <p>We quantify the climate signature of emerging technology.</p>
-      <p>© 2026 Maiti Labs</p>
-    </footer>
-  </div>
+  <section class="section section-soft" id="research">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <p class="eyebrow">Research</p>
+          <h2>We ask what technology costs the climate.</h2>
+        </div>
+        <div class="prose reveal">
+          <p>Emerging systems leave a climate signature in energy, land, water, minerals, and emissions. Maiti Labs makes that signature visible.</p>
+          <p>We publish open, rigorous work on how breakthroughs reshape the carbon budget: what accelerates transition, what locks in demand, and where the tradeoffs remain unclear.</p>
+        </div>
+      </div>
+
+      <div class="pillars">
+        <article class="pillar reveal">
+          <h3>Measurement</h3>
+          <p>Life-cycle methods, energy accounting, and open datasets for models, machines, materials, and infrastructure.</p>
+        </article>
+        <article class="pillar reveal">
+          <h3>Foresight</h3>
+          <p>Scenarios for scale: demand created, emissions avoided, and pathways within planetary limits.</p>
+        </article>
+        <article class="pillar reveal">
+          <h3>Transition</h3>
+          <p>Evidence for builders and policymakers on where technology accelerates or undermines decarbonization.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sectors">
+    <div class="wrap">
+      <div class="sectors-head reveal">
+        <p class="eyebrow">Sectors</p>
+        <h2>From energy to AI.</h2>
+        <p class="lede">Deep research across the systems that shape emissions, materials, and land.</p>
+      </div>
+      <div class="sector-grid">
+        <article class="sector reveal">
+          <p class="num">01</p>
+          <h3>Artificial Intelligence</h3>
+          <p>Training energy, inference load, and model efficiency.</p>
+        </article>
+        <article class="sector reveal">
+          <p class="num">02</p>
+          <h3>Energy Systems</h3>
+          <p>Generation, grids, storage, and industrial heat.</p>
+        </article>
+        <article class="sector reveal">
+          <p class="num">03</p>
+          <h3>Compute &amp; Cloud</h3>
+          <p>Hardware, cooling, water, and digital infrastructure.</p>
+        </article>
+        <article class="sector reveal">
+          <p class="num">04</p>
+          <h3>Materials</h3>
+          <p>Critical minerals, process emissions, embodied carbon.</p>
+        </article>
+        <article class="sector reveal">
+          <p class="num">05</p>
+          <h3>Mobility</h3>
+          <p>Electrification, logistics, and aviation fuels.</p>
+        </article>
+        <article class="sector reveal">
+          <p class="num">06</p>
+          <h3>Built Environment</h3>
+          <p>Construction technology and urban carbon stock.</p>
+        </article>
+        <article class="sector reveal">
+          <p class="num">07</p>
+          <h3>Agriculture &amp; Land</h3>
+          <p>AgTech, land-use change, and forest outcomes.</p>
+        </article>
+        <article class="sector reveal">
+          <p class="num">08</p>
+          <h3>Finance</h3>
+          <p>Carbon markets and transition capital flows.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="belief" id="approach">
+    <div class="wrap">
+      <p class="eyebrow reveal">Approach</p>
+      <blockquote class="belief-quote reveal">
+        <span class="soft">A breakthrough only counts if</span>
+        the planet can afford it.
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="#top">
+          <img src="logo.png" alt="" width="18" height="18" />
+          <span>Maiti Labs</span>
+        </a>
+        <p class="footer-tag">Climate impact of emerging technology.</p>
+      </div>
+      <p class="copyright">Copyright © 2026 Maiti Labs. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const items = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(el => el.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.16 });
+      items.forEach(el => io.observe(el));
+    }
+  </script>
 </body>
 </html>
