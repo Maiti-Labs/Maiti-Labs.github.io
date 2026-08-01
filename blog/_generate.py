@@ -106,6 +106,37 @@ def ref_ashrae_240p(n: int) -> str:
     )
 
 
+def market_map_refs_space() -> list[str]:
+    return [
+        _ref(
+            10,
+            'Starcloud (orbital data centers). <a href="https://starcloud.com/">starcloud.com</a>; '
+            'SpaceNews coverage of Starcloud-1 and funding. '
+            '<a href="https://spacenews.com/starcloud-achieves-unicorn-status-with-170-million-raise-for-orbital-data-centers/">'
+            'spacenews.com</a>; constellation filing. '
+            '<a href="https://spacenews.com/starcloud-files-plans-for-88000-satellite-constellation/">spacenews.com</a>',
+        ),
+        _ref(
+            11,
+            'Google Research. Exploring a space-based scalable AI infrastructure system design (Project Suncatcher). '
+            '<a href="https://research.google/blog/exploring-a-space-based-scalable-ai-infrastructure-system-design/">'
+            'research.google</a>; Agüera y Arcas, Beals, et al. '
+            '<a href="https://arxiv.org/abs/2511.19468">arXiv:2511.19468</a>; Planet partnership. '
+            '<a href="https://www.planet.com/pulse/planet-to-build-and-operate-advanced-space-platform-for-google-s-project-suncatcher-moonshot/">'
+            'planet.com</a>',
+        ),
+        _ref(
+            12,
+            'Bain &amp; Company. Orbital data centers: beyond the grid. '
+            '<a href="https://www.bain.com/insights/orbital-data-centers-beyond-the-grid/">bain.com</a>; '
+            'Wood Mackenzie press release on orbital data centre costs. '
+            '<a href="https://www.woodmac.com/press-releases/wood-mackenzie-orbital-data-centres-cost-three-times-more-than-terrestrial-alternatives-as-global-power-demand-heads-for-3700-twh">'
+            'woodmac.com</a>; Axiom Space orbital compute. '
+            '<a href="https://www.axiomspace.com/">axiomspace.com</a>',
+        ),
+    ]
+
+
 def market_map_refs_weather() -> list[str]:
     return [
         _ref(
@@ -283,6 +314,7 @@ def market_map_refs_industrial() -> list[str]:
 
 
 MARKET_MAP_REFS_BY_SLUG = {
+    "space-compute": market_map_refs_space,
     "weather-foundation-models": market_map_refs_weather,
     "aerospace-satellites": market_map_refs_aerospace,
     "materials": market_map_refs_materials,
@@ -376,15 +408,76 @@ def article(meta, title, dek, body, refs, viz_html=""):
 
 POSTS = []
 
-# 1 Weather
+# 1 Space Compute
+POSTS.append({
+    "slug": "space-compute",
+    "num": "01",
+    "sector": "Space Compute",
+    "viz_key": "space",
+    "card_title": "Orbital compute is racing the terrestrial power wall",
+    "card_blurb": "AI data centers strain grids, land, and water on Earth. Orbit offers continuous solar and radiative cooling, but launch and comms still dominate cost today.",
+    "meta": "Research note · August 1, 2026 · Sector 01 · Shryas Bhurat",
+    "title": "Orbital compute is racing the terrestrial power wall",
+    "dek": "Space-based AI infrastructure promises always-on solar and passive cooling, but economics still hinge on launch and reliable ground links.",
+    "description": "Emerging orbital data center and space compute research from Google, industry analysts, and orbital DC startups, with citations.",
+    "body": '''
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Training and serving AI needs enormous electricity, cooling water, and new grid connections on Earth [<a href="#r4">4</a>]. Some teams want to run accelerators in orbit where the sun never sets on a well-chosen path and heat radiates to space, then beam results down by laser or radio [<a href="#r1">1</a>]. Today that still costs far more than a terrestrial rack unless launch gets much cheaper [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
+        </div>
+        <p>Terrestrial hyperscale data centers are colliding with the same constraints climate policy already tracks: power purchase agreements, substation queues, freshwater for cooling, and siting fights in communities that did not sign up to host gigawatt-class AI load [<a href="#r4">4</a>]. Orbital compute is not a fantasy escape hatch. It is an engineering bet that continuous solar illumination and radiative cooling can offset the penalty of lifting mass and maintaining links through the atmosphere [<a href="#r1">1</a>][<a href="#r3">3</a>].</p>
+        <p>For accessible climate research, the question is not whether orbit is "green" by default. It is whether a watt of inference delivered from space avoids a watt of fossil-backed grid build on the ground, after counting launch, replacement, spectrum, and ground-station energy. Public preprints, analyst models, and early demos are finally making that accounting possible [<a href="#r1">1</a>][<a href="#r4">4</a>][<a href="#r5">5</a>].</p>
+
+        <h2>Why the grid feels like a wall</h2>
+        <p>Global electricity demand from data centers is rising quickly enough that analysts now treat AI load as a macro grid variable, not a niche IT line item [<a href="#r4">4</a>]. Regions with cheap renewables still face interconnection delays, transformer lead times, and water limits for evaporative cooling. That friction pushes hyperscalers toward long-lead power deals and novel cooling, and it opens room for architectures that move compute where energy is structurally easier to collect [<a href="#r3">3</a>].</p>
+        <p>Orbit does not remove energy use. It relocates collection and rejection. A satellite in a suitable low-Earth path can see repeated sunlit intervals without nights as long as a fixed surface site, while dumping waste heat to deep space instead of warming local rivers [<a href="#r1">1</a>]. The trade is capital cost in launch, radiation tolerance, thermal design, and laser or RF backhaul rather than land and permitting [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
+
+        <h2>Google Project Suncatcher and the research stack</h2>
+        <p>Google Research's Project Suncatcher sketches a constellation of solar-powered satellites carrying Trillium TPUs, linked by free-space optical inter-satellite links, operating in dawn-dusk sun-synchronous orbits so arrays stay sunlit while still overflying populated regions for ground contact [<a href="#r1">1</a>]. The team published a system design preprint, "Towards a future space-based, highly scalable AI infrastructure system design," and reported radiation testing on Trillium hardware [<a href="#r1">1</a>]. Planet agreed to build and operate advanced space platforms for two Suncatcher prototypes targeted for roughly early 2027, connecting Google's moonshot to a flight-proven smallsat operator [<a href="#r2">2</a>].</p>
+        <p>This is foundation-model-scale thinking applied to infrastructure: treat compute, power, and networking as one co-designed stack rather than a warehouse full of air-conditioned racks. University labs contribute adjacent pieces, from space systems engineering to the grid and lifecycle footprint of AI, but the most detailed public orbital-AI architecture today comes from Google Research and open preprints rather than campus press releases [<a href="#r1">1</a>].</p>
+
+        <h2>Economics: Bain, Wood Mackenzie, and launch math</h2>
+        <p>Bain argues orbital data centers could begin scaling in the early 2030s if launch costs fall and operators can close the business case for latency-tolerant workloads, with SpaceX's January 2026 FCC filing for an orbital data center system treated as a signal that majors are exploring the category [<a href="#r3">3</a>]. Wood Mackenzie estimates that roughly one gigawatt of orbital data center capacity could cost on the order of US$170 billion, more than three times a terrestrial equivalent, with launch and satellite manufacturing comprising about sixty percent of that stack [<a href="#r4">4</a>]. Their headline message is blunt: on the order of a seventy percent cost reduction would be needed for rough parity with ground build [<a href="#r4">4</a>].</p>
+        <p>Those numbers are scenario-dependent, but they set the debate correctly. Orbital compute wins only where energy and siting savings plus utilization from sunlit orbits outweigh launch and maintenance. Until that crossover moves, most training and serving stays on Earth, and orbit remains a niche for demos, defense, and experiments that tolerate link latency [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
+
+        <h2>Hardware in flight and filings on the ground</h2>
+        <p>Starcloud (formerly Lumen Orbit) reported flying an Nvidia H100 in orbit on Starcloud-1 in November 2025, with SpaceNews coverage of a large Series A raise and an FCC plan for a very large constellation scale [<a href="#r5">5</a>][<a href="#r6">6</a>]. Axiom Space markets orbital compute nodes as part of its commercial space station roadmap [<a href="#r9">9</a>]. Lonestar and similar firms pitch lunar or edge storage as complementary niches rather than wholesale replacement for hyperscale training clusters, useful to mention carefully as edge cases, not the center of mass [<a href="#r9">9</a>].</p>
+        <p>SpaceX's orbital data center application, widely reported alongside the FCC docket in early 2026, matters because it couples the world's lowest marginal launch provider with explicit intent to host compute in space [<a href="#r3">3</a>][<a href="#r6">6</a>]. Whether that filing becomes hardware or stays strategic option value, it changes how regulators and grid planners should treat orbit as a competitor to terrestrial build [<a href="#r3">3</a>].</p>
+
+        <h2>Where this leaves us</h2>
+        <p>Space compute sits at the intersection of climate stress on terrestrial AI and aerospace industrialization. The credible near-term story is hybrid: Earth keeps most latency-sensitive inference; orbit tests sun-powered accelerators, optical mesh networking, and radiation-hardened silicon for workloads that can tolerate link delay [<a href="#r1">1</a>][<a href="#r5">5</a>]. Climate gains appear only if orbital watts truly substitute for fossil-backed grid expansion, not if they add a parallel compute boom driven by cheaper orbital cycles [<a href="#r7">7</a>][<a href="#r8">8</a>]. Open cost models, cited demos, and honest link budgets are how this sector stays accessible research rather than launch hype.</p>
+''',
+    "refs": [
+        '<span id="r1"></span>Google Research. (2025). Exploring a space-based scalable AI infrastructure system design (Project Suncatcher); Agüera y Arcas, Beals, et al., '
+        'Towards a future space-based, highly scalable AI infrastructure system design. '
+        '<a href="https://research.google/blog/exploring-a-space-based-scalable-ai-infrastructure-system-design/">research.google</a>; '
+        '<a href="https://arxiv.org/abs/2511.19468">arXiv:2511.19468</a>',
+        '<span id="r2"></span>Planet. Planet to build and operate advanced space platform for Google\'s Project Suncatcher moonshot. '
+        '<a href="https://www.planet.com/pulse/planet-to-build-and-operate-advanced-space-platform-for-google-s-project-suncatcher-moonshot/">planet.com</a>',
+        '<span id="r3"></span>Bain &amp; Company. Orbital data centers: beyond the grid. '
+        '<a href="https://www.bain.com/insights/orbital-data-centers-beyond-the-grid/">bain.com</a>',
+        '<span id="r4"></span>Wood Mackenzie. (2026). Orbital data centres cost three times more than terrestrial alternatives (press release). '
+        '<a href="https://www.woodmac.com/press-releases/wood-mackenzie-orbital-data-centres-cost-three-times-more-than-terrestrial-alternatives-as-global-power-demand-heads-for-3700-twh">woodmac.com</a>',
+        '<span id="r5"></span>SpaceNews. Starcloud achieves unicorn status with $170 million raise for orbital data centers; Starcloud-1 H100 demo. '
+        '<a href="https://spacenews.com/starcloud-achieves-unicorn-status-with-170-million-raise-for-orbital-data-centers/">spacenews.com</a>',
+        '<span id="r6"></span>SpaceNews. Starcloud files plans for 88,000-satellite constellation; SpaceX orbital data center FCC filing context. '
+        '<a href="https://spacenews.com/starcloud-files-plans-for-88000-satellite-constellation/">spacenews.com</a>',
+        ref_jevons(7),
+        ref_rebound_review(8),
+        '<span id="r9"></span>Axiom Space. Orbital infrastructure and compute nodes. '
+        '<a href="https://www.axiomspace.com/">axiomspace.com</a>; Lonestar. Edge and lunar data services. '
+        '<a href="https://lonestar.com/">lonestar.com</a>',
+    ],
+})
+
+# 2 Weather
 POSTS.append({
     "slug": "weather-foundation-models",
-    "num": "01",
+    "num": "02",
     "sector": "Weather Foundation Models",
     "viz_key": "weather",
     "card_title": "AI weather models are becoming the new forecast stack",
     "card_blurb": "GraphCast, Aurora, and ClimaX match classic supercomputer forecasts on many scores, in a fraction of the time.",
-    "meta": "Research note · August 1, 2026 · Sector 01 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 02 · Shryas Bhurat",
     "title": "AI weather models are becoming the new forecast stack",
     "dek": "Pretrained atmospheric models are changing who can run good forecasts, and how fast those forecasts arrive.",
     "description": "Emerging weather foundation models from DeepMind, Microsoft, ECMWF, and university labs, with citations.",
@@ -442,15 +535,15 @@ POSTS.append({
     ],
 })
 
-# 2 Aerospace
+# 3 Aerospace
 POSTS.append({
     "slug": "aerospace-satellites",
-    "num": "02",
+    "num": "03",
     "sector": "Aerospace & Satellites",
     "viz_key": "aerospace",
     "card_title": "Earth observation is moving from sensors to foundation models",
     "card_blurb": "Berkeley Panopticon, Caltech-led Carbon-I, and large-scale pretraining are making satellite analysis work across missions.",
-    "meta": "Research note · August 1, 2026 · Sector 02 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 03 · Shryas Bhurat",
     "title": "Earth observation is moving from sensors to foundation models",
     "dek": "Satellites still collect the data. Foundation models are starting to define how quickly that data becomes usable maps and metrics.",
     "description": "Emerging aerospace and satellite Earth observation foundation models, with university citations.",
@@ -499,15 +592,15 @@ POSTS.append({
     ],
 })
 
-# 3 Materials
+# 4 Materials
 POSTS.append({
     "slug": "materials",
-    "num": "03",
+    "num": "04",
     "sector": "Materials",
     "viz_key": "materials",
     "card_title": "Low-carbon materials research is rewriting cement and concrete",
     "card_blurb": "Stanford, Berkeley, and Caltech work on cement chemistry, solar-driven catalytic materials, and abatement cost curves shows materials science is now a climate lever.",
-    "meta": "Research note · August 1, 2026 · Sector 03 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 04 · Shryas Bhurat",
     "title": "Low-carbon materials research is rewriting cement and concrete",
     "dek": "Cement is still one of the hardest industrial emissions problems. University labs are attacking the chemistry, the kiln, and the cost curve at once.",
     "description": "Emerging low-carbon materials research from Stanford, Berkeley, and related labs.",
@@ -550,15 +643,15 @@ POSTS.append({
     ],
 })
 
-# 4 Energy
+# 5 Energy
 POSTS.append({
     "slug": "energy-systems",
-    "num": "04",
+    "num": "05",
     "sector": "Energy Systems",
     "viz_key": "energy",
     "card_title": "Long-duration storage is the quiet center of clean grids",
     "card_blurb": "Stanford and Berkeley grid models, plus Caltech storage chemistry and Pasadena smart-grid pilots, show when multi-day storage and local integration actually earn their keep.",
-    "meta": "Research note · August 1, 2026 · Sector 04 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 05 · Shryas Bhurat",
     "title": "Long-duration storage is the quiet center of clean grids",
     "dek": "Solar and wind are cheaper in many regions. Keeping a zero-emissions grid reliable across nights and calm weeks is the harder part.",
     "description": "Emerging energy systems research on long-duration storage and clean grids from Stanford and Berkeley.",
@@ -599,15 +692,15 @@ POSTS.append({
     ],
 })
 
-# 5 Manufacturing
+# 6 Manufacturing
 POSTS.append({
     "slug": "manufacturing",
-    "num": "05",
+    "num": "06",
     "sector": "Manufacturing",
     "viz_key": "manufacturing",
     "card_title": "Advanced manufacturing is becoming a decarbonization toolkit",
     "card_blurb": "NSF and university work on electrification, process substitution, and factory data is turning manufacturing into a climate research domain.",
-    "meta": "Research note · August 1, 2026 · Sector 05 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 06 · Shryas Bhurat",
     "title": "Advanced manufacturing is becoming a decarbonization toolkit",
     "dek": "Factories are no longer only an emissions source to regulate. They are a design space for lower-carbon process technology.",
     "description": "Emerging green manufacturing and industrial electrification research from leading universities.",
@@ -648,15 +741,15 @@ POSTS.append({
     ],
 })
 
-# 6 Built environment
+# 7 Built environment
 POSTS.append({
     "slug": "built-environment",
-    "num": "06",
+    "num": "07",
     "sector": "Built Environment",
     "viz_key": "built",
     "card_title": "Whole-life carbon is replacing energy-only building metrics",
     "card_blurb": "Stanford CIFE and Berkeley-linked building research show embodied carbon now rivals operations as grids clean up.",
-    "meta": "Research note · August 1, 2026 · Sector 06 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 07 · Shryas Bhurat",
     "title": "Whole-life carbon is replacing energy-only building metrics",
     "dek": "As grids decarbonize, the carbon locked into steel, concrete, and interiors becomes impossible to ignore.",
     "description": "Emerging built environment research on whole-life and embodied carbon from Stanford and related labs.",
@@ -696,15 +789,15 @@ POSTS.append({
     ],
 })
 
-# 7 Mobility
+# 8 Mobility
 POSTS.append({
     "slug": "mobility",
-    "num": "07",
+    "num": "08",
     "sector": "Mobility",
     "viz_key": "mobility",
     "card_title": "EV scale-up is constrained by finance and charging reliability",
     "card_blurb": "Wharton, Harvard, and Caltech research show that loans, broken chargers, and oversubscribed charging networks shape electric mobility adoption.",
-    "meta": "Research note · August 1, 2026 · Sector 07 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 08 · Shryas Bhurat",
     "title": "EV scale-up is constrained by finance and charging reliability",
     "dek": "Battery packs get the headlines. Household credit and uptime statistics may decide the adoption curve.",
     "description": "Emerging mobility research from Wharton and Harvard on EV finance and charging infrastructure.",
@@ -746,15 +839,15 @@ POSTS.append({
     ],
 })
 
-# 8 Industrial processes
+# 9 Industrial processes
 POSTS.append({
     "slug": "industrial-processes",
-    "num": "08",
+    "num": "09",
     "sector": "Industrial Processes",
     "viz_key": "industrial",
     "card_title": "Hard-to-abate industry is shifting from pilots to playbooks",
     "card_blurb": "Stanford and Berkeley research on steel, cement, heat, and abatement costs is turning industrial decarbonization into transferable methods.",
-    "meta": "Research note · August 1, 2026 · Sector 08 · Shryas Bhurat",
+    "meta": "Research note · August 1, 2026 · Sector 09 · Shryas Bhurat",
     "title": "Hard-to-abate industry is shifting from pilots to playbooks",
     "dek": "Cement, steel, and chemicals will not decarbonize through one breakthrough. They need sequenced process options with public cost evidence.",
     "description": "Emerging industrial process decarbonization research from Stanford, Berkeley, and related groups.",

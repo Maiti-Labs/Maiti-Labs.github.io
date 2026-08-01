@@ -63,6 +63,26 @@ def future_section_html(slug: str) -> str:
 
 
 SECTOR_SECTIONS = {
+    "space-compute": {
+        "timeline_intro": f"Orbital AI moved from radiation-hardened satellite computers to accelerator demos and hyperscale research designs in a few years {_c(1)}{_c(5)}.",
+        "milestones": [
+            ("Pre-2020s", f"Edge and radiation-tolerant processors serve onboard satellite tasks rather than hyperscale training {_c(1)}."),
+            ("2024–2025", f"Lumen Orbit rebrands as Starcloud; orbital data center concepts draw venture funding {_c(5)}."),
+            ("Nov 2025", f"Starcloud-1 flies an Nvidia H100 in orbit; Google publishes Project Suncatcher system design {_c(1)}{_c(5)}."),
+            ("Jan 2026", f"SpaceX files with the FCC for an orbital data center system, signaling major platform interest {_c(3)}{_c(6)}."),
+            ("2026", f"Starcloud Series A and large constellation filing; Wood Mackenzie publishes orbital vs terrestrial cost comparison {_c(4)}{_c(5)}{_c(6)}."),
+            ("Early 2027 (planned)", f"Google and Planet target Suncatcher prototype platforms for flight test {_c(1)}{_c(2)}."),
+        ],
+        "progress_note": f"Demos and public architectures exist; launch cost, link latency, and grid substitution math still gate scale {_c(3)}{_c(4)}{_c(5)}.",
+        "rebound_intro": f"If orbital inference gets cheaper, demand for AI compute may rise faster than terrestrial grids decarbonize, a Jevons-style dynamic unless workloads truly substitute for ground build {_c(7)}{_c(8)}.",
+        "rebound_cards": [
+            ("Cost going down", f"Reusable launch and sunlit orbits target lower $/FLOP for latency-tolerant jobs {_c(3)}{_c(1)}."),
+            ("Adoption rising", f"Hyperscalers and startups file constellations and fly GPU demos {_c(5)}{_c(6)}."),
+            ("Data problems", f"Link budgets, radiation error rates, and lifecycle LCAs stay thin in public {_c(1)}{_c(4)}."),
+            ("Infrastructure problems", f"Spectrum, debris, thermal limits, and ground stations cap usable capacity {_c(3)}{_c(6)}."),
+        ],
+        "rebound_closing": f"Climate value from space compute holds only if rebound is managed: open cost models, verified substitution for grid build, and spectrum/debris rules that match constellation scale {_c(4)}{_c(7)}{_c(8)}.",
+    },
     "weather-foundation-models": {
         "timeline_intro": f"AI weather models moved from research papers to open checkpoints in just a few years {_c(2)}{_c(9)}.",
         "milestones": [

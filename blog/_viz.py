@@ -648,7 +648,61 @@ def _industrial_loop():
     )
 
 
+# --- Space compute ---
+
+def _space_hero():
+    uid = _set_uid(_uid("sp"))
+    body = f"""
+          {_col_label(48, 52, "Terrestrial")}
+          {_node_simple(uid, 24, 58, 140, 44, "Grid + water", "power wall", variant="cream", delay=0)}
+          {_line(164, 80, 200, 80, uid, muted=True)}
+          {_node_simple(uid, 200, 58, 120, 44, "AI DC", variant="muted", delay=0.08)}
+          {_col_label(380, 52, "Orbital path")}
+          {_node_simple(uid, 360, 58, 100, 40, "Solar array", variant="solid", delay=0.16)}
+          {_line(460, 78, 496, 78, uid)}
+          {_node_simple(uid, 496, 52, 120, 52, "TPU / GPU", "sunlit orbit", variant="primary", primary=True, delay=0.24)}
+          <text x="320" y="128" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Earth faces siting; orbit trades launch for continuous sun + radiative cooling</text>
+          {_node_simple(uid, 80, 142, 200, 44, "Permitting queue", variant="muted", delay=0.3)}
+          {_node_simple(uid, 360, 142, 200, 44, "Optical downlink", variant="cream", delay=0.38)}"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 220", uid, body, "Two paths for AI compute"),
+        "Terrestrial data centers hit grid and cooling limits; orbital designs chase sun and passive heat rejection.",
+    )
+
+
+def _space_mid():
+    uid = _set_uid(_uid("sp"))
+    steps = [("Solar", 40), ("TPU/GPU", 180), ("Optical ISL", 320), ("Ground link", 460)]
+    mid = ""
+    for i, (lab, x) in enumerate(steps):
+        mid += _node_simple(uid, x, 92, 120, 44, lab, variant="primary" if i == 1 else "cream", primary=(i == 1), delay=i * 0.1)
+        if i < 3:
+            mid += _line(x + 120, 114, steps[i + 1][1], 114, uid)
+    body = mid + f'''
+          <text x="320" y="178" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Power → compute → mesh → downlink (conceptual pipeline)</text>'''
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 220", uid, body, "Orbital AI pipeline"),
+        "Google Suncatcher-style designs chain solar power, accelerators, optical inter-satellite links, and ground terminals.",
+    )
+
+
+def _space_loop():
+    uid = _set_uid(_uid("sp"))
+    labels = ("Cheaper launch", "More orbital compute", "Debris / spectrum", "Thermal limits")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Falling launch cost expands orbital AI, which stresses spectrum, debris rules, and thermal design before climate benefit is proven.",
+    )
+
+
 VIZ_SETS = {
+    "space": {"hero": _space_hero(), "mid": _space_mid(), "loop": _space_loop()},
     "weather": {"hero": _weather_hero(), "mid": _weather_mid(), "loop": _weather_loop()},
     "aerospace": {"hero": _aerospace_hero(), "mid": _aerospace_mid(), "loop": _aerospace_loop()},
     "materials": {"hero": _materials_hero(), "mid": _materials_mid(), "loop": _materials_loop()},

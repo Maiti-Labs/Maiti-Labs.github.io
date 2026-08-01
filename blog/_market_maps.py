@@ -6,6 +6,7 @@ from _viz import _esc
 
 # Ref indices in each post's References list (appended in _generate.py).
 MARKET_MAP_REF_IDS: dict[str, tuple[int, ...]] = {
+    "space-compute": (10, 11, 12),
     "weather-foundation-models": (15, 16, 17),
     "aerospace-satellites": (11, 12, 13),
     "materials": (10, 11, 12),
@@ -50,6 +51,41 @@ def _figure(segments: list[str], caption: str) -> str:
           </div>
           <figcaption class="viz-caption">{caption}</figcaption>
         </figure>'''
+
+
+def _space_map() -> str:
+    refs = MARKET_MAP_REF_IDS["space-compute"]
+    caption = (
+        f"Illustrative map of orbital compute players; not exhaustive. "
+        f"Sources: Starcloud {_c(refs[0])}; Google Suncatcher {_c(refs[1])}; "
+        f"analyst and platform context {_c(refs[2])}."
+    )
+    segs = [
+        _segment(
+            "Hyperscale & platforms",
+            [
+                _chip("Google", "Project Suncatcher"),
+                _chip("SpaceX", "orbital DC filing"),
+            ],
+        ),
+        _segment(
+            "Orbital DC startups",
+            [
+                _chip("Starcloud", "GPU demos / constellation"),
+                _chip("Axiom Space", "orbital compute nodes"),
+                _chip("Lonestar", "lunar / edge storage"),
+            ],
+        ),
+        _segment(
+            "Mission partners",
+            [_chip("Planet", "Suncatcher platforms")],
+        ),
+        _segment(
+            "Radiation-tolerant compute",
+            [_chip("Ramon.Space", "space-grade processors")],
+        ),
+    ]
+    return _figure(segs, caption)
 
 
 def _weather_map() -> str:
@@ -333,6 +369,7 @@ def _industrial_map() -> str:
 
 
 _MAP_BUILDERS = {
+    "space-compute": _space_map,
     "weather-foundation-models": _weather_map,
     "aerospace-satellites": _aerospace_map,
     "materials": _materials_map,

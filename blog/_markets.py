@@ -5,6 +5,7 @@ from _timelines import SECTOR_SECTIONS, rebound_cards_html
 from _viz import BG, BG_ALT, CREAM, FONT, FOREST, MUTED, SOFT, _esc, _uid
 
 JEVONS_REFS = {
+    "space-compute": (7, 8),
     "weather-foundation-models": (13, 14),
     "aerospace-satellites": (9, 10),
     "materials": (8, 9),
@@ -65,6 +66,35 @@ def _axis_y(x: int, y0: int, y1: int, label: str) -> str:
     return f'''
           <line x1="{x}" y1="{y0}" x2="{x}" y2="{y1}" stroke="{FOREST}" stroke-width="1" opacity="0.25"/>
           <text x="{x - 6}" y="{y1 + 18}" text-anchor="end" fill="{MUTED}" font-size="9" font-family="{FONT}">{_esc(label)}</text>'''
+
+
+def _space_charts() -> list[str]:
+    inner = f'''
+          {_hbar(78, 160, 120, 32, "Terrestrial DC (baseline)", "1×", muted=False)}
+          {_hbar(148, 160, 360, 32, "Orbital DC (WoodMac scenario)", "~3×", muted=False)}
+          <text x="320" y="248" text-anchor="middle" fill="{MUTED}" font-size="9" font-family="{FONT}">Relative capital cost for ~1 GW class capacity (schematic)</text>'''
+    c1 = _figure(
+        "Orbital vs terrestrial cost",
+        _chart_svg("Cost ratio (schematic)", inner),
+        f"Source: Wood Mackenzie, 2026 {_c(4)}.",
+    )
+    drivers = [
+        ("Launch cost decline", 360, "key to parity"),
+        ("Thermal / radiative cooling", 280, "orbit advantage"),
+        ("Optical ISL mesh", 240, "in design"),
+        ("Radiation tolerance", 200, "hardware tests"),
+    ]
+    bars = ""
+    y = 58
+    for label, width, val in drivers:
+        bars += _hbar(y, 180, width, 22, label, val)
+        y += 52
+    c2 = _figure(
+        "Feasibility drivers",
+        _chart_svg("Enablers and bottlenecks (qualitative)", bars + _axis_y(160, 48, 248, "Relative leverage")),
+        f"Source: Bain, 2026 {_c(3)}; Google Suncatcher design {_c(1)}.",
+    )
+    return [c1, c2]
 
 
 def _weather_charts() -> list[str]:
@@ -307,6 +337,7 @@ def _industrial_charts() -> list[str]:
 
 
 CHART_BUILDERS = {
+    "space-compute": _space_charts,
     "weather-foundation-models": _weather_charts,
     "aerospace-satellites": _aerospace_charts,
     "materials": _materials_charts,
