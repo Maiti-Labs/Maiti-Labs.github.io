@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Earth observation is moving from sensors to foundation models · Maiti Labs</title>
+<meta name="description" content="Emerging aerospace and satellite Earth observation foundation models, with university citations." />
+<link rel="icon" href="../logo.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html" aria-label="Maiti Labs home">
+        <img src="../logo.png" alt="" width="22" height="22" />
+        <span>Maiti Labs</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#research">Research</a>
+        <a href="index.html">Notes</a>
+        <a href="../index.html#sectors">Sectors</a>
+      </div>
+      <a class="nav-cta" href="index.html">All notes</a>
+    </div>
+  </nav>
+  <article class="article">
+    <div class="wrap-narrow">
+      <a class="back-link" href="index.html">‹ All research notes</a>
+      <p class="article-meta">Research note · August 1, 2026 · Sector 02</p>
+      <h1>Earth observation is moving from sensors to foundation models</h1>
+      <p class="dek">Satellite programs still define the data. Foundation models are starting to define how that data becomes usable knowledge.</p>
+      <div class="body">
+
+        <p>Aerospace climate research used to mean flying instruments and writing task-specific classifiers for each sensor. That work remains essential. The new layer is sensor-agnostic representation learning: models pretrained across optical, SAR, and atmospheric products that can be adapted to flood mapping, crop monitoring, or land-cover change with far less labeled data.</p>
+        <p>For accessibility, this matters as much as launch cadence. A municipality does not need a custom deep-learning team for every Sentinel product if a strong pretrained encoder already understands multi-spectral structure.</p>
+
+        <h2>From fixed-sensor models to any-sensor models</h2>
+        <p>Most early remote-sensing foundation models were locked to one constellation or band set. The field is now pivoting to models that accept arbitrary channel combinations.</p>
+        <p><a href="https://arxiv.org/abs/2503.10845">Panopticon</a>, led with contributors from UC Berkeley and collaborators at the Technical University of Munich, extends DINOv2 for Earth observation. It treats co-located multi-sensor views as natural augmentations, subsamples spectral channels during training, and uses cross-attention over channels so the model can embed optical and SAR inputs with wavelength and mode metadata [<a href="#r1">1</a>]. On GEO-Bench it reports strong results on Sentinel-1 and Sentinel-2 while remaining usable on unusual sensor configurations. That is the aerospace analogue of a generalist policy: one backbone, many instruments.</p>
+
+        <h2>Scale pretraining on public satellite archives</h2>
+        <h3>SkySense and SkySense++</h3>
+        <p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Guo_SkySense_A_Multi-Modal_Remote_Sensing_Foundation_Model_Towards_Universal_Interpretation_CVPR_2024_paper.pdf">SkySense</a> pretrained a billion-scale multi-modal spatiotemporal encoder on 21.5 million temporal sequences of optical and SAR data, using multi-granularity contrastive learning and geo-context prototypes [<a href="#r2">2</a>]. The follow-on <a href="https://www.nature.com/articles/s42256-025-01078-8">SkySense++</a> work in <em>Nature Machine Intelligence</em> adds progressive representation- and semantic-enhanced pretraining on about 27 million multi-modal images, improving few-shot performance across agriculture, forestry, oceanography, atmosphere, biology, land surveying, and disaster management [<a href="#r3">3</a>]. Few-shot skill is the accessibility lever: rapid flood response cannot wait for a million new labels.</p>
+
+        <h3>NASA–IBM Prithvi and Copernicus-scale models</h3>
+        <p><a href="https://arxiv.org/abs/2412.02732">Prithvi-EO-2.0</a>, trained on 4.2 million global HLS time-series samples from NASA Landsat–Sentinel archives, adds explicit temporal and location embeddings. The 600M variant improves over prior Prithvi checkpoints across GEO-Bench-style evaluations and is released openly for downstream use [<a href="#r4">4</a>]. In parallel, <a href="https://arxiv.org/abs/2503.11849">Copernicus-FM</a> targets unified modeling across Sentinel missions with 18.7 million aligned observations and dynamic hypernetworks that ingest spectral and non-spectral modalities plus metadata [<a href="#r5">5</a>].</p>
+
+        <h2>What universities are contributing</h2>
+        <p>Berkeley's work on Panopticon sits inside a broader campus effort on environmental data systems and open geospatial ML. Stanford's aerospace and Earth observation communities connect satellite products to climate risk, land use, and sustainability applications through the Doerr School. Across surveys of remote-sensing foundation models, the consensus is clear: the bottleneck is no longer collecting pixels. It is learning representations that transfer across sensors, seasons, and geographies [<a href="#r6">6</a>].</p>
+        <div class="callout">
+          <p>Lower-cost smallsat constellations expand coverage. Foundation models expand who can interpret that coverage. Both are required for climate research that reaches beyond specialist agencies.</p>
+        </div>
+
+        <h2>Where this leaves us</h2>
+        <p>The emerging aerospace research stack is a public satellite archive, a sensor-flexible foundation model, and a thin task head. That is how Earth observation becomes accessible climate infrastructure rather than a sequence of one-off image-processing projects.</p>
+
+      </div>
+      <section class="refs">
+        <h2>References</h2>
+        <ol>
+<li><span id="r1"></span>Waldmann, L., Shah, A., et al. (2025). Panopticon: Advancing any-sensor foundation models for Earth observation. <em>CVPR Workshops</em>. <a href="https://arxiv.org/abs/2503.10845">arXiv:2503.10845</a> (UC Berkeley &amp; TUM).</li>
+<li><span id="r2"></span>Guo, X., et al. (2024). SkySense: A multi-modal remote sensing foundation model towards universal interpretation for Earth observation imagery. <em>CVPR</em>.</li>
+<li><span id="r3"></span>Wu, K., Zhang, Y., Ru, L., et al. (2025). A semantic-enhanced multi-modal remote sensing foundation model for Earth observation. <em>Nature Machine Intelligence</em>. <a href="https://doi.org/10.1038/s42256-025-01078-8">doi:10.1038/s42256-025-01078-8</a></li>
+<li><span id="r4"></span>Szwarcman, D., et al. (2024). Prithvi-EO-2.0: A versatile multi-temporal foundation model for Earth observation applications. <a href="https://arxiv.org/abs/2412.02732">arXiv:2412.02732</a></li>
+<li><span id="r5"></span>Wang, Y., et al. (2025). Towards a unified Copernicus foundation model for Earth vision. <a href="https://arxiv.org/abs/2503.11849">arXiv:2503.11849</a></li>
+<li><span id="r6"></span>Lu, S., et al. (2024). Foundation models for remote sensing and Earth observation: A survey. <a href="https://arxiv.org/abs/2410.16602">arXiv:2410.16602</a></li>
+        </ol>
+      </section>
+    </div>
+  </article>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="../index.html">
+          <img src="../logo.png" alt="" width="18" height="18" />
+          <span>Maiti Labs</span>
+        </a>
+        <p class="footer-tag">Climate research, made accessible.</p>
+      </div>
+      <p class="copyright">Copyright © 2026 Maiti Labs. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>

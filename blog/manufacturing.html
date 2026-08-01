@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Advanced manufacturing is becoming a decarbonization toolkit · Maiti Labs</title>
+<meta name="description" content="Emerging green manufacturing and industrial electrification research from leading universities." />
+<link rel="icon" href="../logo.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html" aria-label="Maiti Labs home">
+        <img src="../logo.png" alt="" width="22" height="22" />
+        <span>Maiti Labs</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#research">Research</a>
+        <a href="index.html">Notes</a>
+        <a href="../index.html#sectors">Sectors</a>
+      </div>
+      <a class="nav-cta" href="index.html">All notes</a>
+    </div>
+  </nav>
+  <article class="article">
+    <div class="wrap-narrow">
+      <a class="back-link" href="index.html">‹ All research notes</a>
+      <p class="article-meta">Research note · August 1, 2026 · Sector 05</p>
+      <h1>Advanced manufacturing is becoming a decarbonization toolkit</h1>
+      <p class="dek">Factories are no longer only an emissions source to regulate. They are a design space for lower-carbon process technology.</p>
+      <div class="body">
+
+        <p>Manufacturing sits at the intersection of materials, energy, and process control. The emerging research agenda treats decarbonization as an advanced-manufacturing problem: replace inefficient unit operations, electrify heat, redesign products so they need less energy in use, and measure abatement costs with the same rigor used for financial capital budgeting.</p>
+
+        <h2>Four pillars, one manufacturing lens</h2>
+        <p>An NSF workshop report on advanced manufacturing for industrial decarbonization organizes the field into energy efficiency, industrial electrification, low-carbon fuels and feedstocks, and carbon capture, utilization, and storage [<a href="#r1">1</a>]. The important contribution is not the taxonomy. It is the insistence that manufacturing research and techno-economic analysis must be co-designed. A beautiful reactor that never clears a factory's hurdle rate is not climate infrastructure.</p>
+
+        <h2>Electrified process heat enters the factory</h2>
+        <p>Stanford engineers have demonstrated a compact thermochemical reactor that uses high-efficiency power electronics and inductively heated ceramic metamaterial lattices to deliver industrial-grade heat without combustion [<a href="#r2">2</a>]. Because catalysts can sit inside the lattice voids, heat transfer improves and reactors can shrink relative to furnace baselines. Parallel Stanford work on firebrick thermal storage shows that renewable electricity can be stored as high-temperature heat for cement, steel, glass, and paper processes at a small fraction of battery cost per thermal kilowatt-hour [<a href="#r3">3</a>].</p>
+        <p>Berkeley research on off-grid renewable heat with thermal storage and heat pumps estimates that local renewable configurations could economically supply on the order of one-third of U.S. industrial heat demand by 2035 under studied scenarios, with especially strong near-term economics for mid- and high-temperature thermal electric storage [<a href="#r4">4</a>].</p>
+
+        <h2>Making abatement decisions legible</h2>
+        <p>Stanford GSB research by Glenk, Meier, and Reichelstein develops abatement-cost curves for industrial firms, calibrated on European cement producers under the EU ETS. At roughly €85/tCO<sub>2</sub>, firms optimally cut about one-third of direct emissions; willingness to abate rises sharply above €100/t [<a href="#r5">5</a>]. This is manufacturing research in the managerial sense: it tells operators which process changes clear the carbon-price hurdle.</p>
+        <div class="callout">
+          <p>Accessible manufacturing climate research publishes both the process invention and the cost curve. Factories adopt what they can underwrite.</p>
+        </div>
+
+        <h2>Where this leaves us</h2>
+        <p>The emerging manufacturing stack pairs electrified heat hardware, thermal storage, process substitution, and decision tools for abatement sequencing. Stanford, Berkeley, and NSF-convened manufacturing communities are building that stack in public.</p>
+
+      </div>
+      <section class="refs">
+        <h2>References</h2>
+        <ol>
+<li><span id="r1"></span>Wang, Y., et al. (2024). Report-out from an NSF Workshop on Advanced Manufacturing for Industrial Decarbonization. <em>Green Manufacturing Open</em>. <a href="https://www.oaepublish.com/articles/gmo.2024.121801">Article</a></li>
+<li><span id="r2"></span>Fan, J., Rivas-Davila, J., Kanan, M., et al. (2024). Electric reactor could cut industrial emissions. Stanford Report / <em>Joule</em>. <a href="https://news.stanford.edu/stories/2024/08/electric-reactor-could-cut-industrial-emissions">stanford.edu</a></li>
+<li><span id="r3"></span>Jacobson, M. Z., Sambor, D. J., et al. (2024). Effects of firebricks for industrial process heat... <em>PNAS Nexus</em>. <a href="https://web.stanford.edu/group/efmh/jacobson/Articles/Others/24-Firebricks.pdf">PDF</a></li>
+<li><span id="r4"></span>UC Berkeley Goldman School working paper (2025 draft). Integrating renewable energy with industrial heat demand. <a href="https://gspp.berkeley.edu/archived/files/page/Integrating_Renewable_Energy_with_Industrial_Heat_Demand_-_V20251212.pdf">PDF</a></li>
+<li><span id="r5"></span>Glenk, G., Meier, R., Reichelstein, S. J. (2024). Assessing the Costs of Industrial Decarbonization. Stanford GSB Working Paper 4202. <a href="https://www.gsb.stanford.edu/faculty-research/working-papers/assessing-costs-industrial-decarbonization">gsb.stanford.edu</a></li>
+        </ol>
+      </section>
+    </div>
+  </article>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="../index.html">
+          <img src="../logo.png" alt="" width="18" height="18" />
+          <span>Maiti Labs</span>
+        </a>
+        <p class="footer-tag">Climate research, made accessible.</p>
+      </div>
+      <p class="copyright">Copyright © 2026 Maiti Labs. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>

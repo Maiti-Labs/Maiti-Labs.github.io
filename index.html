@@ -246,6 +246,13 @@
   @media (min-width: 1000px) {
     .focus-grid { grid-template-columns: repeat(4, 1fr); }
   }
+  a.focus-item {
+    display: block;
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--line);
+    transition: opacity .2s ease;
+  }
+  a.focus-item:hover { opacity: 0.72; }
   .focus-item {
     padding: 1.35rem 0;
     border-bottom: 1px solid var(--line);
@@ -341,8 +348,9 @@
       <div class="nav-links">
         <a href="#research">Research</a>
         <a href="#sectors">Sectors</a>
+        <a href="blog/index.html">Notes</a>
       </div>
-      <a class="nav-cta" href="#sectors">Learn more</a>
+      <a class="nav-cta" href="blog/index.html">Research notes</a>
     </div>
   </nav>
 
@@ -380,46 +388,46 @@
         <p class="lede">Each sector advances climate research that people can access and put to work.</p>
       </div>
       <div class="focus-grid">
-        <article class="focus-item reveal">
+        <a class="focus-item reveal" href="blog/weather-foundation-models.html">
           <p class="num">01</p>
           <h3>Weather Foundation Models</h3>
           <p>Foundation models for weather and climate that make forecasts more widely usable.</p>
-        </article>
-        <article class="focus-item reveal">
+        </a>
+        <a class="focus-item reveal" href="blog/aerospace-satellites.html">
           <p class="num">02</p>
           <h3>Aerospace &amp; Satellites</h3>
           <p>Earth observation and space systems that broaden access to planetary data.</p>
-        </article>
-        <article class="focus-item reveal">
+        </a>
+        <a class="focus-item reveal" href="blog/materials.html">
           <p class="num">03</p>
           <h3>Materials</h3>
           <p>Research on low-carbon and circular materials, shared for practical adoption.</p>
-        </article>
-        <article class="focus-item reveal">
+        </a>
+        <a class="focus-item reveal" href="blog/energy-systems.html">
           <p class="num">04</p>
           <h3>Energy Systems</h3>
           <p>Open insight on generation, storage, and grids that support climate action.</p>
-        </article>
-        <article class="focus-item reveal">
+        </a>
+        <a class="focus-item reveal" href="blog/manufacturing.html">
           <p class="num">05</p>
           <h3>Manufacturing</h3>
           <p>Methods and findings that help industry reduce emissions at production scale.</p>
-        </article>
-        <article class="focus-item reveal">
+        </a>
+        <a class="focus-item reveal" href="blog/built-environment.html">
           <p class="num">06</p>
           <h3>Built Environment</h3>
           <p>Research on buildings and infrastructure made clear for planners and builders.</p>
-        </article>
-        <article class="focus-item reveal">
+        </a>
+        <a class="focus-item reveal" href="blog/mobility.html">
           <p class="num">07</p>
           <h3>Mobility</h3>
           <p>Transport research that decision-makers can apply to lower-emission systems.</p>
-        </article>
-        <article class="focus-item reveal">
+        </a>
+        <a class="focus-item reveal" href="blog/industrial-processes.html">
           <p class="num">08</p>
           <h3>Industrial Processes</h3>
           <p>Pathways for chemical and heavy industry, documented for wider use.</p>
-        </article>
+        </a>
       </div>
     </div>
   </section>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hard-to-abate industry is shifting from pilots to playbooks · Maiti Labs</title>
+<meta name="description" content="Emerging industrial process decarbonization research from Stanford, Berkeley, and related groups." />
+<link rel="icon" href="../logo.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html" aria-label="Maiti Labs home">
+        <img src="../logo.png" alt="" width="22" height="22" />
+        <span>Maiti Labs</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#research">Research</a>
+        <a href="index.html">Notes</a>
+        <a href="../index.html#sectors">Sectors</a>
+      </div>
+      <a class="nav-cta" href="index.html">All notes</a>
+    </div>
+  </nav>
+  <article class="article">
+    <div class="wrap-narrow">
+      <a class="back-link" href="index.html">‹ All research notes</a>
+      <p class="article-meta">Research note · August 1, 2026 · Sector 08</p>
+      <h1>Hard-to-abate industry is shifting from pilots to playbooks</h1>
+      <p class="dek">Cement, steel, and chemicals will not decarbonize through one breakthrough. They need sequenced process options with public cost evidence.</p>
+      <div class="body">
+
+        <p>Industrial process emissions are concentrated in a few sectors that are both economically essential and thermodynamically stubborn. The emerging research pattern from Stanford, Berkeley, and collaborating universities is to stop waiting for a single silver bullet and instead publish process pathways, heat options, and abatement costs that operators can compare.</p>
+
+        <h2>Translating campus research into industrial action</h2>
+        <p>Stanford's Industrial Decarbonization Action Partnership / Industrial Futures Action Network focuses on iron, steel, and automotive supply chains precisely because academic papers often fail to reach plant decision-makers [<a href="#r1">1</a>]. The model is research plus curated insight databases plus direct engagement with firms and policymakers. That is an accessibility project as much as a technology project.</p>
+
+        <h2>Heat is the binding constraint</h2>
+        <p>Much of industry's climate problem is high-temperature heat. Stanford's electrified thermochemical reactor work shows a path to replace combustion with induction-heated metamaterial cores for chemical manufacturing [<a href="#r2">2</a>]. Jacobson and colleagues show that firebrick storage can supply a large share of industrial process heat in 100% renewable scenarios while cutting total system capital cost on the order of $1.27 trillion across 149 countries relative to a no-firebrick case [<a href="#r3">3</a>]. Berkeley working papers on local renewable heat with thermal storage estimate that roughly 34% of U.S. industrial heat demand could be economically addressable by 2035 in base-case trajectories [<a href="#r4">4</a>].</p>
+
+        <h2>Cement as the proving ground for cost curves</h2>
+        <p>Cement remains the canonical hard-to-abate case. Stanford materials work on Phlego and related low-carbon clinker routes attacks process CO<sub>2</sub> at the chemistry layer [<a href="#r5">5</a>]. Stanford GSB abatement-cost research converts those options into managerial choices under carbon pricing [<a href="#r6">6</a>]. When carbon prices cross clear thresholds, the optimal process mix changes sharply. Publishing those thresholds is how industrial climate research becomes usable outside academia.</p>
+        <div class="callout">
+          <p>Deep industrial research is not only a new kiln or reactor. It is a public playbook: technology options, heat supply, carbon price sensitivity, and supply-chain constraints in one place.</p>
+        </div>
+
+        <h2>Where this leaves us</h2>
+        <p>The frontier technologies are electrified reactors, thermal storage, low-carbon binders, hydrogen-ready processes, and rigorous abatement analytics. Leading universities are beginning to package them as sector playbooks. That packaging is what makes industrial climate research accessible.</p>
+
+      </div>
+      <section class="refs">
+        <h2>References</h2>
+        <ol>
+<li><span id="r1"></span>Li, S., Saltzer, S., Azevedo, I., Karplus, V. Industrial decarbonization action partnership (IDAP) / Industrial Futures Action Network. Stanford Sustainability Accelerator. <a href="https://sustainability-accelerator.stanford.edu/project/industrial-decarbonization-action-partnership-idap">Project page</a></li>
+<li><span id="r2"></span>Fan, J., et al. (2024). Electric reactor could cut industrial emissions. <em>Joule</em> / Stanford Report. <a href="https://news.stanford.edu/stories/2024/08/electric-reactor-could-cut-industrial-emissions">stanford.edu</a></li>
+<li><span id="r3"></span>Jacobson, M. Z., et al. (2024). Effects of firebricks for industrial process heat... <em>PNAS Nexus</em>. <a href="https://doi.org/10.1093/pnasnexus/pgae223">doi:10.1093/pnasnexus/pgae223</a></li>
+<li><span id="r4"></span>UC Berkeley GSPP working paper draft (2025). Integrating renewable energy with industrial heat demand. <a href="https://gspp.berkeley.edu/archived/files/page/Integrating_Renewable_Energy_with_Industrial_Heat_Demand_-_V20251212.pdf">PDF</a></li>
+<li><span id="r5"></span>Stanford Sustainability Accelerator. Phlego cement. <a href="https://sustainability-accelerator.stanford.edu/phlego-cement-sustainable-innovation-seamless-integration">Project page</a></li>
+<li><span id="r6"></span>Glenk, G., Meier, R., Reichelstein, S. J. (2024). Assessing the Costs of Industrial Decarbonization. Stanford GSB Working Paper 4202.</li>
+        </ol>
+      </section>
+    </div>
+  </article>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="../index.html">
+          <img src="../logo.png" alt="" width="18" height="18" />
+          <span>Maiti Labs</span>
+        </a>
+        <p class="footer-tag">Climate research, made accessible.</p>
+      </div>
+      <p class="copyright">Copyright © 2026 Maiti Labs. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research notes · Maiti Labs</title>
+<meta name="description" content="Maiti Labs research notes on emerging technologies across climate sectors." />
+<link rel="icon" href="../logo.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html" aria-label="Maiti Labs home">
+        <img src="../logo.png" alt="" width="22" height="22" />
+        <span>Maiti Labs</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#research">Research</a>
+        <a href="index.html">Notes</a>
+        <a href="../index.html#sectors">Sectors</a>
+      </div>
+      <a class="nav-cta" href="index.html">All notes</a>
+    </div>
+  </nav>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Research notes</p>
+      <h1>Emerging tech, by sector.</h1>
+      <p class="lede">Crisp field notes on the technologies reshaping climate research, with citations from leading universities and labs.</p>
+    </div>
+  </header>
+  <section class="wrap">
+    <div class="post-list">
+        <a class="post-card" href="weather-foundation-models.html">
+          <p class="meta">01 · Weather Foundation Models</p>
+          <h2>Weather foundation models are becoming the new forecasting stack</h2>
+          <p>From GraphCast and Aurora to ClimaX, data-driven models now match or beat classical NWP on key scores, at a fraction of the compute.</p>
+        </a>
+        <a class="post-card" href="aerospace-satellites.html">
+          <p class="meta">02 · Aerospace & Satellites</p>
+          <h2>Earth observation is moving from sensors to foundation models</h2>
+          <p>Multi-modal EO models from Berkeley, NASA–IBM, and Copernicus-scale pretraining are making satellite analysis transferable across missions.</p>
+        </a>
+        <a class="post-card" href="materials.html">
+          <p class="meta">03 · Materials</p>
+          <h2>Low-carbon materials research is rewriting cement and concrete</h2>
+          <p>Stanford and Berkeley work on volcanic clinker, recycled concrete, and abatement cost curves shows materials science is now a climate lever.</p>
+        </a>
+        <a class="post-card" href="energy-systems.html">
+          <p class="meta">04 · Energy Systems</p>
+          <h2>Long-duration storage is becoming the quiet center of clean grids</h2>
+          <p>Stanford and Berkeley grid models show when multi-day storage, hydrogen, and firm clean power actually earn their keep.</p>
+        </a>
+        <a class="post-card" href="manufacturing.html">
+          <p class="meta">05 · Manufacturing</p>
+          <h2>Advanced manufacturing is becoming a decarbonization toolkit</h2>
+          <p>NSF and university work on electrification, process substitution, and factory data is turning manufacturing into a climate research domain.</p>
+        </a>
+        <a class="post-card" href="built-environment.html">
+          <p class="meta">06 · Built Environment</p>
+          <h2>Whole-life carbon is replacing energy-only building metrics</h2>
+          <p>Stanford CIFE and Berkeley-linked building research show embodied carbon now rivals operations as grids clean up.</p>
+        </a>
+        <a class="post-card" href="mobility.html">
+          <p class="meta">07 · Mobility</p>
+          <h2>EV scale-up is constrained by finance and charging reliability</h2>
+          <p>Wharton and Harvard research show that loans and broken chargers, not only battery chemistry, shape electric mobility adoption.</p>
+        </a>
+        <a class="post-card" href="industrial-processes.html">
+          <p class="meta">08 · Industrial Processes</p>
+          <h2>Hard-to-abate industry is shifting from pilots to playbooks</h2>
+          <p>Stanford and Berkeley research on steel, cement, heat, and abatement costs is turning industrial decarbonization into transferable methods.</p>
+        </a>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="../index.html">
+          <img src="../logo.png" alt="" width="18" height="18" />
+          <span>Maiti Labs</span>
+        </a>
+        <p class="footer-tag">Climate research, made accessible.</p>
+      </div>
+      <p class="copyright">Copyright © 2026 Maiti Labs. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>

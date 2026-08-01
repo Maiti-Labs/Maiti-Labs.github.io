@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Long-duration storage is becoming the quiet center of clean grids · Maiti Labs</title>
+<meta name="description" content="Emerging energy systems research on long-duration storage and clean grids from Stanford and Berkeley." />
+<link rel="icon" href="../logo.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../index.html" aria-label="Maiti Labs home">
+        <img src="../logo.png" alt="" width="22" height="22" />
+        <span>Maiti Labs</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#research">Research</a>
+        <a href="index.html">Notes</a>
+        <a href="../index.html#sectors">Sectors</a>
+      </div>
+      <a class="nav-cta" href="index.html">All notes</a>
+    </div>
+  </nav>
+  <article class="article">
+    <div class="wrap-narrow">
+      <a class="back-link" href="index.html">‹ All research notes</a>
+      <p class="article-meta">Research note · August 1, 2026 · Sector 04</p>
+      <h1>Long-duration storage is becoming the quiet center of clean grids</h1>
+      <p class="dek">Solar and wind are no longer the hard part. Keeping a zero-emissions grid reliable across nights, calm weeks, and seasons is.</p>
+      <div class="body">
+
+        <p>Variable renewables have won the cheap-electron contest in many regions. The research frontier has moved to balancing: how much lithium-ion is enough, when multi-day storage becomes valuable, and which firm resources reduce total system cost.</p>
+        <p>University capacity-expansion models are doing the unglamorous work of answering those questions with geographic detail rather than slogans.</p>
+
+        <h2>What grid models now show about LDES</h2>
+        <p>A <em>Nature Communications</em> study using the SWITCH model on a zero-emissions Western Interconnect finds that long-duration energy storage (LDES) is especially valuable in wind-heavy regions and places losing hydropower. Seasonal storage becomes cost-effective if capital costs fall below about $5/kWh, and large LDES mandates can cut prices in high-demand hours dramatically by reducing scarcity [<a href="#r1">1</a>]. Duration needs are not uniform: solar-dominant Southwest systems often want 6–10 hour assets, while wind-dominant systems lean toward 10–20 hours.</p>
+        <p>Stanford work led with Sally Benson and colleagues examines multi-day to seasonal storage in transmission-constrained systems. When clean firm generation is limited, short-duration storage still delivers more energy in many cases, but LDES plays a distinct role as a dispatchable substitute. Their substitution-ratio framing is useful: one megawatt of LDES can carry system value comparable to many megawatts of renewables paired only with short-duration storage [<a href="#r2">2</a>].</p>
+
+        <h2>California as a laboratory</h2>
+        <p>Using the BRIDGES gas-electric capacity-expansion model for California's 2045 net-zero target, Stanford-linked research finds that all electric storage durations appear in the optimal portfolio, totaling on the order of 75 GW of power capacity by mid-century in studied scenarios. Lithium-ion supplies most short-run needs, while hydrogen power-to-gas-to-power dominates bulk energy capacity at roughly 4 TWh, still far below existing natural-gas storage volumes [<a href="#r3">3</a>].</p>
+        <p> complementary Stanford geothermal work shows enhanced geothermal systems (EGS) can act as clean firm power, reducing required solar, battery, and power-to-gas buildout when deep resources are available [<a href="#r4">4</a>]. Storage and firm clean generation are complements, not rivals.</p>
+        <div class="callout">
+          <p>Accessible energy research means publishing the model assumptions, open inputs, and substitution metrics so planners outside elite labs can test their own grids.</p>
+        </div>
+
+        <h2>Where this leaves us</h2>
+        <p>The emerging technology set is broader than batteries: LDES chemistries and mechanical systems, hydrogen storage in existing gas infrastructure, and firm resources such as EGS. Stanford and Berkeley research is clarifying the conditions under which each earns a place on a real transmission map.</p>
+
+      </div>
+      <section class="refs">
+        <h2>References</h2>
+        <ol>
+<li><span id="r1"></span>Staadecker, M., Szinai, J., Sánchez-Pérez, P. A., et al. (2024). The value of long-duration energy storage under various grid conditions in a zero-emissions future. <em>Nature Communications</em>. <a href="https://doi.org/10.1038/s41467-024-53274-6">doi:10.1038/s41467-024-53274-6</a></li>
+<li><span id="r2"></span>Chu, A., Baik, E., Benson, S. M. (2024). Long-duration energy storage in transmission-constrained variable renewable energy systems. <em>Cell Reports Sustainability</em>. <a href="https://doi.org/10.1016/j.crsus.2024.100285">doi:10.1016/j.crsus.2024.100285</a> (Stanford).</li>
+<li><span id="r3"></span>Energy storage in combined gas-electric energy transitions models: The case of California. BRIDGES model results summarized via OSTI. <a href="https://www.osti.gov/biblio/2562162">OSTI 2562162</a></li>
+<li><span id="r4"></span>Aljubran, M. J., et al. (2025). Enhanced Geothermal Systems for Reliable Decarbonization of the California Energy Grid. Stanford Geothermal Workshop. <a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Aljubran.pdf">PDF</a></li>
+        </ol>
+      </section>
+    </div>
+  </article>
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="../index.html">
+          <img src="../logo.png" alt="" width="18" height="18" />
+          <span>Maiti Labs</span>
+        </a>
+        <p class="footer-tag">Climate research, made accessible.</p>
+      </div>
+      <p class="copyright">Copyright © 2026 Maiti Labs. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>
