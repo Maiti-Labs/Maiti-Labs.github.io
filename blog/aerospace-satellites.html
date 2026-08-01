@@ -33,6 +33,12 @@
       <p class="article-author">By Shryas Bhurat</p>
       <h1>Earth observation is moving from sensors to foundation models</h1>
       <p class="dek">Satellites still collect the data. Foundation models are starting to define how quickly that data becomes usable maps and metrics.</p>
+      <div class="body">
+
+        <h2>Technology</h2>
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Satellites produce huge image streams. New AI models train once on many sensor types, then adapt to floods, crops, or emissions with far less hand labeling.</p>
+        </div>
         <figure class="viz viz-hero">
           <p class="viz-label">How it works</p>
         <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
@@ -98,35 +104,96 @@
         </svg>
           <figcaption class="viz-caption">Foundation models train on optical and SAR streams, then adapt quickly to flood, crop, and emissions products.</figcaption>
         </figure>
-
-      <div class="body">
-
-        <div class="callout callout-plain">
-          <p><strong>In plain terms.</strong> Satellites produce huge image streams. New AI models train once on many sensor types, then adapt to floods, crops, or emissions with far less hand labeling.</p>
-        </div>
         <p>Aerospace climate research used to mean flying instruments and writing task-specific classifiers for each sensor. That work remains essential. The new layer is sensor-agnostic representation learning: models pretrained across optical, SAR, and atmospheric products that can be adapted to flood mapping, crop monitoring, or land-cover change with far less labeled data.</p>
         <p>For accessibility, this matters as much as launch cadence. A municipality does not need a custom deep-learning team for every Sentinel product if a strong pretrained encoder already understands multi-spectral structure.</p>
 
-        <h2>From fixed-sensor models to any-sensor models</h2>
-        <p>Most early remote-sensing foundation models were locked to one constellation or band set. The field is now pivoting to models that accept arbitrary channel combinations.</p>
-        <p><a href="https://arxiv.org/abs/2503.10845">Panopticon</a> (Waldmann et al.), from UC Berkeley and the Technical University of Munich, extends DINOv2 for Earth observation. It treats co-located multi-sensor views as natural augmentations, subsamples spectral channels during training, and uses cross-attention over channels so the model can embed optical and SAR inputs with wavelength and mode metadata [<a href="#r1">1</a>]. On GEO-Bench it reports strong results on Sentinel-1 and Sentinel-2 while remaining usable on unusual sensor configurations. That is the aerospace analogue of a generalist policy: one backbone, many instruments.</p>
 
-        <h2>Scale pretraining on public satellite archives</h2>
-        <h3>SkySense and SkySense++</h3>
-        <p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Guo_SkySense_A_Multi-Modal_Remote_Sensing_Foundation_Model_Towards_Universal_Interpretation_CVPR_2024_paper.pdf">SkySense</a> pretrained a billion-scale multi-modal spatiotemporal encoder on 21.5 million temporal sequences of optical and SAR data, using multi-granularity contrastive learning and geo-context prototypes [<a href="#r2">2</a>]. The follow-on <a href="https://www.nature.com/articles/s42256-025-01078-8">SkySense++</a> work in <em>Nature Machine Intelligence</em> adds progressive representation- and semantic-enhanced pretraining on about 27 million multi-modal images, improving few-shot performance across agriculture, forestry, oceanography, atmosphere, biology, land surveying, and disaster management [<a href="#r3">3</a>]. Few-shot skill is the accessibility lever: rapid flood response cannot wait for a million new labels.</p>
-
-        <h3>NASA–IBM Prithvi and Copernicus-scale models</h3>
-        <p><a href="https://arxiv.org/abs/2412.02732">Prithvi-EO-2.0</a>, trained on 4.2 million global HLS time-series samples from NASA Landsat–Sentinel archives, adds explicit temporal and location embeddings. The 600M variant improves over prior Prithvi checkpoints across GEO-Bench-style evaluations and is released openly for downstream use [<a href="#r4">4</a>]. In parallel, <a href="https://arxiv.org/abs/2503.11849">Copernicus-FM</a> targets unified modeling across Sentinel missions with 18.7 million aligned observations and dynamic hypernetworks that ingest spectral and non-spectral modalities plus metadata [<a href="#r5">5</a>].</p>
-
-        <h2>Mission science: Carbon-I and observation continuity</h2>
-        <p>Foundation models interpret archives. New missions define what enters those archives. <a href="https://carbon-i.github.io/">Carbon-I</a>, a Caltech-led NASA Earth System Explorer finalist with Bethany Ehlmann among the collaborators, would map CO<sub>2</sub>, CH<sub>4</sub>, and CO at roughly 300 m globally with roughly 30 m resolution over priority targets, closing tropical greenhouse-gas observation gaps that limit attribution of emissions to sources [<a href="#r7">7</a>]. That sensor layer complements Berkeley-style any-sensor encoders: one supplies trace-gas structure at scale, the other supplies transferable visual representations.</p>
-        <p>Continuity planning matters as much as any single mission. Waliser and the KISS Continuity Study Team outline a U.S. framework for continuity of satellite observations so climate records remain comparable across instrument generations [<a href="#r8">8</a>]. Accessible aerospace research therefore spans pretrained models, flagship trace-gas missions, and governance for long-term records.</p>
-
-        <h2>What universities are contributing</h2>
-        <p>Berkeley's work on Panopticon sits inside a broader campus effort on environmental data systems and open geospatial ML. Caltech's Carbon-I team connects instrument design to emissions accounting. Stanford's aerospace and Earth observation communities connect satellite products to climate risk, land use, and sustainability applications through the Doerr School. Across surveys of remote-sensing foundation models, the consensus is clear: the bottleneck is no longer collecting pixels. It is learning representations that transfer across sensors, seasons, and geographies [<a href="#r6">6</a>].</p>
-        <div class="callout">
-          <p>Lower-cost smallsat constellations expand coverage. Foundation models expand who can interpret that coverage. Both are required for climate research that reaches beyond specialist agencies.</p>
+        <h2>Markets</h2>
+        <p>When a capability gets cheaper, people often use more of it—not less. William Stanley Jevons observed this for coal efficiency in 1865 [<a href="#r9">9</a>]. Energy-policy reviews document similar rebound dynamics today [<a href="#r10">10</a>]. In this sector, falling costs can expand adoption faster than efficiency alone saves emissions.</p>
+        <div class="rebound" role="list">
+          <div class="rebound-card">
+            <h3>Cost going down</h3>
+            <p>Pretrained encoders cut labeled data and custom training for each new sensor [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Adoption rising</h3>
+            <p>Flood, crop, and emissions monitoring products multiply across regions [<a href="#r3">3</a>][<a href="#r7">7</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Data problems</h3>
+            <p>Labeled benchmarks and harmonized archives lag behind model ambition [<a href="#r6">6</a>][<a href="#r5">5</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Infrastructure problems</h3>
+            <p>Downlink, ground processing, and constellation capacity set the real ceiling [<a href="#r8">8</a>][<a href="#r7">7</a>].</p>
+          </div>
         </div>
+        <div class="chart-grid">
+        <figure class="viz viz-chart chart-wrap">
+          <p class="viz-label">Pretraining corpus scale</p>
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mc32-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+            <linearGradient id="mc32-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d5640"/>
+              <stop offset="100%" stop-color="#204028"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="300" fill="url(#mc32-bg)" rx="12"/>
+          <text x="320" y="32" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" font-family="Outfit,sans-serif">Public-archive pretraining (reported)</text>
+
+          <text x="24" y="72" fill="#204028" font-size="11" font-family="Outfit,sans-serif">SkySense</text>
+          <rect x="180" y="80" width="318" height="22" rx="6" fill="#2d5640"/>
+          <text x="506" y="83" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">21.5M sequences</text>
+          <text x="24" y="124" fill="#204028" font-size="11" font-family="Outfit,sans-serif">SkySense++</text>
+          <rect x="180" y="132" width="400" height="22" rx="6" fill="#2d5640"/>
+          <text x="588" y="135" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">~27M images</text>
+          <text x="24" y="176" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Prithvi-EO</text>
+          <rect x="180" y="184" width="62" height="22" rx="6" fill="#2d5640"/>
+          <text x="250" y="187" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">4.2M samples</text>
+          <text x="24" y="228" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Copernicus-FM</text>
+          <rect x="180" y="236" width="277" height="22" rx="6" fill="#2d5640"/>
+          <text x="465" y="239" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">18.7M observations</text>
+          <line x1="160" y1="48" x2="160" y2="248" stroke="#204028" stroke-width="1" opacity="0.25"/>
+          <text x="154" y="266" text-anchor="end" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Millions of units</text>
+        </svg>
+          <figcaption class="viz-caption">Source: Guo et al., 2024 [<a href="#r2">2</a>]; Wu et al., 2025 [<a href="#r3">3</a>]; Szwarcman et al., 2024 [<a href="#r4">4</a>]; Wang et al., 2025 [<a href="#r5">5</a>].</figcaption>
+        </figure>
+        <figure class="viz viz-chart chart-wrap">
+          <p class="viz-label">Carbon-I resolution targets</p>
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mc35-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+            <linearGradient id="mc35-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d5640"/>
+              <stop offset="100%" stop-color="#204028"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="300" fill="url(#mc35-bg)" rx="12"/>
+          <text x="320" y="32" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" font-family="Outfit,sans-serif">GHG mapping resolution</text>
+
+          
+          <text x="24" y="92" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Carbon-I global mapping</text>
+          <rect x="120" y="100" width="360" height="32" rx="6" fill="#2d5640"/>
+          <text x="488" y="108" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">~300 m</text>
+          
+          <text x="24" y="162" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Priority targets (design goal)</text>
+          <rect x="120" y="170" width="120" height="32" rx="6" fill="#2d5640"/>
+          <text x="248" y="178" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">~30 m</text>
+          <text x="320" y="248" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Spatial resolution (mission design)</text>
+        </svg>
+          <figcaption class="viz-caption">Source: Carbon-I mission materials [<a href="#r7">7</a>].</figcaption>
+        </figure>
+        </div>
+        <p>Satellite climate value holds only if rebound is managed: open labels, observation continuity standards, and shared compute for public-good products [<a href="#r8">8</a>][<a href="#r6">6</a>][<a href="#r7">7</a>].</p>
+
+        <h2>Technology in detail</h2>
         <figure class="viz viz-mid">
           <p class="viz-label">Progress</p>
         <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
@@ -202,8 +269,59 @@
         </svg>
           <figcaption class="viz-caption">Any-sensor encoders accept arbitrary band combinations so one pretrained model serves many missions.</figcaption>
         </figure>
+        <h2>From fixed-sensor models to any-sensor models</h2>
+        <p>Most early remote-sensing foundation models were locked to one constellation or band set. The field is now pivoting to models that accept arbitrary channel combinations.</p>
+        <p><a href="https://arxiv.org/abs/2503.10845">Panopticon</a> (Waldmann et al.), from UC Berkeley and the Technical University of Munich, extends DINOv2 for Earth observation. It treats co-located multi-sensor views as natural augmentations, subsamples spectral channels during training, and uses cross-attention over channels so the model can embed optical and SAR inputs with wavelength and mode metadata [<a href="#r1">1</a>]. On GEO-Bench it reports strong results on Sentinel-1 and Sentinel-2 while remaining usable on unusual sensor configurations. That is the aerospace analogue of a generalist policy: one backbone, many instruments.</p>
 
-        
+        <h2>Scale pretraining on public satellite archives</h2>
+        <h3>SkySense and SkySense++</h3>
+        <p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Guo_SkySense_A_Multi-Modal_Remote_Sensing_Foundation_Model_Towards_Universal_Interpretation_CVPR_2024_paper.pdf">SkySense</a> pretrained a billion-scale multi-modal spatiotemporal encoder on 21.5 million temporal sequences of optical and SAR data, using multi-granularity contrastive learning and geo-context prototypes [<a href="#r2">2</a>]. The follow-on <a href="https://www.nature.com/articles/s42256-025-01078-8">SkySense++</a> work in <em>Nature Machine Intelligence</em> adds progressive representation- and semantic-enhanced pretraining on about 27 million multi-modal images, improving few-shot performance across agriculture, forestry, oceanography, atmosphere, biology, land surveying, and disaster management [<a href="#r3">3</a>]. Few-shot skill is the accessibility lever: rapid flood response cannot wait for a million new labels.</p>
+
+        <h3>NASA–IBM Prithvi and Copernicus-scale models</h3>
+        <p><a href="https://arxiv.org/abs/2412.02732">Prithvi-EO-2.0</a>, trained on 4.2 million global HLS time-series samples from NASA Landsat–Sentinel archives, adds explicit temporal and location embeddings. The 600M variant improves over prior Prithvi checkpoints across GEO-Bench-style evaluations and is released openly for downstream use [<a href="#r4">4</a>]. In parallel, <a href="https://arxiv.org/abs/2503.11849">Copernicus-FM</a> targets unified modeling across Sentinel missions with 18.7 million aligned observations and dynamic hypernetworks that ingest spectral and non-spectral modalities plus metadata [<a href="#r5">5</a>].</p>
+
+        <h2>Mission science: Carbon-I and observation continuity</h2>
+        <p>Foundation models interpret archives. New missions define what enters those archives. <a href="https://carbon-i.github.io/">Carbon-I</a>, a Caltech-led NASA Earth System Explorer finalist with Bethany Ehlmann among the collaborators, would map CO<sub>2</sub>, CH<sub>4</sub>, and CO at roughly 300 m globally with roughly 30 m resolution over priority targets, closing tropical greenhouse-gas observation gaps that limit attribution of emissions to sources [<a href="#r7">7</a>]. That sensor layer complements Berkeley-style any-sensor encoders: one supplies trace-gas structure at scale, the other supplies transferable visual representations.</p>
+        <p>Continuity planning matters as much as any single mission. Waliser and the KISS Continuity Study Team outline a U.S. framework for continuity of satellite observations so climate records remain comparable across instrument generations [<a href="#r8">8</a>]. Accessible aerospace research therefore spans pretrained models, flagship trace-gas missions, and governance for long-term records.</p>
+
+        <h2>What universities are contributing</h2>
+        <p>Berkeley's work on Panopticon sits inside a broader campus effort on environmental data systems and open geospatial ML. Caltech's Carbon-I team connects instrument design to emissions accounting. Stanford's aerospace and Earth observation communities connect satellite products to climate risk, land use, and sustainability applications through the Doerr School. Across surveys of remote-sensing foundation models, the consensus is clear: the bottleneck is no longer collecting pixels. It is learning representations that transfer across sensors, seasons, and geographies [<a href="#r6">6</a>].</p>
+        <div class="callout">
+          <p>Lower-cost smallsat constellations expand coverage. Foundation models expand who can interpret that coverage. Both are required for climate research that reaches beyond specialist agencies.</p>
+        </div>
+
+
+        <h2>Timeline</h2>
+        <p>Earth observation is shifting from one sensor, one model to pretrained encoders that transfer across missions [<a href="#r6">6</a>][<a href="#r1">1</a>].</p>
+        <div class="timeline" role="list">
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">1990s–2010s</p>
+            <p class="timeline-text">Task-specific remote-sensing classifiers dominate; each satellite product needs its own pipeline [<a href="#r6">6</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">Early 2020s</p>
+            <p class="timeline-text">Foundation-model pretraining on public archives becomes a mainstream research direction [<a href="#r6">6</a>][<a href="#r2">2</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2024</p>
+            <p class="timeline-text">SkySense at CVPR [<a href="#r2">2</a>] and NASA–IBM Prithvi-EO [<a href="#r4">4</a>] scale pretraining on global HLS and multi-modal archives.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2025</p>
+            <p class="timeline-text">Panopticon (any-sensor EO) [<a href="#r1">1</a>], SkySense++ [<a href="#r3">3</a>], and Copernicus-FM [<a href="#r5">5</a>] widen sensor-flexible pretraining.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2025</p>
+            <p class="timeline-text">Carbon-I, a Caltech-led NASA Earth System Explorer finalist, targets tropical greenhouse-gas mapping gaps [<a href="#r7">7</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2026</p>
+            <p class="timeline-text">Few-shot adaptation on new constellations is a realistic path for municipal and NGO analysts [<a href="#r1">1</a>][<a href="#r3">3</a>].</p>
+          </div>
+        </div>
+        <p class="progress-note"><strong>Today:</strong> Sensor-flexible models are working in research and pilots; labeled disaster response data and tropical GHG continuity remain weak [<a href="#r3">3</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
+
+        <h2>Future impact</h2>
         <figure class="viz viz-loop">
           <p class="viz-label">The rebound loop</p>
         <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
@@ -259,59 +377,16 @@
         </svg>
           <figcaption class="viz-caption">Lower inference cost expands downstream products, which can outrun labeling bandwidth and downlink capacity.</figcaption>
         </figure>
-        <h2>Key milestones</h2>
-        <p>Earth observation is shifting from one sensor, one model to pretrained encoders that transfer across missions [<a href="#r6">6</a>][<a href="#r1">1</a>].</p>
-        <div class="timeline" role="list">
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">1990s–2010s</p>
-            <p class="timeline-text">Task-specific remote-sensing classifiers dominate; each satellite product needs its own pipeline [<a href="#r6">6</a>].</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">Early 2020s</p>
-            <p class="timeline-text">Foundation-model pretraining on public archives becomes a mainstream research direction [<a href="#r6">6</a>][<a href="#r2">2</a>].</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2024</p>
-            <p class="timeline-text">SkySense at CVPR [<a href="#r2">2</a>] and NASA–IBM Prithvi-EO [<a href="#r4">4</a>] scale pretraining on global HLS and multi-modal archives.</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2025</p>
-            <p class="timeline-text">Panopticon (any-sensor EO) [<a href="#r1">1</a>], SkySense++ [<a href="#r3">3</a>], and Copernicus-FM [<a href="#r5">5</a>] widen sensor-flexible pretraining.</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2025</p>
-            <p class="timeline-text">Carbon-I, a Caltech-led NASA Earth System Explorer finalist, targets tropical greenhouse-gas mapping gaps [<a href="#r7">7</a>].</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2026</p>
-            <p class="timeline-text">Few-shot adaptation on new constellations is a realistic path for municipal and NGO analysts [<a href="#r1">1</a>][<a href="#r3">3</a>].</p>
-          </div>
-        </div>
-        <p class="progress-note"><strong>Today:</strong> Sensor-flexible models are working in research and pilots; labeled disaster response data and tropical GHG continuity remain weak [<a href="#r3">3</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
 
-        <h2>When cost falls, demand rises</h2>
         <p>Cheaper Earth-observation AI lowers the cost of monitoring products, so demand for coverage and refresh rates rises [<a href="#r10">10</a>][<a href="#r9">9</a>]. More inference load hits labeling, downlink, and compute before emissions insight scales [<a href="#r6">6</a>].</p>
-        <div class="rebound" role="list">
-          <div class="rebound-card">
-            <h3>Cost going down</h3>
-            <p>Pretrained encoders cut labeled data and custom training for each new sensor [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
-          </div>
-          <div class="rebound-card">
-            <h3>Adoption rising</h3>
-            <p>Flood, crop, and emissions monitoring products multiply across regions [<a href="#r3">3</a>][<a href="#r7">7</a>].</p>
-          </div>
-          <div class="rebound-card">
-            <h3>Data problems</h3>
-            <p>Labeled benchmarks and harmonized archives lag behind model ambition [<a href="#r6">6</a>][<a href="#r5">5</a>].</p>
-          </div>
-          <div class="rebound-card">
-            <h3>Infrastructure problems</h3>
-            <p>Downlink, ground processing, and constellation capacity set the real ceiling [<a href="#r8">8</a>][<a href="#r7">7</a>].</p>
-          </div>
-        </div>
+        <p><strong>Cost going down.</strong> Pretrained encoders cut labeled data and custom training for each new sensor [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
+        <p><strong>Adoption rising.</strong> Flood, crop, and emissions monitoring products multiply across regions [<a href="#r3">3</a>][<a href="#r7">7</a>].</p>
+        <p><strong>Data problems.</strong> Labeled benchmarks and harmonized archives lag behind model ambition [<a href="#r6">6</a>][<a href="#r5">5</a>].</p>
+        <p><strong>Infrastructure problems.</strong> Downlink, ground processing, and constellation capacity set the real ceiling [<a href="#r8">8</a>][<a href="#r7">7</a>].</p>
+        <p class="progress-note"><strong>Looking ahead:</strong> Sensor-flexible models are working in research and pilots; labeled disaster response data and tropical GHG continuity remain weak [<a href="#r3">3</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
         <p>Satellite climate value holds only if rebound is managed: open labels, observation continuity standards, and shared compute for public-good products [<a href="#r8">8</a>][<a href="#r6">6</a>][<a href="#r7">7</a>].</p>
 
-<h2>Where this leaves us</h2>
+        <h2>Conclusion</h2>
         <p>The emerging aerospace research stack is a public satellite archive, a sensor-flexible foundation model, and a thin task head. That is how Earth observation becomes accessible climate infrastructure rather than a sequence of one-off image-processing projects.</p>
 
       </div>

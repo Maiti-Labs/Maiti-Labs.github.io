@@ -16,7 +16,7 @@ def _timeline_html(intro: str, milestones: list[tuple[str, str]], progress_note:
         for year, text in milestones
     )
     return f'''
-        <h2>Key milestones</h2>
+        <h2>Timeline</h2>
         <p>{intro}</p>
         <div class="timeline" role="list">
 {items}
@@ -25,22 +25,18 @@ def _timeline_html(intro: str, milestones: list[tuple[str, str]], progress_note:
 '''
 
 
-def _rebound_html(intro: str, cards: list[tuple[str, str]], closing: str) -> str:
+def rebound_cards_html(slug: str) -> str:
+    data = SECTOR_SECTIONS[slug]
     card_blocks = "\n".join(
         f'''          <div class="rebound-card">
             <h3>{title}</h3>
             <p>{text}</p>
           </div>'''
-        for title, text in cards
+        for title, text in data["rebound_cards"]
     )
-    return f'''
-        <h2>When cost falls, demand rises</h2>
-        <p>{intro}</p>
-        <div class="rebound" role="list">
+    return f'''        <div class="rebound" role="list">
 {card_blocks}
-        </div>
-        <p>{closing}</p>
-'''
+        </div>'''
 
 
 def sections_for_slug(slug: str) -> str:
@@ -49,18 +45,21 @@ def sections_for_slug(slug: str) -> str:
         data["timeline_intro"],
         data["milestones"],
         data["progress_note"],
-    ) + _rebound_html(
-        data["rebound_intro"],
-        data["rebound_cards"],
-        data["rebound_closing"],
     )
 
 
-def inject_before_leaves_us(body: str, slug: str) -> str:
-    extra = sections_for_slug(slug)
-    if LEAVES_US_MARKER not in body:
-        raise ValueError(f"Missing '{LEAVES_US_MARKER.strip()}' in body for {slug}")
-    return body.replace(LEAVES_US_MARKER, extra + "\n" + LEAVES_US_MARKER, 1)
+def future_section_html(slug: str) -> str:
+    data = SECTOR_SECTIONS[slug]
+    paras = "\n".join(
+        f"        <p><strong>{title}.</strong> {text}</p>"
+        for title, text in data["rebound_cards"]
+    )
+    return f'''
+        <p>{data["rebound_intro"]}</p>
+{paras}
+        <p class="progress-note"><strong>Looking ahead:</strong> {data["progress_note"]}</p>
+        <p>{data["rebound_closing"]}</p>
+'''
 
 
 SECTOR_SECTIONS = {

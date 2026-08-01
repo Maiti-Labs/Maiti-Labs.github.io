@@ -468,6 +468,34 @@ a:focus-visible {
   margin: 0.5rem 0 0;
 }
 
+.chart-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.5rem 0 1.75rem;
+}
+@media (min-width: 720px) {
+  .chart-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+.article .viz-chart {
+  margin: 0;
+}
+.article .viz-chart .chart-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+.article .chart-wrap .viz-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 0.45rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .timeline-item {
     animation: viz-fade-slide 0.65s ease-out both;

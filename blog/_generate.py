@@ -2,7 +2,8 @@
 """Generate sector research posts in Physical Intelligence-inspired format."""
 from pathlib import Path
 
-from _timelines import inject_before_leaves_us
+from _markets import build_markets_section
+from _timelines import LEAVES_US_MARKER, future_section_html, sections_for_slug
 from _viz import VIZ_SETS
 
 ROOT = Path(__file__).resolve().parent
@@ -607,52 +608,75 @@ POSTS.append({
 })
 
 
-def inject_after_plain_callout(body: str, html: str) -> str:
-    """Insert html immediately after the first callout-plain closing div."""
-    marker = 'class="callout callout-plain"'
+def _extract_plain_callout(body: str) -> tuple[str, str]:
+    marker = '<div class="callout callout-plain">'
     start = body.find(marker)
     if start == -1:
-        return body
-    depth = 0
-    i = body.find("<div", start)
-    if i == -1:
-        return body
-    pos = i
-    while pos < len(body):
-        next_open = body.find("<div", pos)
-        next_close = body.find("</div>", pos)
-        if next_close == -1:
-            return body
-        if next_open != -1 and next_open < next_close:
-            depth += 1
-            pos = next_open + 4
-            continue
-        depth -= 1
-        pos = next_close + len("</div>")
-        if depth == 0:
-            return body[:pos] + "\n" + html + body[pos:]
-    return body
+        raise ValueError("Missing plain-terms callout")
+    end = body.find("</div>", start)
+    if end == -1:
+        raise ValueError("Unclosed callout div")
+    end += len("</div>")
+    callout = body[start:end].strip()
+    rest = body[end:].strip()
+    return callout, rest
+
+
+def split_body(body: str) -> tuple[str, str, str, str]:
+    """Return (callout_html, tech_overview_html, tech_detail_html, conclusion_html)."""
+    body = body.strip()
+    callout, rest = _extract_plain_callout(body)
+    if LEAVES_US_MARKER not in rest:
+        raise ValueError(f"Missing {LEAVES_US_MARKER}")
+    detail_part, conclusion_part = rest.split(LEAVES_US_MARKER, 1)
+    conclusion_part = conclusion_part.strip()
+    detail_part = detail_part.strip()
+    h2 = detail_part.find("<h2>")
+    if h2 == -1:
+        raise ValueError("Missing detail sections")
+    tech_overview = detail_part[:h2].strip()
+    tech_detail = detail_part[h2:].strip()
+    return callout, tech_overview, tech_detail, conclusion_part
+
+
+def assemble_body(raw_body: str, slug: str, viz_key: str) -> str:
+    callout, tech_overview, tech_detail, conclusion = split_body(raw_body)
+    sets = VIZ_SETS.get(viz_key, {})
+    hero = sets.get("hero", "")
+    mid = sets.get("mid", "")
+    loop = sets.get("loop", "")
+    markets = build_markets_section(slug)
+    timeline = sections_for_slug(slug)
+    future = future_section_html(slug)
+    return f"""
+        <h2>Technology</h2>
+        {callout}
+{hero}
+        {tech_overview}
+
+{markets}
+        <h2>Technology in detail</h2>
+{mid}
+        {tech_detail}
+
+{timeline}
+        <h2>Future impact</h2>
+{loop}
+{future}
+        <h2>Conclusion</h2>
+        {conclusion}
+"""
 
 
 def write_posts():
     cards = []
     for p in POSTS:
         viz_key = p.get("viz_key", "")
-        sets = VIZ_SETS.get(viz_key, {})
-        viz_html = sets.get("hero", "")
-        body = inject_before_leaves_us(p["body"], p["slug"])
-        if sets.get("mid"):
-            body = inject_after_plain_callout(body, sets["mid"])
-        if sets.get("loop"):
-            body = body.replace(
-                "        <h2>Key milestones</h2>",
-                sets["loop"] + "\n        <h2>Key milestones</h2>",
-                1,
-            )
+        body = assemble_body(p["body"], p["slug"], viz_key)
         html = page(
             p["title"],
             p["description"],
-            article(p["meta"], p["title"], p["dek"], body, p["refs"], viz_html=viz_html),
+            article(p["meta"], p["title"], p["dek"], body, p["refs"], viz_html=""),
         )
         (ROOT / f"{p['slug']}.html").write_text(html, encoding="utf-8")
         cards.append(p)

@@ -33,6 +33,12 @@
       <p class="article-author">By Shryas Bhurat</p>
       <h1>AI weather models are becoming the new forecast stack</h1>
       <p class="dek">Pretrained atmospheric models are changing who can run good forecasts, and how fast those forecasts arrive.</p>
+      <div class="body">
+
+        <h2>Technology</h2>
+        <div class="callout callout-plain">
+          <p><strong>In plain terms.</strong> Weather AI learns patterns from decades of global data, then rolls out a forecast in minutes on a single machine [<a href="#r9">9</a>]. Classic physics models on supercomputers still set the quality bar, but they take hours and sit behind agency walls [<a href="#r2">2</a>].</p>
+        </div>
         <figure class="viz viz-hero">
           <p class="viz-label">How it works</p>
         <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
@@ -104,29 +110,96 @@
         </svg>
           <figcaption class="viz-caption">New AI models learn from reanalysis archives and produce forecasts in minutes. Classical physics models on supercomputers still set quality bars, but they take hours.</figcaption>
         </figure>
-
-      <div class="body">
-
-        <div class="callout callout-plain">
-          <p><strong>In plain terms.</strong> Weather AI learns patterns from decades of global data, then rolls out a forecast in minutes on a single machine [<a href="#r9">9</a>]. Classic physics models on supercomputers still set the quality bar, but they take hours and sit behind agency walls [<a href="#r2">2</a>].</p>
-        </div>
         <p>For decades, skillful medium-range forecasts meant one thing: a physics-based numerical weather prediction (NWP) system on a supercomputer. That stack still matters. Data-driven models trained on reanalysis archives can now produce competitive forecasts in minutes on commodity hardware [<a href="#r9">9</a>][<a href="#r11">11</a>].</p>
         <p>This is not a cosmetic speedup. It changes access. University labs, national agencies, and climate-risk teams that could never operate a full IFS-class system can now evaluate ensemble-scale experiments, downscaling pipelines, and early-warning prototypes. The research question has shifted from "can AI forecast weather?" to "which foundation-model designs generalize under climate change, extremes, and sparse observations?"</p>
 
-        <h2>What "foundation model" means in weather</h2>
-        <p>In language and vision, a foundation model is pretrained once on broad data, then adapted to many tasks. Weather and climate need the same idea, but the data are gridded fields, multiple physical variables, and heterogeneous resolutions.</p>
-        <p><a href="https://arxiv.org/abs/2301.10343">ClimaX</a>, developed by researchers at UCLA and Microsoft Research, was an early explicit attempt at this framing. It extends a Vision Transformer with variable tokenization and aggregation so one model can be pretrained on heterogeneous CMIP6-derived climate data, then fine-tuned for forecasting, projection, and downscaling tasks, including variables and scales not seen in pretraining [<a href="#r1">1</a>]. That is the core recipe later systems refine: pretrain broadly, specialize cheaply.</p>
 
-        <h2>The current frontier models</h2>
-        <h3>Graph neural networks and transformers at global scale</h3>
-        <p>Google DeepMind's <a href="https://www.science.org/doi/10.1126/science.adi2336">GraphCast</a> (Lam et al.) encodes the atmosphere as a multi-scale mesh and rolls out 6-hour steps to produce 10-day forecasts. On WeatherBench-style evaluations it matched or exceeded ECMWF's high-resolution IFS on many variables while running orders of magnitude faster [<a href="#r2">2</a>]. Huawei's <a href="https://www.nature.com/articles/s41586-023-06185-3">Pangu-Weather</a> (Bi et al.) uses a 3D Earth Transformer and hierarchical temporal aggregation, again reporting deterministic skill competitive with operational IFS on reanalysis benchmarks [<a href="#r3">3</a>].</p>
-        <p>NVIDIA's FourCastNet line [<a href="#r9">9</a>] and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) [<a href="#r12">12</a>] push the same idea into operational settings. Feldmann et al. use WeatherBench2 [<a href="#r10">10</a>] to compare Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
-
-        <h3>Toward multi-domain atmospheric foundation models</h3>
-        <p>Microsoft Research's <a href="https://doi.org/10.1038/s41586-025-09005-y">Aurora</a> (Bodnar et al.) widens the pretraining mixture beyond ERA5 weather fields, incorporating air quality, ocean, and climate-model outputs into one flexible backbone [<a href="#r5">5</a>]. That is closer to a true Earth-system foundation model than a single-task emulator.</p>
-        <div class="callout">
-          <p>The practical implication for accessibility: once a strong pretrained checkpoint exists, fine-tuning for a regional hazard, an agricultural index, or an air-quality product becomes a research project rather than a national computing program.</p>
+        <h2>Markets</h2>
+        <p>When a capability gets cheaper, people often use more of it—not less. William Stanley Jevons observed this for coal efficiency in 1865 [<a href="#r13">13</a>]. Energy-policy reviews document similar rebound dynamics today [<a href="#r14">14</a>]. In this sector, falling costs can expand adoption faster than efficiency alone saves emissions.</p>
+        <div class="rebound" role="list">
+          <div class="rebound-card">
+            <h3>Cost going down</h3>
+            <p>Single-GPU rollouts replace hours on agency supercomputers for many benchmark tasks [<a href="#r9">9</a>][<a href="#r2">2</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Adoption rising</h3>
+            <p>More ensemble runs, downscaling pipelines, and AI weather startups compete on speed [<a href="#r10">10</a>][<a href="#r4">4</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Data problems</h3>
+            <p>ERA5 quality, observation gaps, and verification datasets strain under heavier use [<a href="#r11">11</a>][<a href="#r10">10</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>AI / compute demand</h3>
+            <p>GPU clusters for training and inference grow with every new product layer [<a href="#r9">9</a>][<a href="#r5">5</a>].</p>
+          </div>
         </div>
+        <div class="chart-grid">
+        <figure class="viz viz-chart chart-wrap">
+          <p class="viz-label">Forecast wall-clock</p>
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mc26-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+            <linearGradient id="mc26-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d5640"/>
+              <stop offset="100%" stop-color="#204028"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="300" fill="url(#mc26-bg)" rx="12"/>
+          <text x="320" y="32" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" font-family="Outfit,sans-serif">Inference time (qualitative)</text>
+
+          
+          <line x1="72" y1="52" x2="72" y2="248" stroke="#204028" stroke-width="1" opacity="0.25"/>
+          <text x="66" y="266" text-anchor="end" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Wall-clock (qualitative)</text>
+          
+          <text x="24" y="82" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Classical NWP (supercomputer)</text>
+          <rect x="88" y="90" width="420" height="28" rx="6" fill="#2d5640"/>
+          <text x="516" y="96" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">hours-scale</text>
+          
+          <text x="24" y="142" fill="#204028" font-size="11" font-family="Outfit,sans-serif">AI emulators (GraphCast, FourCastNet)</text>
+          <rect x="88" y="150" width="72" height="28" rx="6" fill="#2d5640"/>
+          <text x="168" y="156" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">minutes-scale</text>
+          <text x="320" y="278" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Not to scale — orders of magnitude faster in reported benchmarks</text>
+        </svg>
+          <figcaption class="viz-caption">Source: Lam et al., 2023 [<a href="#r2">2</a>]; Pathak et al., 2022 [<a href="#r9">9</a>]. Absolute runtimes vary by hardware and resolution.</figcaption>
+        </figure>
+        <figure class="viz viz-chart chart-wrap">
+          <p class="viz-label">Benchmark skill vs IFS</p>
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mc27-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+            <linearGradient id="mc27-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#2d5640"/>
+              <stop offset="100%" stop-color="#204028"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="300" fill="url(#mc27-bg)" rx="12"/>
+          <text x="320" y="32" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" font-family="Outfit,sans-serif">Deterministic skill (schematic)</text>
+
+          
+          <line x1="100" y1="52" x2="100" y2="220" stroke="#204028" stroke-width="1" opacity="0.25"/>
+          <text x="94" y="238" text-anchor="end" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Relative skill index</text>
+          <rect x="120" y="88" width="48" height="132" rx="6" fill="#5a6a5c" opacity="0.25"/>
+          <text x="144" y="238" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">IFS baseline</text>
+          <text x="144" y="252" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">index = 1</text>
+          <rect x="280" y="72" width="48" height="148" rx="6" fill="#2d5640"/>
+          <text x="304" y="238" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Leading AI</text>
+          <text x="304" y="252" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">match / beat on many vars</text>
+          <text x="420" y="120" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">WeatherBench2-style</text>
+          <text x="420" y="134" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">comparisons</text>
+        </svg>
+          <figcaption class="viz-caption">Source: Rasp et al., 2024 [<a href="#r10">10</a>]; Lam et al., 2023 [<a href="#r2">2</a>]; Bi et al., 2023 [<a href="#r3">3</a>].</figcaption>
+        </figure>
+        </div>
+        <p>Climate gains from faster forecasts only stick if rebound is managed: open verification, honest uncertainty, and shared obs/reanalysis quality [<a href="#r10">10</a>][<a href="#r6">6</a>][<a href="#r11">11</a>].</p>
+
+        <h2>Technology in detail</h2>
         <figure class="viz viz-mid">
           <p class="viz-label">Progress</p>
         <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
@@ -190,6 +263,20 @@
         </svg>
           <figcaption class="viz-caption">Foundation-model weather stacks pretrain on ERA5-class archives, fine-tune for tasks, then roll out deterministic or ensemble forecasts from a shared checkpoint.</figcaption>
         </figure>
+        <h2>What "foundation model" means in weather</h2>
+        <p>In language and vision, a foundation model is pretrained once on broad data, then adapted to many tasks. Weather and climate need the same idea, but the data are gridded fields, multiple physical variables, and heterogeneous resolutions.</p>
+        <p><a href="https://arxiv.org/abs/2301.10343">ClimaX</a>, developed by researchers at UCLA and Microsoft Research, was an early explicit attempt at this framing. It extends a Vision Transformer with variable tokenization and aggregation so one model can be pretrained on heterogeneous CMIP6-derived climate data, then fine-tuned for forecasting, projection, and downscaling tasks, including variables and scales not seen in pretraining [<a href="#r1">1</a>]. That is the core recipe later systems refine: pretrain broadly, specialize cheaply.</p>
+
+        <h2>The current frontier models</h2>
+        <h3>Graph neural networks and transformers at global scale</h3>
+        <p>Google DeepMind's <a href="https://www.science.org/doi/10.1126/science.adi2336">GraphCast</a> (Lam et al.) encodes the atmosphere as a multi-scale mesh and rolls out 6-hour steps to produce 10-day forecasts. On WeatherBench-style evaluations it matched or exceeded ECMWF's high-resolution IFS on many variables while running orders of magnitude faster [<a href="#r2">2</a>]. Huawei's <a href="https://www.nature.com/articles/s41586-023-06185-3">Pangu-Weather</a> (Bi et al.) uses a 3D Earth Transformer and hierarchical temporal aggregation, again reporting deterministic skill competitive with operational IFS on reanalysis benchmarks [<a href="#r3">3</a>].</p>
+        <p>NVIDIA's FourCastNet line [<a href="#r9">9</a>] and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) [<a href="#r12">12</a>] push the same idea into operational settings. Feldmann et al. use WeatherBench2 [<a href="#r10">10</a>] to compare Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
+
+        <h3>Toward multi-domain atmospheric foundation models</h3>
+        <p>Microsoft Research's <a href="https://doi.org/10.1038/s41586-025-09005-y">Aurora</a> (Bodnar et al.) widens the pretraining mixture beyond ERA5 weather fields, incorporating air quality, ocean, and climate-model outputs into one flexible backbone [<a href="#r5">5</a>]. That is closer to a true Earth-system foundation model than a single-task emulator.</p>
+        <div class="callout">
+          <p>The practical implication for accessibility: once a strong pretrained checkpoint exists, fine-tuning for a regional hazard, an agricultural index, or an air-quality product becomes a research project rather than a national computing program.</p>
+        </div>
 
         <h2>What top labs are stressing next</h2>
         <p>Skill on ERA5 [<a href="#r11">11</a>] is necessary but not sufficient. Rackow et al. examine GraphCast, Pangu-Weather, and AIFS under climate-change-like conditions and ask whether models trained on the recent past remain reliable as the climate shifts [<a href="#r6">6</a>]. Extremes remain a hard edge: AI forecasts can be overly smooth and can understate record-breaking events even when mean scores look excellent [<a href="#r6">6</a>][<a href="#r10">10</a>].</p>
@@ -202,7 +289,38 @@
         <h2>Why this matters for accessible climate research</h2>
         <p>Weather foundation models compress a capability that used to sit behind agency firewalls. Open weights, public reanalysis [<a href="#r11">11</a>], and benchmarks such as WeatherBench2 [<a href="#r10">10</a>] let students at Berkeley, researchers in the Global South, and municipal risk teams reproduce modern forecast skill. The open problem is not whether these models exist. It is how to document uncertainty, couple them to impact models, and keep evaluation honest as the climate moves [<a href="#r6">6</a>][<a href="#r10">10</a>].</p>
 
-        
+
+        <h2>Timeline</h2>
+        <p>AI weather models moved from research papers to open checkpoints in just a few years [<a href="#r2">2</a>][<a href="#r9">9</a>].</p>
+        <div class="timeline" role="list">
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2018–2020</p>
+            <p class="timeline-text">Early machine-learning weather emulators show that reanalysis archives such as ERA5 can train competitive short-range models [<a href="#r11">11</a>][<a href="#r10">10</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2022</p>
+            <p class="timeline-text">NVIDIA's FourCastNet line demonstrates fast global forecasts on commodity GPUs [<a href="#r9">9</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2023</p>
+            <p class="timeline-text">Pangu-Weather in <em>Nature</em> [<a href="#r3">3</a>], GraphCast in <em>Science</em> [<a href="#r2">2</a>], and ClimaX at ICML [<a href="#r1">1</a>] establish foundation-model-style pretraining for the atmosphere.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2024</p>
+            <p class="timeline-text">Aurora preprint [<a href="#r5">5</a>], WeatherBench2 comparisons [<a href="#r10">10</a>], and ECMWF's AIFS path [<a href="#r12">12</a>] push AI toward operational evaluation.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2025</p>
+            <p class="timeline-text">Aurora published in <em>Nature</em> as a broader Earth-system foundation model [<a href="#r5">5</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2026</p>
+            <p class="timeline-text">Minutes-scale global forecasts and open weights are routine for research teams outside major forecasting centers [<a href="#r9">9</a>][<a href="#r4">4</a>].</p>
+          </div>
+        </div>
+        <p class="progress-note"><strong>Today:</strong> Fast, accessible forecasts are working for many variables; extremes, calibration, and performance under climate shift remain early [<a href="#r6">6</a>][<a href="#r4">4</a>].</p>
+
+        <h2>Future impact</h2>
         <figure class="viz viz-loop">
           <p class="viz-label">The rebound loop</p>
         <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
@@ -258,59 +376,16 @@
         </svg>
           <figcaption class="viz-caption">Cheaper inference invites more experiments and ensembles, which strains data and compute unless verification and open benchmarks keep pace.</figcaption>
         </figure>
-        <h2>Key milestones</h2>
-        <p>AI weather models moved from research papers to open checkpoints in just a few years [<a href="#r2">2</a>][<a href="#r9">9</a>].</p>
-        <div class="timeline" role="list">
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2018–2020</p>
-            <p class="timeline-text">Early machine-learning weather emulators show that reanalysis archives such as ERA5 can train competitive short-range models [<a href="#r11">11</a>][<a href="#r10">10</a>].</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2022</p>
-            <p class="timeline-text">NVIDIA's FourCastNet line demonstrates fast global forecasts on commodity GPUs [<a href="#r9">9</a>].</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2023</p>
-            <p class="timeline-text">Pangu-Weather in <em>Nature</em> [<a href="#r3">3</a>], GraphCast in <em>Science</em> [<a href="#r2">2</a>], and ClimaX at ICML [<a href="#r1">1</a>] establish foundation-model-style pretraining for the atmosphere.</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2024</p>
-            <p class="timeline-text">Aurora preprint [<a href="#r5">5</a>], WeatherBench2 comparisons [<a href="#r10">10</a>], and ECMWF's AIFS path [<a href="#r12">12</a>] push AI toward operational evaluation.</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2025</p>
-            <p class="timeline-text">Aurora published in <em>Nature</em> as a broader Earth-system foundation model [<a href="#r5">5</a>].</p>
-          </div>
-          <div class="timeline-item" role="listitem">
-            <p class="timeline-year">2026</p>
-            <p class="timeline-text">Minutes-scale global forecasts and open weights are routine for research teams outside major forecasting centers [<a href="#r9">9</a>][<a href="#r4">4</a>].</p>
-          </div>
-        </div>
-        <p class="progress-note"><strong>Today:</strong> Fast, accessible forecasts are working for many variables; extremes, calibration, and performance under climate shift remain early [<a href="#r6">6</a>][<a href="#r4">4</a>].</p>
 
-        <h2>When cost falls, demand rises</h2>
         <p>When each forecast costs less compute, teams run more ensembles, products, and experiments. That is Jevons paradox in weather: cheaper capability drives more use, which creates new bottlenecks [<a href="#r13">13</a>][<a href="#r14">14</a>].</p>
-        <div class="rebound" role="list">
-          <div class="rebound-card">
-            <h3>Cost going down</h3>
-            <p>Single-GPU rollouts replace hours on agency supercomputers for many benchmark tasks [<a href="#r9">9</a>][<a href="#r2">2</a>].</p>
-          </div>
-          <div class="rebound-card">
-            <h3>Adoption rising</h3>
-            <p>More ensemble runs, downscaling pipelines, and AI weather startups compete on speed [<a href="#r10">10</a>][<a href="#r4">4</a>].</p>
-          </div>
-          <div class="rebound-card">
-            <h3>Data problems</h3>
-            <p>ERA5 quality, observation gaps, and verification datasets strain under heavier use [<a href="#r11">11</a>][<a href="#r10">10</a>].</p>
-          </div>
-          <div class="rebound-card">
-            <h3>AI / compute demand</h3>
-            <p>GPU clusters for training and inference grow with every new product layer [<a href="#r9">9</a>][<a href="#r5">5</a>].</p>
-          </div>
-        </div>
+        <p><strong>Cost going down.</strong> Single-GPU rollouts replace hours on agency supercomputers for many benchmark tasks [<a href="#r9">9</a>][<a href="#r2">2</a>].</p>
+        <p><strong>Adoption rising.</strong> More ensemble runs, downscaling pipelines, and AI weather startups compete on speed [<a href="#r10">10</a>][<a href="#r4">4</a>].</p>
+        <p><strong>Data problems.</strong> ERA5 quality, observation gaps, and verification datasets strain under heavier use [<a href="#r11">11</a>][<a href="#r10">10</a>].</p>
+        <p><strong>AI / compute demand.</strong> GPU clusters for training and inference grow with every new product layer [<a href="#r9">9</a>][<a href="#r5">5</a>].</p>
+        <p class="progress-note"><strong>Looking ahead:</strong> Fast, accessible forecasts are working for many variables; extremes, calibration, and performance under climate shift remain early [<a href="#r6">6</a>][<a href="#r4">4</a>].</p>
         <p>Climate gains from faster forecasts only stick if rebound is managed: open verification, honest uncertainty, and shared obs/reanalysis quality [<a href="#r10">10</a>][<a href="#r6">6</a>][<a href="#r11">11</a>].</p>
 
-<h2>Where this leaves us</h2>
+        <h2>Conclusion</h2>
         <p>The emerging stack looks familiar to anyone who watched language models mature: pretrain on the broadest physics-consistent archive available, specialize with modest data, evaluate on tasks that matter, and publish the checkpoints. Climate research becomes more accessible when that stack is open, cited, and usable outside a handful of forecasting centers.</p>
 
       </div>
