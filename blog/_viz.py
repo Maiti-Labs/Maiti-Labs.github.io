@@ -613,7 +613,7 @@ def _industrial_hero():
         "hero",
         "How it works",
         _svg("0 0 640 220", uid, body, "Hard industries need a playbook"),
-        "Cement, steel, and chemicals decarbonize through sequenced heat, material, and cost options—not one silver bullet.",
+        "Cement, steel, and chemicals decarbonize through sequenced heat, material, and cost options, not one silver bullet.",
     )
 
 

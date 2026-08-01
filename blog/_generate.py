@@ -569,11 +569,11 @@ POSTS.append({
     "num": "01",
     "sector": "Space Compute",
     "viz_key": "space",
-    "card_title": "Orbital compute is racing the terrestrial power wall",
-    "card_blurb": "AI data centers strain grids, land, and water on Earth. Orbit offers continuous solar and radiative cooling, but launch and comms still dominate cost today.",
+    "card_title": "Orbital compute meets the terrestrial power wall",
+    "card_blurb": "AI data centers strain grids on Earth. Orbit offers continuous solar and radiative cooling, if launch costs fall.",
     "meta": "Research note · August 1, 2026 · Sector 01 · Shryas Bhurat",
-    "title": "Orbital compute is racing the terrestrial power wall",
-    "dek": "Space-based AI infrastructure promises always-on solar and passive cooling, but economics still hinge on launch and reliable ground links.",
+    "title": "Orbital compute meets the terrestrial power wall",
+    "dek": "Always-on solar in orbit is real. Cost parity still depends on launch.",
     "description": "Emerging orbital data center and space compute research from Google, industry analysts, and orbital DC startups, with citations.",
     "body": '''
         <div class="callout callout-plain">
@@ -630,11 +630,11 @@ POSTS.append({
     "num": "02",
     "sector": "Weather Foundation Models",
     "viz_key": "weather",
-    "card_title": "AI weather models are becoming the new forecast stack",
-    "card_blurb": "GraphCast, Aurora, and ClimaX match classic supercomputer forecasts on many scores, in a fraction of the time.",
+    "card_title": "AI weather models are rewriting the forecast stack",
+    "card_blurb": "GraphCast, Aurora, and ClimaX match classic forecasts on many scores, far faster.",
     "meta": "Research note · August 1, 2026 · Sector 02 · Shryas Bhurat",
-    "title": "AI weather models are becoming the new forecast stack",
-    "dek": "Pretrained atmospheric models are changing who can run good forecasts, and how fast those forecasts arrive.",
+    "title": "AI weather models are rewriting the forecast stack",
+    "dek": "Minutes instead of hours. Open checkpoints instead of agency-only supercomputers.",
     "description": "Emerging weather foundation models from DeepMind, Microsoft, ECMWF, and university labs, with citations.",
     "body": '''
         <div class="callout callout-plain">
@@ -653,7 +653,7 @@ POSTS.append({
         <p>NVIDIA's FourCastNet line [<a href="#r9">9</a>] and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) [<a href="#r12">12</a>] push the same idea into operational settings. Feldmann et al. use WeatherBench2 [<a href="#r10">10</a>] to compare Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
 
         <h3>Toward multi-domain atmospheric foundation models</h3>
-        <p>Microsoft Research's <a href="https://doi.org/10.1038/s41586-025-09005-y">Aurora</a> (Bodnar et al.) widens the pretraining mixture beyond ERA5 weather fields, incorporating air quality, ocean, and climate-model outputs into one flexible backbone [<a href="#r5">5</a>]. That is closer to a true Earth-system foundation model than a single-task emulator.</p>
+        <p>Microsoft Research's <a href="https://doi.org/10.1038/s41586-025-09005-y">Aurora</a> (Bodnar, Bruinsma, Lucic, et al.) widens the pretraining mixture beyond ERA5 weather fields, incorporating air quality, ocean, and climate-model outputs into one flexible backbone [<a href="#r5">5</a>]. That is closer to a true Earth-system foundation model than a single-task emulator.</p>
         <div class="callout">
           <p>The practical implication for accessibility: once a strong pretrained checkpoint exists, fine-tuning for a regional hazard, an agricultural index, or an air-quality product becomes a research project rather than a national computing program.</p>
         </div>
@@ -696,11 +696,11 @@ POSTS.append({
     "num": "03",
     "sector": "Aerospace & Satellites",
     "viz_key": "aerospace",
-    "card_title": "Earth observation is moving from sensors to foundation models",
-    "card_blurb": "Berkeley Panopticon, Caltech-led Carbon-I, and large-scale pretraining are making satellite analysis work across missions.",
+    "card_title": "Earth observation is becoming a foundation-model stack",
+    "card_blurb": "Berkeley Panopticon, Carbon-I, and large-scale pretraining make satellite analysis transfer across missions.",
     "meta": "Research note · August 1, 2026 · Sector 03 · Shryas Bhurat",
-    "title": "Earth observation is moving from sensors to foundation models",
-    "dek": "Satellites still collect the data. Foundation models are starting to define how quickly that data becomes usable maps and metrics.",
+    "title": "Earth observation is becoming a foundation-model stack",
+    "dek": "One backbone, many sensors. A faster path from pixels to climate metrics.",
     "description": "Emerging aerospace and satellite Earth observation foundation models, with university citations.",
     "body": '''
         <div class="callout callout-plain">
@@ -753,11 +753,11 @@ POSTS.append({
     "num": "04",
     "sector": "Materials",
     "viz_key": "materials",
-    "card_title": "Low-carbon materials research is rewriting cement and concrete",
-    "card_blurb": "Stanford, Berkeley, and Caltech work on cement chemistry, solar-driven catalytic materials, and abatement cost curves shows materials science is now a climate lever.",
+    "card_title": "Cement chemistry is becoming a climate lever",
+    "card_blurb": "Stanford, Berkeley, and Caltech work shows materials science is now a direct climate tool.",
     "meta": "Research note · August 1, 2026 · Sector 04 · Shryas Bhurat",
-    "title": "Low-carbon materials research is rewriting cement and concrete",
-    "dek": "Cement is still one of the hardest industrial emissions problems. University labs are attacking the chemistry, the kiln, and the cost curve at once.",
+    "title": "Cement chemistry is becoming a climate lever",
+    "dek": "Labs are attacking binders, kilns, and abatement costs together.",
     "description": "Emerging low-carbon materials research from Stanford, Berkeley, and related labs.",
     "body": '''
         <div class="callout callout-plain">
@@ -804,17 +804,17 @@ POSTS.append({
     "num": "05",
     "sector": "Energy Systems",
     "viz_key": "energy",
-    "card_title": "Long-duration storage is the quiet center of clean grids",
-    "card_blurb": "Stanford and Berkeley grid models, plus Caltech storage chemistry and Pasadena smart-grid pilots, show when multi-day storage and local integration actually earn their keep.",
+    "card_title": "Long-duration storage decides clean-grid reliability",
+    "card_blurb": "Grid models show when multi-day storage earns its keep alongside short-duration batteries.",
     "meta": "Research note · August 1, 2026 · Sector 05 · Shryas Bhurat",
-    "title": "Long-duration storage is the quiet center of clean grids",
-    "dek": "Solar and wind are cheaper in many regions. Keeping a zero-emissions grid reliable across nights and calm weeks is the harder part.",
-    "description": "Emerging energy systems research on long-duration storage and clean grids from Stanford and Berkeley.",
+    "title": "Long-duration storage decides clean-grid reliability",
+    "dek": "Cheap renewables won the electron race. Multi-day balance is next.",
+    "description": "Emerging energy systems research on long-duration storage and clean grids, with university and national-lab citations.",
     "body": '''
         <div class="callout callout-plain">
           <p><strong>In plain terms.</strong> Batteries that last a few hours cover evening peaks. Multi-day storage fills the gaps when wind and sun dip for days or weeks. Grid models now spell out when each layer pays for itself.</p>
         </div>
-        <p>Variable renewables have won the cheap-electron contest in many regions [<a href="#r6">6</a>]. The research frontier has moved to balancing: how much lithium-ion is enough, when multi-day storage becomes valuable, and which firm resources reduce total system cost [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
+        <p>Variable renewables have won the cheap-electron contest in many regions [<a href="#r6">6</a>]. Staadecker et al. and other capacity-expansion models now quantify when multi-day storage becomes valuable and which firm resources reduce total system cost [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
         <p>University capacity-expansion models are doing the unglamorous work of answering those questions with geographic detail rather than slogans.</p>
 
         <h2>What grid models now show about LDES</h2>
@@ -853,11 +853,11 @@ POSTS.append({
     "num": "06",
     "sector": "Manufacturing",
     "viz_key": "manufacturing",
-    "card_title": "Advanced manufacturing is becoming a decarbonization toolkit",
-    "card_blurb": "NSF and university work on electrification, process substitution, and factory data is turning manufacturing into a climate research domain.",
+    "card_title": "Factories are becoming a climate design space",
+    "card_blurb": "NSF and university work on electrification and factory data make manufacturing a climate research domain.",
     "meta": "Research note · August 1, 2026 · Sector 06 · Shryas Bhurat",
-    "title": "Advanced manufacturing is becoming a decarbonization toolkit",
-    "dek": "Factories are no longer only an emissions source to regulate. They are a design space for lower-carbon process technology.",
+    "title": "Factories are becoming a climate design space",
+    "dek": "Electrified heat, process data, and cost models turn plants into abatement platforms.",
     "description": "Emerging green manufacturing and industrial electrification research from leading universities.",
     "body": '''
         <div class="callout callout-plain">
@@ -902,11 +902,11 @@ POSTS.append({
     "num": "07",
     "sector": "Built Environment",
     "viz_key": "built",
-    "card_title": "Whole-life carbon is replacing energy-only building metrics",
-    "card_blurb": "Stanford CIFE and Berkeley-linked building research show embodied carbon now rivals operations as grids clean up.",
+    "card_title": "Whole-life carbon is the new building metric",
+    "card_blurb": "Whole-life assessment shows embodied carbon rivaling operations as grids decarbonize.",
     "meta": "Research note · August 1, 2026 · Sector 07 · Shryas Bhurat",
-    "title": "Whole-life carbon is replacing energy-only building metrics",
-    "dek": "As grids decarbonize, the carbon locked into steel, concrete, and interiors becomes impossible to ignore.",
+    "title": "Whole-life carbon is the new building metric",
+    "dek": "As grids clean up, embodied carbon in structure and materials takes center stage.",
     "description": "Emerging built environment research on whole-life and embodied carbon from Stanford and related labs.",
     "body": '''
         <div class="callout callout-plain">
@@ -950,11 +950,11 @@ POSTS.append({
     "num": "08",
     "sector": "Mobility",
     "viz_key": "mobility",
-    "card_title": "EV scale-up is constrained by finance and charging reliability",
-    "card_blurb": "Wharton, Harvard, and Caltech research show that loans, broken chargers, and oversubscribed charging networks shape electric mobility adoption.",
+    "card_title": "EVs scale on finance and charger uptime",
+    "card_blurb": "Wharton, Harvard, and Caltech research show loans and uptime constrain electric mobility.",
     "meta": "Research note · August 1, 2026 · Sector 08 · Shryas Bhurat",
-    "title": "EV scale-up is constrained by finance and charging reliability",
-    "dek": "Battery packs get the headlines. Household credit and uptime statistics may decide the adoption curve.",
+    "title": "EVs scale on finance and charger uptime",
+    "dek": "Packs get the headlines. Credit terms and broken chargers shape adoption.",
     "description": "Emerging mobility research from Wharton and Harvard on EV finance and charging infrastructure.",
     "body": '''
         <div class="callout callout-plain">
@@ -963,7 +963,7 @@ POSTS.append({
         <p>Electric mobility research often starts with energy density, charging speed, and vehicle cost. Those remain first-order. Wharton and Harvard work adds two less visible constraints that determine whether climate-aligned transport actually reaches households: financing terms and charger reliability.</p>
 
         <h2>The EV financing gap</h2>
-        <p>Research by Bena et al., <em>Financing the Global Shift to Electric Mobility</em>, finds that early-stage EVs receive tighter loan terms than comparable internal-combustion vehicles: higher interest rates, lower loan-to-value ratios, and shorter durations [<a href="#r1">1</a>][<a href="#r2">2</a>]. The dominant mechanism is technological obsolescence risk. Rapid battery and powertrain innovation lowers expected resale values, which raises collateral risk for lenders. Buyer demographics, lender market power, and macro conditions explain little of the spread once technology risk is accounted for.</p>
+        <p>Research by Bena, Bian, and Tang, <em>Financing the Global Shift to Electric Mobility</em>, finds that early-stage EVs receive tighter loan terms than comparable internal-combustion vehicles: higher interest rates, lower loan-to-value ratios, and shorter durations [<a href="#r1">1</a>][<a href="#r2">2</a>]. The dominant mechanism is technological obsolescence risk. Rapid battery and powertrain innovation lowers expected resale values, which raises collateral risk for lenders. Buyer demographics, lender market power, and macro conditions explain little of the spread once technology risk is accounted for.</p>
         <p>That result reframes climate policy. Purchase subsidies address sticker price. They do not automatically repair the credit spread created by uncertain residual values. Accessible mobility research therefore includes open measurement of residual-value risk and financing products designed for transition technologies.</p>
 
         <h2>Charging as infrastructure, not amenity</h2>
@@ -1000,11 +1000,11 @@ POSTS.append({
     "num": "09",
     "sector": "Industrial Processes",
     "viz_key": "industrial",
-    "card_title": "Hard-to-abate industry is shifting from pilots to playbooks",
-    "card_blurb": "Stanford and Berkeley research on steel, cement, heat, and abatement costs is turning industrial decarbonization into transferable methods.",
+    "card_title": "Hard-to-abate industry needs playbooks, not silver bullets",
+    "card_blurb": "University playbooks and abatement curves turn industrial decarbonization into transferable methods.",
     "meta": "Research note · August 1, 2026 · Sector 09 · Shryas Bhurat",
-    "title": "Hard-to-abate industry is shifting from pilots to playbooks",
-    "dek": "Cement, steel, and chemicals will not decarbonize through one breakthrough. They need sequenced process options with public cost evidence.",
+    "title": "Hard-to-abate industry needs playbooks, not silver bullets",
+    "dek": "Steel, cement, and chemicals need sequenced options with public cost evidence.",
     "description": "Emerging industrial process decarbonization research from Stanford, Berkeley, and related groups.",
     "body": '''
         <div class="callout callout-plain">
@@ -1142,7 +1142,7 @@ def write_posts():
     <div class="wrap">
       <p class="eyebrow">Research notes</p>
       <h1>Emerging tech, by sector.</h1>
-      <p class="lede">Easy-to-read notes with visuals on climate tech, by {AUTHOR}. Research drawn from Stanford, Berkeley, Caltech, Harvard, Wharton, and leading labs.</p>
+      <p class="lede">Updated August 1, 2026. Easy-to-read notes with visuals on climate tech, by {AUTHOR}. Research drawn from Stanford, Berkeley, Caltech, Harvard, Wharton, and leading labs.</p>
     </div>
   </header>
   <section class="wrap">

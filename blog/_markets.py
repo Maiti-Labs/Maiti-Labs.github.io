@@ -680,7 +680,7 @@ def _built_charts() -> list[str]:
     c1 = _figure(
         "California building medians",
         _hbar_chart(
-            "30 buildings — median intensities",
+            "30 buildings, median intensities",
             bars,
             unit_note="Shen et al. median whole-life carbon intensities.",
             max_value=734.0,
@@ -797,7 +797,7 @@ def _industrial_charts() -> list[str]:
     c2 = _figure(
         "Heat electrification potential",
         _vbar_chart(
-            "U.S. industrial heat — renewable + storage",
+            "U.S. industrial heat: renewable + storage",
             ["Near term", "By ~2035"],
             [11.0, 34.0],
             value_labels=["rising", "~34%"],
