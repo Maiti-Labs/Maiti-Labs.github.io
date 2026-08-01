@@ -262,30 +262,35 @@ def market_map_refs_space() -> list[str]:
     return [
         _ref(
             12,
-            'Starcloud (orbital data centers). <a href="https://starcloud.com/">starcloud.com</a>; '
-            'SpaceNews coverage of Starcloud-1 and funding. '
-            '<a href="https://spacenews.com/starcloud-achieves-unicorn-status-with-170-million-raise-for-orbital-data-centers/">'
-            'spacenews.com</a>; constellation filing. '
-            '<a href="https://spacenews.com/starcloud-files-plans-for-88000-satellite-constellation/">spacenews.com</a>',
+            'New Space Economy. Orbital data center companies building space-based compute infrastructure. '
+            '<a href="https://newspaceeconomy.ca/2026/05/31/orbital-data-center-companies-building-space-based-compute-infrastructure/">'
+            'newspaceeconomy.ca</a>',
         ),
         _ref(
             13,
+            'Starcloud (orbital data centers). <a href="https://starcloud.com/">starcloud.com</a>; '
+            'Aetherflux. <a href="https://aetherflux.com/">aetherflux.com</a>; '
+            'Blue Origin. <a href="https://www.blueorigin.com/">blueorigin.com</a>; '
+            'Kepler Communications. <a href="https://kepler.space/">kepler.space</a>',
+        ),
+        _ref(
+            14,
             'Google Research. Exploring a space-based scalable AI infrastructure system design (Project Suncatcher). '
             '<a href="https://research.google/blog/exploring-a-space-based-scalable-ai-infrastructure-system-design/">'
             'research.google</a>; Agüera y Arcas, Beals, et al. '
             '<a href="https://arxiv.org/abs/2511.19468">arXiv:2511.19468</a>; Planet partnership. '
             '<a href="https://www.planet.com/pulse/planet-to-build-and-operate-advanced-space-platform-for-google-s-project-suncatcher-moonshot/">'
-            'planet.com</a>',
+            'planet.com</a>; Ramon.Space. <a href="https://ramon.space/">ramon.space</a>',
         ),
         _ref(
-            14,
+            15,
             'Bain &amp; Company. Orbital data centers: beyond the grid. '
             '<a href="https://www.bain.com/insights/orbital-data-centers-beyond-the-grid/">bain.com</a>; '
             'Wood Mackenzie press release on orbital data centre costs. '
             '<a href="https://www.woodmac.com/press-releases/wood-mackenzie-orbital-data-centres-cost-three-times-more-than-terrestrial-alternatives-as-global-power-demand-heads-for-3700-twh">'
-            'woodmac.com</a>; Axiom Space orbital compute. '
-            '<a href="https://www.axiomspace.com/">axiomspace.com</a>; '
-            'Aethero space-rated computers. <a href="https://aethero.com/">aethero.com</a>',
+            'woodmac.com</a>; Axiom Space. <a href="https://www.axiomspace.com/">axiomspace.com</a>; '
+            'Aethero. <a href="https://aethero.com/">aethero.com</a>; Crusoe. '
+            '<a href="https://www.crusoe.ai/">crusoe.ai</a>',
         ),
     ]
 
@@ -305,13 +310,23 @@ def market_map_refs_weather() -> list[str]:
             'WindBorne Systems. <a href="https://windbornesystems.com/">windbornesystems.com</a>; '
             'Atmo. <a href="https://www.atmo.ai/">atmo.ai</a>; Jua. <a href="https://www.jua.ai/">jua.ai</a>; '
             'Tomorrow.io. <a href="https://www.tomorrow.io/">tomorrow.io</a>; '
-            'Causal Labs. <a href="https://causallabs.ai/">causallabs.ai</a>',
+            'Causal Labs. <a href="https://causallabs.ai/">causallabs.ai</a>; '
+            'Climavision. <a href="https://climavision.com/">climavision.com</a>; '
+            'Salient Predictions. <a href="https://salientpredictions.com/">salientpredictions.com</a>',
         ),
         _ref(
             19,
             'ACM News. (2024). AI weather forecasting goes operational. '
             '<em>Communications of the ACM</em>. '
-            '<a href="https://cacm.acm.org/news/ai-weather-forecasting-goes-operational/">cacm.acm.org</a>',
+            '<a href="https://cacm.acm.org/news/ai-weather-forecasting-goes-operational/">cacm.acm.org</a>; '
+            'ECMWF. <a href="https://www.ecmwf.int/">ecmwf.int</a>; NOAA. '
+            '<a href="https://www.noaa.gov/">noaa.gov</a>',
+        ),
+        _ref(
+            20,
+            'The Weather Company (IBM). Operational forecast products. '
+            '<a href="https://www.weather.com/">weather.com</a>; IBM Weather. '
+            '<a href="https://www.ibm.com/products/environmental-intelligence-suite">ibm.com</a>',
         ),
     ]
 
@@ -320,19 +335,33 @@ def market_map_refs_aerospace() -> list[str]:
     return [
         _ref(
             12,
-            'Payload. (2024). The state of Earth observation. '
-            '<a href="https://payloadspace.com/the-state-of-earth-observation-2024/">payloadspace.com</a>',
+            'New Space Economy. Global directory of Earth observation satellite operators and products. '
+            '<a href="https://newspaceeconomy.ca/2026/04/16/global-directory-of-earth-observation-satellite-operators-and-their-products-and-services/">'
+            'newspaceeconomy.ca</a>',
         ),
         _ref(
             13,
-            'TerraWatch. Earth observation investment and market landscape summaries. '
+            'Payload. (2024). The state of Earth observation. '
+            '<a href="https://payloadspace.com/the-state-of-earth-observation-2024/">payloadspace.com</a>; '
+            'TerraWatch. Earth observation market landscape. '
             '<a href="https://terrawatchspace.com/">terrawatchspace.com</a>',
         ),
         _ref(
             14,
-            'Company sites: Planet. <a href="https://www.planet.com/">planet.com</a>; Capella Space. '
-            '<a href="https://www.capellaspace.com/">capellaspace.com</a>; GHGSat. '
-            '<a href="https://www.ghgsat.com/">ghgsat.com</a>; Spire. <a href="https://spire.com/">spire.com</a>',
+            'Company sites: Planet. <a href="https://www.planet.com/">planet.com</a>; ICEYE. '
+            '<a href="https://www.iceye.com/">iceye.com</a>; Satellogic. '
+            '<a href="https://satellogic.com/">satellogic.com</a>; Albedo. '
+            '<a href="https://albedo.space/">albedo.space</a>; Wyvern. '
+            '<a href="https://wyvern.space/">wyvern.space</a>',
+        ),
+        _ref(
+            15,
+            'Company sites: Capella Space. <a href="https://www.capellaspace.com/">capellaspace.com</a>; '
+            'GHGSat. <a href="https://www.ghgsat.com/">ghgsat.com</a>; OroraTech. '
+            '<a href="https://ororatech.com/">ororatech.com</a>; Hydrosat. '
+            '<a href="https://hydrosat.com/">hydrosat.com</a>; Muon Space. '
+            '<a href="https://www.muonspace.com/">muonspace.com</a>; Airbus Defence and Space. '
+            '<a href="https://www.airbus.com/en/products-services/space">airbus.com</a>',
         ),
     ]
 
@@ -341,7 +370,9 @@ def market_map_refs_materials() -> list[str]:
     return [
         _ref(
             11,
-            'Wilson, A. GreenBuildingAdvisor. Six startups with novel approaches to low-carbon cement. '
+            'Wilson, A. GreenBuildingAdvisor. Six startups take CO<sub>2</sub> out of cement and concrete. '
+            '<a href="https://www.greenbuildingadvisor.com/article/six-startups-take-co2-out-of-cement-and-concrete">'
+            'greenbuildingadvisor.com</a>; six startups with novel low-carbon cement approaches. '
             '<a href="https://www.greenbuildingadvisor.com/article/six-startups-with-novel-approaches-to-low-carbon-cement">'
             'greenbuildingadvisor.com</a>',
         ),
@@ -349,14 +380,23 @@ def market_map_refs_materials() -> list[str]:
             12,
             'Canary Media. Fortera and low-carbon cement coverage. '
             '<a href="https://www.canarymedia.com/articles/clean-industry/fortera-is-making-cement-that-absorbs-co2-instead-of-emitting-it">'
-            'canarymedia.com</a>',
+            'canarymedia.com</a>; Biomason. <a href="https://biomason.com/">biomason.com</a>; '
+            'Blue Planet Systems. <a href="https://blueplanetsystems.com/">blueplanetsystems.com</a>',
         ),
         _ref(
             13,
             'Company sites: Sublime Systems. <a href="https://www.sublime-systems.com/">sublime-systems.com</a>; '
             'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>; Brimstone. '
-            '<a href="https://www.brimstone.com/">brimstone.com</a>; '
+            '<a href="https://www.brimstone.com/">brimstone.com</a>; Carbon Upcycling. '
+            '<a href="https://carbonupcycling.com/">carbonupcycling.com</a>; '
             'NoPo Nanotechnologies (HiPCO SWCNTs). <a href="https://www.noponano.com/">noponano.com</a>',
+        ),
+        _ref(
+            14,
+            'Hoffmann Green Cement. <a href="https://www.hoffmann-green.com/en">hoffmann-green.com</a>; '
+            'Queens Carbon. <a href="https://www.queenscarbon.com/">queenscarbon.com</a>; '
+            'Minus Materials. <a href="https://minusmaterials.com/">minusmaterials.com</a>; '
+            'Terra CO2. <a href="https://www.terraco2.com/">terraco2.com</a>',
         ),
     ]
 
@@ -365,19 +405,36 @@ def market_map_refs_energy() -> list[str]:
     return [
         _ref(
             11,
-            'Form Energy. <a href="https://formenergy.com/">formenergy.com</a>; Energy Vault. '
-            '<a href="https://energyvault.com/">energyvault.com</a>; Hydrostor. '
-            '<a href="https://www.hydrostor.ca/">hydrostor.ca</a>',
+            'EPRI. Energy storage wiki and long-duration storage resources. '
+            '<a href="https://www.epri.com/research/products/000000003002">epri.com</a>; '
+            'Highview Power. Liquid air energy storage. '
+            '<a href="https://www.highviewpower.com/">highviewpower.com</a>; '
+            'Form Energy. <a href="https://formenergy.com/">formenergy.com</a>',
         ),
         _ref(
             12,
-            'ESS Inc. <a href="https://essinc.com/">essinc.com</a>; Quidnet Energy. '
-            '<a href="https://www.quidnetenergy.com/">quidnetenergy.com</a>; Malta Inc. '
-            '<a href="https://www.maltainc.com/">maltainc.com</a>',
+            'Energy Vault. <a href="https://energyvault.com/">energyvault.com</a>; Hydrostor. '
+            '<a href="https://www.hydrostor.ca/">hydrostor.ca</a>; Gravitricity. '
+            '<a href="https://gravitricity.com/">gravitricity.com</a>; EnergyNest. '
+            '<a href="https://energynest.com/">energynest.com</a>',
         ),
         _ref(
             13,
-            'MarketsandMarkets. Long-duration energy storage company landscape (industry summary). '
+            'ESS Inc. <a href="https://essinc.com/">essinc.com</a>; Invinity. '
+            '<a href="https://invinity.com/">invinity.com</a>; CMBlu. '
+            '<a href="https://www.cmblu.com/">cmblu.com</a>; EnerVenue. '
+            '<a href="https://enervenue.com/">enervenue.com</a>; Ambri. '
+            '<a href="https://ambri.com/">ambri.com</a>; EOS Energy. '
+            '<a href="https://eose.com/">eose.com</a>; e-Zinc. '
+            '<a href="https://e-zinc.ca/">e-zinc.ca</a>',
+        ),
+        _ref(
+            14,
+            'Quidnet Energy. <a href="https://www.quidnetenergy.com/">quidnetenergy.com</a>; '
+            'Malta Inc. <a href="https://www.maltainc.com/">maltainc.com</a>; Energy Dome. '
+            '<a href="https://energydome.com/">energydome.com</a>; Fluence. '
+            '<a href="https://fluenceenergy.com/">fluenceenergy.com</a>; '
+            'MarketsandMarkets LDES landscape summary. '
             '<a href="https://www.marketsandmarkets.com/ResearchInsight/long-duration-energy-storage-market.asp">'
             'marketsandmarkets.com</a>',
         ),
@@ -395,11 +452,18 @@ def market_map_refs_manufacturing() -> list[str]:
         _ref(
             11,
             'Rondo Energy. <a href="https://www.rondo.com/">rondo.com</a>; Antora Energy. '
-            '<a href="https://www.antora.com/">antora.com</a>',
+            '<a href="https://www.antora.com/">antora.com</a>; Kraftblock. '
+            '<a href="https://kraftblock.com/">kraftblock.com</a>; Kyoto Group. '
+            '<a href="https://www.kyotogroup.no/">kyotogroup.no</a>',
         ),
         _ref(
             12,
             'Electrified Thermal Solutions. <a href="https://www.electrifiedthermal.com/">electrifiedthermal.com</a>; '
+            'Brenmiller Energy. <a href="https://brenmiller.com/">brenmiller.com</a>; '
+            'Zero Industrial. <a href="https://www.zeroindustrial.com/">zeroindustrial.com</a>',
+        ),
+        _ref(
+            13,
             'AtmosZero. <a href="https://www.atmoszero.energy/">atmoszero.energy</a>',
         ),
     ]
@@ -409,18 +473,28 @@ def market_map_refs_built() -> list[str]:
     return [
         _ref(
             10,
-            'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>',
+            'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>; Solidia Technologies. '
+            '<a href="https://solidiatech.com/">solidiatech.com</a>',
         ),
         _ref(
             11,
-            'Cambium. <a href="https://www.cambiumcarbon.com/">cambiumcarbon.com</a>; Cambium funding coverage. '
-            '<a href="https://techcrunch.com/2023/06/14/cambium-raises-8-5m-to-track-sustainable-wood/">techcrunch.com</a>',
+            'Cambium. <a href="https://www.cambiumcarbon.com/">cambiumcarbon.com</a>; SmartLam. '
+            '<a href="https://smartlam.com/">smartlam.com</a>; Mercer Mass Timber. '
+            '<a href="https://www.mercerint.com/mass-timber/">mercerint.com</a>',
         ),
         _ref(
             12,
             'Fabric Workshop. Mass timber prefabrication. '
-            '<a href="https://www.fabricworkshop.com/">fabricworkshop.com</a>; BuildingGreen mass timber resources. '
+            '<a href="https://www.fabricworkshop.com/">fabricworkshop.com</a>; Structurlam. '
+            '<a href="https://www.structurlam.com/">structurlam.com</a>; BuildingGreen mass timber resources. '
             '<a href="https://www.buildinggreen.com/primer/mass-timber">buildinggreen.com</a>',
+        ),
+        _ref(
+            13,
+            'One Click LCA. <a href="https://www.oneclicklca.com/">oneclicklca.com</a>; EC3 embodied carbon. '
+            '<a href="https://buildingtransparency.org/ec3">buildingtransparency.org</a>; '
+            'Tally / Carbon Leadership Forum tools. '
+            '<a href="https://carbonleadershipforum.org/tally/">carbonleadershipforum.org</a>',
         ),
     ]
 
@@ -429,20 +503,32 @@ def market_map_refs_mobility() -> list[str]:
     return [
         _ref(
             13,
-            'ElectronsX. Charge point operator directory and network summaries. '
+            'EV Charging Stations News. DC fast charging network landscape (July 2026). '
+            '<a href="https://evchargingstations.com/chargingnews/dc-fast-charging-july-2026/">'
+            'evchargingstations.com</a>; ElectronsX CPO directory. '
             '<a href="https://electronsx.com/">electronsx.com</a>',
         ),
         _ref(
             14,
             'PowerFlex (EDF). Adaptive charging and fleet software. '
-            '<a href="https://www.powerflex.com/">powerflex.com</a>; Caltech ACN lineage. '
+            '<a href="https://www.powerflex.com/">powerflex.com</a>; AmpUp. '
+            '<a href="https://ampup.io/">ampup.io</a>; Caltech ACN lineage. '
             '<a href="https://ev.caltech.edu/">ev.caltech.edu</a>',
         ),
         _ref(
             15,
-            'U.S. public charging network coverage summaries (EVWire / industry reports). '
-            '<a href="https://www.evwire.com/">evwire.com</a>; ChargePoint. '
-            '<a href="https://www.chargepoint.com/">chargepoint.com</a>',
+            'ChargePoint. <a href="https://www.chargepoint.com/">chargepoint.com</a>; EVgo. '
+            '<a href="https://www.evgo.com/">evgo.com</a>; Blink Charging. '
+            '<a href="https://blinkcharging.com/">blinkcharging.com</a>; EV Connect. '
+            '<a href="https://www.evconnect.com/">evconnect.com</a>; IONNA. '
+            '<a href="https://ionna.com/">ionna.com</a>',
+        ),
+        _ref(
+            16,
+            'Electrify America. <a href="https://www.electrifyamerica.com/">electrifyamerica.com</a>; '
+            'Rivian. <a href="https://rivian.com/">rivian.com</a>; Lucid Motors. '
+            '<a href="https://lucidmotors.com/">lucidmotors.com</a>; U.S. public charging summaries. '
+            '<a href="https://www.evwire.com/">evwire.com</a>',
         ),
     ]
 
@@ -452,18 +538,29 @@ def market_map_refs_industrial() -> list[str]:
         _ref(
             12,
             'Boston Metal. Molten oxide electrolysis steel. '
-            '<a href="https://www.bostonmetal.com/">bostonmetal.com</a>',
+            '<a href="https://www.bostonmetal.com/">bostonmetal.com</a>; Electra. '
+            '<a href="https://electra.earth/">electra.earth</a>; Blastr Green Steel. '
+            '<a href="https://blastr.no/">blastr.no</a>',
         ),
         _ref(
             13,
             'Stegra (formerly H2 Green Steel). Fossil-free steel. '
-            '<a href="https://www.stegra.com/">stegra.com</a>',
+            '<a href="https://www.stegra.com/">stegra.com</a>; SSAB HYBRIT initiative. '
+            '<a href="https://www.ssab.com/en/company/sustainability/hybrit">ssab.com</a>',
         ),
         _ref(
             14,
-            'Fortera. Low-carbon cement and ReCarb kiln integration. '
-            '<a href="https://www.fortera.com/">fortera.com</a>; Rondo Energy. '
-            '<a href="https://www.rondo.com/">rondo.com</a>',
+            'Rondo Energy. <a href="https://www.rondo.com/">rondo.com</a>; Antora Energy. '
+            '<a href="https://www.antora.com/">antora.com</a>; Electrified Thermal Solutions. '
+            '<a href="https://www.electrifiedthermal.com/">electrifiedthermal.com</a>; '
+            'AtmosZero. <a href="https://www.atmoszero.energy/">atmoszero.energy</a>',
+        ),
+        _ref(
+            15,
+            'Fortera. Low-carbon cement. <a href="https://www.fortera.com/">fortera.com</a>; '
+            'Sublime Systems. <a href="https://www.sublime-systems.com/">sublime-systems.com</a>; '
+            'Brimstone. <a href="https://www.brimstone.com/">brimstone.com</a>; Terra CO2. '
+            '<a href="https://www.terraco2.com/">terraco2.com</a>',
         ),
     ]
 
