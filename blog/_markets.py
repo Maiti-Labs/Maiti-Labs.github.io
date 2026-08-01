@@ -91,11 +91,15 @@ def _figure(
     wide: bool = False,
 ) -> str:
     wrap_class = "viz viz-chart chart-wrap chart-wrap--wide" if wide else "viz viz-chart chart-wrap"
-    badge = ""
     if source_badge:
-        badge = f'          <span class="chart-source">{_esc(source_badge)}</span>\n'
+        label_inner = (
+            f'<span class="chart-source">{_esc(source_badge)}</span>'
+            f'<span class="chart-label-text">{_esc(chart_title)}</span>'
+        )
+    else:
+        label_inner = f'<span class="chart-label-text">{_esc(chart_title)}</span>'
     return f'''        <figure class="{wrap_class}">
-          <p class="viz-label">{badge}{_esc(chart_title)}</p>
+          <p class="viz-label">{label_inner}</p>
 {svg}
           <figcaption class="viz-caption">{caption}</figcaption>
         </figure>'''
