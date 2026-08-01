@@ -303,7 +303,8 @@ def market_map_refs_weather() -> list[str]:
             18,
             'WindBorne Systems. <a href="https://windbornesystems.com/">windbornesystems.com</a>; '
             'Atmo. <a href="https://www.atmo.ai/">atmo.ai</a>; Jua. <a href="https://www.jua.ai/">jua.ai</a>; '
-            'Tomorrow.io. <a href="https://www.tomorrow.io/">tomorrow.io</a>',
+            'Tomorrow.io. <a href="https://www.tomorrow.io/">tomorrow.io</a>; '
+            'Causal Labs. <a href="https://causallabs.ai/">causallabs.ai</a>',
         ),
         _ref(
             19,

@@ -153,6 +153,7 @@ def _weather_map() -> str:
                 _chip("Atmo", "AI weather forecasts", "atmo"),
                 _chip("Jua", "foundation weather models", "jua"),
                 _chip("Tomorrow.io", "nowcasting platform", "tomorrow"),
+                _chip("Causal Labs", "physics foundation weather models", "causal"),
             ],
         ),
         _segment(
