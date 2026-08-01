@@ -211,7 +211,7 @@ def _aerospace_map() -> str:
 def _materials_map() -> str:
     refs = MARKET_MAP_REF_IDS["materials"]
     caption = (
-        f"Illustrative map of low-carbon cement and concrete companies; not exhaustive. "
+        f"Illustrative map of low-carbon materials companies; not exhaustive. "
         f"Sources: sector roundups {_c(refs[0])}{_c(refs[1])}; company disclosures {_c(refs[2])}."
     )
     segs = [
@@ -234,6 +234,10 @@ def _materials_map() -> str:
         _segment(
             "SCM & circular",
             [_chip("Carbon Upcycling", "CO₂-enhanced SCMs", "carbonupcycling")],
+        ),
+        _segment(
+            "Advanced nanomaterials",
+            [_chip("NoPo Nanotechnologies", "HiPCO single-walled CNTs", "nopo")],
         ),
     ]
     return _figure(segs, caption)

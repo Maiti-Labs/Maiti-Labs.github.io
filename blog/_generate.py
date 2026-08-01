@@ -355,7 +355,8 @@ def market_map_refs_materials() -> list[str]:
             13,
             'Company sites: Sublime Systems. <a href="https://www.sublime-systems.com/">sublime-systems.com</a>; '
             'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>; Brimstone. '
-            '<a href="https://www.brimstone.com/">brimstone.com</a>',
+            '<a href="https://www.brimstone.com/">brimstone.com</a>; '
+            'NoPo Nanotechnologies (HiPCO SWCNTs). <a href="https://www.noponano.com/">noponano.com</a>',
         ),
     ]
 
