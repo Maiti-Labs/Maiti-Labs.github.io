@@ -8,19 +8,18 @@
 <link rel="icon" href="logo.png" type="image/png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #000000;
-    --bg-2: #0b0b0d;
-    --panel: #111113;
-    --ink: #f5f5f7;
-    --muted: #a1a1a6;
-    --faint: #6e6e73;
-    --line: rgba(255,255,255,0.12);
-    --accent: #30d158;
-    --accent-2: #64d2ff;
-    --max: 1080px;
+    --bg: #f5f5f7;
+    --bg-white: #ffffff;
+    --ink: #1d1d1f;
+    --muted: #6e6e73;
+    --faint: #86868b;
+    --line: rgba(0, 0, 0, 0.08);
+    --accent: #1f6f78;
+    --accent-soft: #2a8a94;
+    --max: 980px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,10 +27,10 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: "Manrope", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    line-height: 1.45;
+    line-height: 1.47;
   }
   a { color: inherit; text-decoration: none; }
   .wrap {
@@ -39,23 +38,22 @@
     margin-inline: auto;
   }
   @media (min-width: 800px) {
-    .wrap { width: min(100% - 4.5rem, var(--max)); }
+    .wrap { width: min(100% - 4rem, var(--max)); }
   }
 
-  /* Nav */
   .nav {
     position: sticky;
     top: 0;
     z-index: 40;
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(245, 245, 247, 0.78);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
     border-bottom: 1px solid transparent;
     transition: border-color .25s ease;
   }
   .nav.scrolled { border-bottom-color: var(--line); }
   .nav-inner {
-    min-height: 48px;
+    min-height: 52px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -64,319 +62,277 @@
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.95rem;
-    font-weight: 700;
+    gap: 0.55rem;
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: -0.02em;
   }
   .brand img {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
     display: block;
   }
   .nav-links {
     display: none;
-    gap: 1.5rem;
+    gap: 1.6rem;
   }
   @media (min-width: 720px) { .nav-links { display: flex; } }
   .nav-links a {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
+    font-weight: 400;
     color: var(--muted);
     transition: color .2s ease;
   }
   .nav-links a:hover { color: var(--ink); }
   .nav-cta {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #000;
-    background: var(--ink);
-    padding: 0.4rem 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #fff;
+    background: var(--accent);
+    padding: 0.42rem 0.9rem;
     border-radius: 980px;
-    transition: opacity .2s ease;
+    transition: background .2s ease;
   }
-  .nav-cta:hover { opacity: 0.88; }
+  .nav-cta:hover { background: var(--accent-soft); }
 
-  /* Hero */
   .hero {
     position: relative;
     overflow: hidden;
-    min-height: min(100vh, 900px);
-    display: grid;
-    place-items: center;
     text-align: center;
-    padding: clamp(5rem, 14vh, 8rem) 0 clamp(4rem, 10vh, 6rem);
+    padding: clamp(4.5rem, 12vh, 7.5rem) 0 clamp(4rem, 10vh, 6.5rem);
+    min-height: min(86vh, 760px);
+    display: flex;
+    align-items: center;
   }
-  .hero-stage {
+  .hero::before {
+    content: "";
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 55% at 50% 115%, rgba(48,209,88,0.22) 0%, transparent 55%),
-      radial-gradient(ellipse 55% 45% at 15% 20%, rgba(100,210,255,0.12) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 40% at 85% 25%, rgba(48,209,88,0.10) 0%, transparent 50%),
-      linear-gradient(180deg, #000 0%, #050806 45%, #000 100%);
-  }
-  .hero-ring {
-    position: absolute;
-    left: 50%;
-    top: 58%;
-    width: min(920px, 120vw);
-    aspect-ratio: 1.6;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background:
-      radial-gradient(ellipse at center, transparent 42%, rgba(48,209,88,0.08) 56%, transparent 70%),
-      conic-gradient(from 210deg, transparent 0%, rgba(100,210,255,0.18) 18%, transparent 36%, rgba(48,209,88,0.2) 55%, transparent 72%);
-    filter: blur(28px);
-    animation: drift 14s ease-in-out infinite;
+      radial-gradient(ellipse 70% 55% at 50% 0%, rgba(31, 111, 120, 0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #fbfbfc 0%, #f5f5f7 55%, #eef1f2 100%);
     pointer-events: none;
   }
-  @keyframes drift {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.85; }
-    50% { transform: translate(-50%, -48%) scale(1.05); opacity: 1; }
-  }
-  .hero-inner { position: relative; z-index: 1; }
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-size: 0.78rem;
+  .hero-inner { position: relative; z-index: 1; width: 100%; }
+  .hero-brand {
+    font-size: 0.95rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.4rem;
-  }
-  .kicker::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 4px rgba(48,209,88,0.15);
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
   }
   .hero h1 {
     max-width: 11ch;
     margin: 0 auto;
-    font-size: clamp(2.8rem, 8vw, 5.8rem);
-    font-weight: 800;
-    letter-spacing: -0.055em;
-    line-height: 0.98;
-  }
-  .hero h1 .line2 {
-    display: block;
-    background: linear-gradient(90deg, #f5f5f7 10%, #64d2ff 55%, #30d158 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    font-size: clamp(2.5rem, 6.5vw, 4.8rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
   }
   .hero-sub {
-    max-width: 32rem;
-    margin: 1.5rem auto 0;
-    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-    font-weight: 500;
+    max-width: 34rem;
+    margin: 1.35rem auto 0;
+    font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+    font-weight: 400;
     color: var(--muted);
     letter-spacing: -0.015em;
   }
   .hero-actions {
-    margin-top: 2.1rem;
+    margin-top: 1.9rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.8rem;
+    gap: 0.7rem 1rem;
   }
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.3rem;
-    min-height: 44px;
-    padding: 0.75rem 1.3rem;
+    gap: 0.25rem;
+    min-height: 42px;
+    padding: 0.65rem 1.15rem;
     border-radius: 980px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 0.92rem;
+    font-weight: 500;
     letter-spacing: -0.01em;
-    transition: transform .2s ease, background .2s ease, opacity .2s ease;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
   }
   .btn-primary {
-    background: var(--ink);
-    color: #000;
+    background: var(--accent);
+    color: #fff;
   }
-  .btn-primary:hover { transform: scale(1.03); opacity: 0.92; }
-  .btn-ghost {
-    color: var(--accent-2);
+  .btn-primary:hover {
+    background: var(--accent-soft);
+    transform: scale(1.02);
   }
-  .btn-ghost:hover { opacity: 0.85; }
+  .btn-text {
+    color: var(--accent);
+  }
+  .btn-text:hover { color: var(--accent-soft); }
   .chev { font-size: 1.05em; }
 
-  /* Sections */
   .section {
-    padding: clamp(4.5rem, 11vh, 7.5rem) 0;
+    padding: clamp(4.25rem, 10vh, 6.75rem) 0;
   }
-  .section-panel { background: var(--bg-2); }
+  .section-white { background: var(--bg-white); }
   .eyebrow {
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--accent);
     letter-spacing: -0.01em;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.65rem;
   }
   .section h2 {
-    font-size: clamp(2rem, 4.2vw, 3.2rem);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-    max-width: 12ch;
+    font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    max-width: 14ch;
   }
   .lede {
-    margin-top: 1rem;
+    margin-top: 0.9rem;
     max-width: 34rem;
-    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    font-size: clamp(1.02rem, 1.5vw, 1.15rem);
     color: var(--muted);
-    font-weight: 500;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
   }
 
   .split {
     display: grid;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
-  @media (min-width: 880px) {
+  @media (min-width: 860px) {
     .split {
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: clamp(2.5rem, 6vw, 5rem);
-      align-items: end;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: clamp(2.25rem, 5vw, 4.5rem);
+      align-items: start;
     }
+    .split h2 { max-width: 11ch; }
   }
   .prose p {
-    font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+    font-size: clamp(1rem, 1.45vw, 1.12rem);
     color: var(--muted);
-    font-weight: 500;
     letter-spacing: -0.01em;
   }
-  .prose p + p { margin-top: 1rem; }
-  .prose strong {
-    color: var(--ink);
-    font-weight: 700;
-  }
+  .prose p + p { margin-top: 0.95rem; }
 
-  .metrics {
-    margin-top: clamp(2.5rem, 6vh, 3.5rem);
+  .pillars {
+    margin-top: clamp(2.25rem, 5vh, 3.25rem);
     display: grid;
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    overflow: hidden;
+    gap: 1.75rem;
+    border-top: 1px solid var(--line);
+    padding-top: clamp(1.75rem, 4vh, 2.5rem);
   }
   @media (min-width: 800px) {
-    .metrics { grid-template-columns: repeat(3, 1fr); }
+    .pillars {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1.5rem, 3.5vw, 2.5rem);
+    }
   }
-  .metric {
-    background: var(--panel);
-    padding: 1.6rem 1.4rem 1.7rem;
+  .pillar h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.45rem;
   }
-  .metric h3 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.5rem;
-  }
-  .metric p {
+  .pillar p {
     color: var(--muted);
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 0.98rem;
+    letter-spacing: -0.01em;
   }
 
-  .sector-grid {
-    margin-top: clamp(2rem, 5vh, 3rem);
+  .focus-grid {
+    margin-top: clamp(1.75rem, 4vh, 2.5rem);
     display: grid;
-    gap: 0.85rem;
+    gap: 0;
+    border-top: 1px solid var(--line);
   }
   @media (min-width: 700px) {
-    .sector-grid { grid-template-columns: repeat(2, 1fr); }
+    .focus-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  @media (min-width: 1020px) {
-    .sector-grid { grid-template-columns: repeat(4, 1fr); }
+  @media (min-width: 1000px) {
+    .focus-grid { grid-template-columns: repeat(4, 1fr); }
   }
-  .sector {
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 1.25rem 1.15rem 1.35rem;
-    transition: border-color .2s ease, transform .2s ease, background .2s ease;
+  .focus-item {
+    padding: 1.35rem 0;
+    border-bottom: 1px solid var(--line);
   }
-  .sector:hover {
-    border-color: rgba(48,209,88,0.35);
-    transform: translateY(-2px);
-    background: linear-gradient(180deg, rgba(48,209,88,0.08), rgba(255,255,255,0.02));
+  @media (min-width: 700px) {
+    .focus-item {
+      padding: 1.4rem 1.15rem 1.4rem 0;
+    }
+    .focus-item:nth-child(even) {
+      padding-left: 1.15rem;
+      padding-right: 0;
+      border-left: 1px solid var(--line);
+    }
   }
-  .sector .num {
+  @media (min-width: 1000px) {
+    .focus-item {
+      padding: 1.5rem 1.1rem;
+      border-right: 1px solid var(--line);
+    }
+    .focus-item:nth-child(even) {
+      padding-left: 1.1rem;
+      border-left: none;
+    }
+    .focus-item:nth-child(4n) { border-right: none; }
+    .focus-item:nth-child(4n + 1) { padding-left: 0; }
+  }
+  .focus-item .num {
     font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--faint);
-    letter-spacing: 0.04em;
-    margin-bottom: 0.55rem;
-  }
-  .sector h3 {
-    font-size: 1.02rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    margin-bottom: 0.35rem;
-  }
-  .sector p {
-    color: var(--muted);
-    font-size: 0.9rem;
     font-weight: 500;
+    color: var(--faint);
+    margin-bottom: 0.4rem;
+  }
+  .focus-item h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+  }
+  .focus-item p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    letter-spacing: -0.01em;
   }
 
   .belief {
-    position: relative;
-    overflow: hidden;
     text-align: center;
-    padding: clamp(5.5rem, 14vh, 9rem) 0;
+    padding: clamp(5rem, 12vh, 8rem) 0;
+    background: var(--bg-white);
   }
-  .belief::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 70% at 50% 50%, rgba(48,209,88,0.16) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 80% 20%, rgba(100,210,255,0.12) 0%, transparent 55%);
-    pointer-events: none;
-  }
-  .belief .wrap { position: relative; z-index: 1; }
   .belief-quote {
-    margin: 0.9rem auto 0;
-    max-width: 16ch;
-    font-size: clamp(2.2rem, 5.5vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 1.05;
+    margin: 0.8rem auto 0;
+    max-width: 15ch;
+    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.12;
   }
   .belief-quote .soft {
     display: block;
     color: var(--faint);
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .footer {
+    padding: 2.25rem 0 2.5rem;
     border-top: 1px solid var(--line);
-    padding: 2.2rem 0 2.5rem;
-    background: #000;
   }
   .footer-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem 1.4rem;
+    gap: 0.75rem 1.4rem;
     align-items: center;
     justify-content: space-between;
   }
-  .footer .brand { font-size: 0.9rem; }
+  .footer .brand { font-size: 0.92rem; }
+  .footer .brand img { width: 18px; height: 18px; }
   .footer-tag {
     color: var(--faint);
     font-size: 0.82rem;
-    font-weight: 500;
   }
   .copyright {
     margin-top: 1.1rem;
@@ -386,19 +342,18 @@
 
   .reveal {
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity .85s cubic-bezier(.16,1,.3,1), transform .85s cubic-bezier(.16,1,.3,1);
+    transform: translateY(12px);
+    transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
   }
   .reveal.in { opacity: 1; transform: none; }
 
   a:focus-visible, .btn:focus-visible {
-    outline: 2px solid var(--accent-2);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .hero-ring { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
   }
 </style>
@@ -407,7 +362,7 @@
   <nav class="nav" id="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top" aria-label="Maiti Labs home">
-        <img src="logo.png" alt="" width="20" height="20" />
+        <img src="logo.png" alt="" width="22" height="22" />
         <span>Maiti Labs</span>
       </a>
       <div class="nav-links">
@@ -420,23 +375,18 @@
   </nav>
 
   <header class="hero" id="top">
-    <div class="hero-stage" aria-hidden="true"></div>
-    <div class="hero-ring" aria-hidden="true"></div>
     <div class="wrap hero-inner">
-      <p class="kicker">Climate research lab</p>
-      <h1>
-        Climate research,
-        <span class="line2">made accessible.</span>
-      </h1>
-      <p class="hero-sub">We build research that enables climate action, from weather prediction models to satellite Earth observation.</p>
+      <p class="hero-brand">Maiti Labs</p>
+      <h1>Climate research, made accessible.</h1>
+      <p class="hero-sub">Research that enables climate action, from weather models to satellite Earth observation.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#research">Explore research</a>
-        <a class="btn btn-ghost" href="#focus">View focus areas <span class="chev" aria-hidden="true">›</span></a>
+        <a class="btn btn-text" href="#focus">View focus areas <span class="chev" aria-hidden="true">›</span></a>
       </div>
     </div>
   </header>
 
-  <section class="section section-panel" id="research">
+  <section class="section section-white" id="research">
     <div class="wrap">
       <div class="split">
         <div class="reveal">
@@ -449,16 +399,16 @@
         </div>
       </div>
 
-      <div class="metrics">
-        <article class="metric reveal">
+      <div class="pillars">
+        <article class="pillar reveal">
           <h3>Predict</h3>
           <p>Models that forecast weather and climate risk with clarity.</p>
         </article>
-        <article class="metric reveal">
+        <article class="pillar reveal">
           <h3>Observe</h3>
           <p>Satellite data that maps the planet and tracks change.</p>
         </article>
-        <article class="metric reveal">
+        <article class="pillar reveal">
           <h3>Access</h3>
           <p>Open tools and language that make research usable.</p>
         </article>
@@ -473,43 +423,43 @@
         <h2>From orbit to action.</h2>
         <p class="lede">Research across the systems that sense, model, and communicate the climate.</p>
       </div>
-      <div class="sector-grid">
-        <article class="sector reveal">
+      <div class="focus-grid">
+        <article class="focus-item reveal">
           <p class="num">01</p>
           <h3>Weather Models</h3>
           <p>Forecasts and climate patterns for early warning and planning.</p>
         </article>
-        <article class="sector reveal">
+        <article class="focus-item reveal">
           <p class="num">02</p>
           <h3>Earth Observation</h3>
           <p>Satellite sensing for land, oceans, atmosphere, and ice.</p>
         </article>
-        <article class="sector reveal">
+        <article class="focus-item reveal">
           <p class="num">03</p>
           <h3>Climate Data</h3>
           <p>Open datasets, standards, and pipelines for analysis.</p>
         </article>
-        <article class="sector reveal">
+        <article class="focus-item reveal">
           <p class="num">04</p>
           <h3>Risk &amp; Resilience</h3>
           <p>Hazard mapping and adaptation signals for communities.</p>
         </article>
-        <article class="sector reveal">
+        <article class="focus-item reveal">
           <p class="num">05</p>
           <h3>Open Science</h3>
           <p>Methods, code, and publications anyone can build on.</p>
         </article>
-        <article class="sector reveal">
+        <article class="focus-item reveal">
           <p class="num">06</p>
           <h3>Access &amp; Language</h3>
           <p>Multilingual interfaces that lower the barrier to research.</p>
         </article>
-        <article class="sector reveal">
+        <article class="focus-item reveal">
           <p class="num">07</p>
           <h3>Decision Tools</h3>
           <p>Interfaces that turn climate evidence into action.</p>
         </article>
-        <article class="sector reveal">
+        <article class="focus-item reveal">
           <p class="num">08</p>
           <h3>Partnerships</h3>
           <p>Work with labs, agencies, and local institutions.</p>
