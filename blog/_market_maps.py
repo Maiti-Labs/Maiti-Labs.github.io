@@ -1,8 +1,14 @@
 """Illustrative company market maps for sector Markets sections."""
 
+from __future__ import annotations
+
+from pathlib import Path
 from typing import Optional
 
 from _viz import _esc
+
+ROOT = Path(__file__).resolve().parent
+LOGO_DIR = ROOT / "logos"
 
 # Ref indices in each post's References list (appended in _generate.py).
 MARKET_MAP_REF_IDS: dict[str, tuple[int, ...]] = {
@@ -22,11 +28,46 @@ def _c(n: int) -> str:
     return f'[<a href="#r{n}">{n}</a>]'
 
 
-def _chip(name: str, role: Optional[str] = None) -> str:
-    role_html = ""
-    if role:
-        role_html = f'<span class="mm-role">{_esc(role)}</span>'
-    return f'          <li class="mm-chip"><span class="mm-name">{_esc(name)}</span>{role_html}</li>'
+def _initials(name: str) -> str:
+    parts = [p for p in name.replace(".", " ").replace("/", " ").split() if p]
+    if not parts:
+        return "?"
+    if len(parts) == 1:
+        return parts[0][:2].upper()
+    return (parts[0][0] + parts[1][0]).upper()
+
+
+def _logo_src(logo_key: Optional[str]) -> Optional[str]:
+    if not logo_key:
+        return None
+    for ext in (".png", ".jpg", ".jpeg", ".webp", ".svg", ".ico"):
+        path = LOGO_DIR / f"{logo_key}{ext}"
+        if path.is_file() and path.stat().st_size > 300:
+            return f"logos/{logo_key}{ext}"
+    return None
+
+
+def _chip(name: str, role: Optional[str] = None, logo: Optional[str] = None) -> str:
+    initials = _esc(_initials(name))
+    src = _logo_src(logo)
+    if src:
+        mark = (
+            f'<span class="mm-logo-wrap">'
+            f'<img class="mm-logo" src="{_esc(src)}" alt="" width="28" height="28" '
+            f'loading="lazy" decoding="async" '
+            f'onerror="this.style.display=\'none\';this.nextElementSibling.hidden=false"/>'
+            f'<span class="mm-mono" hidden aria-hidden="true">{initials}</span>'
+            f"</span>"
+        )
+    else:
+        mark = f'<span class="mm-logo-wrap"><span class="mm-mono" aria-hidden="true">{initials}</span></span>'
+    role_html = f'<span class="mm-role">{_esc(role)}</span>' if role else ""
+    return (
+        f'          <li class="mm-chip">'
+        f"{mark}"
+        f'<span class="mm-text"><span class="mm-name">{_esc(name)}</span>{role_html}</span>'
+        f"</li>"
+    )
 
 
 def _segment(title: str, chips: list[str]) -> str:
@@ -44,8 +85,10 @@ def _figure(segments: list[str], caption: str) -> str:
     return f'''        <h3>Market map</h3>
         <p class="mm-intro">A snapshot of who is building commercial and operational products in this space. The map is illustrative, not exhaustive.</p>
         <figure class="viz market-map">
-          <p class="viz-label">Market map</p>
-          <p class="mm-title">Who is building here</p>
+          <div class="mm-head">
+            <p class="viz-label">Market map</p>
+            <p class="mm-title">Who is building here</p>
+          </div>
           <div class="mm-grid">
 {grid}
           </div>
@@ -64,25 +107,25 @@ def _space_map() -> str:
         _segment(
             "Hyperscale & platforms",
             [
-                _chip("Google", "Project Suncatcher"),
-                _chip("SpaceX", "orbital DC filing"),
+                _chip("Google", "Project Suncatcher", "google"),
+                _chip("SpaceX", "orbital DC filing", "spacex"),
             ],
         ),
         _segment(
             "Orbital DC startups",
             [
-                _chip("Starcloud", "GPU demos / constellation"),
-                _chip("Axiom Space", "orbital compute nodes"),
-                _chip("Lonestar", "lunar / edge storage"),
+                _chip("Starcloud", "GPU demos / constellation", "starcloud"),
+                _chip("Axiom Space", "orbital compute nodes", "axiom"),
+                _chip("Lonestar", "lunar / edge storage", "lonestar"),
             ],
         ),
         _segment(
             "Mission partners",
-            [_chip("Planet", "Suncatcher platforms")],
+            [_chip("Planet", "Suncatcher platforms", "planet")],
         ),
         _segment(
             "Radiation-tolerant compute",
-            [_chip("Ramon.Space", "space-grade processors")],
+            [_chip("Ramon.Space", "space-grade processors", "ramon")],
         ),
     ]
     return _figure(segs, caption)
@@ -98,25 +141,25 @@ def _weather_map() -> str:
         _segment(
             "Platforms",
             [
-                _chip("Google DeepMind", "WeatherNext / GraphCast"),
-                _chip("Microsoft Research", "Aurora"),
-                _chip("NVIDIA", "Earth-2"),
+                _chip("Google DeepMind", "WeatherNext / GraphCast", "deepmind"),
+                _chip("Microsoft Research", "Aurora", "microsoft"),
+                _chip("NVIDIA", "Earth-2", "nvidia"),
             ],
         ),
         _segment(
             "Startups",
             [
-                _chip("WindBorne Systems", "global sensing network"),
-                _chip("Atmo", "AI weather forecasts"),
-                _chip("Jua", "foundation weather models"),
-                _chip("Tomorrow.io", "nowcasting platform"),
+                _chip("WindBorne Systems", "global sensing network", "windborne"),
+                _chip("Atmo", "AI weather forecasts", "atmo"),
+                _chip("Jua", "foundation weather models", "jua"),
+                _chip("Tomorrow.io", "nowcasting platform", "tomorrow"),
             ],
         ),
         _segment(
             "Operators & agencies",
             [
-                _chip("ECMWF", "AIFS operations"),
-                _chip("NOAA", "AI forecast integration"),
+                _chip("ECMWF", "AIFS operations", "ecmwf"),
+                _chip("NOAA", "AI forecast integration", "noaa"),
             ],
         ),
     ]
@@ -133,28 +176,28 @@ def _aerospace_map() -> str:
         _segment(
             "Optical imaging",
             [
-                _chip("Planet", "daily global imaging"),
-                _chip("Maxar", "high-resolution EO"),
-                _chip("BlackSky", "rapid revisit"),
-                _chip("Pixxel", "hyperspectral constellations"),
+                _chip("Planet", "daily global imaging", "planet"),
+                _chip("Maxar", "high-resolution EO", "maxar"),
+                _chip("BlackSky", "rapid revisit", "blacksky"),
+                _chip("Pixxel", "hyperspectral constellations", "pixxel"),
             ],
         ),
         _segment(
             "SAR",
             [
-                _chip("Capella Space", "SAR microsatellites"),
-                _chip("Umbra", "high-res SAR"),
+                _chip("Capella Space", "SAR microsatellites", "capella"),
+                _chip("Umbra", "high-res SAR", "umbra"),
             ],
         ),
         _segment(
             "GHG & climate sensing",
-            [_chip("GHGSat", "facility-level methane")],
+            [_chip("GHGSat", "facility-level methane", "ghgsat")],
         ),
         _segment(
             "Weather & RF",
             [
-                _chip("Spire Global", "radio occultation"),
-                _chip("HawkEye 360", "RF geolocation"),
+                _chip("Spire Global", "radio occultation", "spire"),
+                _chip("HawkEye 360", "RF geolocation", "hawkeye"),
             ],
         ),
     ]
@@ -171,22 +214,22 @@ def _materials_map() -> str:
         _segment(
             "Novel cement",
             [
-                _chip("Sublime Systems", "electrochemical cement"),
-                _chip("Brimstone", "calcium silicate cement"),
-                _chip("Fortera", "reactive mineral cement"),
+                _chip("Sublime Systems", "electrochemical cement", "sublime"),
+                _chip("Brimstone", "calcium silicate cement", "brimstone"),
+                _chip("Fortera", "reactive mineral cement", "fortera"),
             ],
         ),
         _segment(
             "CO₂ mineralization & concrete",
             [
-                _chip("CarbonCure", "injected CO₂ curing"),
-                _chip("Solidia", "lower-carbon binder"),
-                _chip("CarbonBuilt", "CO₂ mineralized blocks"),
+                _chip("CarbonCure", "injected CO₂ curing", "carboncure"),
+                _chip("Solidia", "lower-carbon binder", "solidia"),
+                _chip("CarbonBuilt", "CO₂ mineralized blocks", "carbonbuilt"),
             ],
         ),
         _segment(
             "SCM & circular",
-            [_chip("Carbon Upcycling", "CO₂-enhanced SCMs")],
+            [_chip("Carbon Upcycling", "CO₂-enhanced SCMs", "carbonupcycling")],
         ),
     ]
     return _figure(segs, caption)
@@ -201,35 +244,35 @@ def _energy_map() -> str:
     segs = [
         _segment(
             "Multi-day batteries",
-            [_chip("Form Energy", "iron-air multi-day")],
+            [_chip("Form Energy", "iron-air multi-day", "formenergy")],
         ),
         _segment(
             "Flow batteries",
             [
-                _chip("ESS Inc.", "iron flow storage"),
-                _chip("Invinity", "vanadium flow"),
+                _chip("ESS Inc.", "iron flow storage", "ess"),
+                _chip("Invinity", "vanadium flow", "invinity"),
             ],
         ),
         _segment(
             "Gravity & compressed air",
             [
-                _chip("Energy Vault", "gravity storage"),
-                _chip("Hydrostor", "compressed air"),
-                _chip("Energy Dome", "CO₂-based storage"),
+                _chip("Energy Vault", "gravity storage", "energyvault"),
+                _chip("Hydrostor", "compressed air", "hydrostor"),
+                _chip("Energy Dome", "CO₂-based storage", "energydome"),
             ],
         ),
         _segment(
             "Geomechanical & other LDES",
             [
-                _chip("Quidnet Energy", "geomechanical pumped storage"),
-                _chip("Malta Inc.", "thermal electro-mechanical"),
+                _chip("Quidnet Energy", "geomechanical pumped storage", "quidnet"),
+                _chip("Malta Inc.", "thermal electro-mechanical", "malta"),
             ],
         ),
         _segment(
             "Short-duration context",
             [
-                _chip("Tesla Energy", "grid-scale Li-ion"),
-                _chip("Fluence", "storage integrator"),
+                _chip("Tesla Energy", "grid-scale Li-ion", "tesla"),
+                _chip("Fluence", "storage integrator", "fluence"),
             ],
         ),
     ]
@@ -246,18 +289,18 @@ def _manufacturing_map() -> str:
         _segment(
             "Thermal batteries & ETES",
             [
-                _chip("Rondo Energy", "heat batteries"),
-                _chip("Antora Energy", "thermal storage"),
-                _chip("Electrified Thermal Solutions", "firebrick storage"),
+                _chip("Rondo Energy", "heat batteries", "rondo"),
+                _chip("Antora Energy", "thermal storage", "antora"),
+                _chip("Electrified Thermal Solutions", "firebrick storage", "electrifiedthermal"),
             ],
         ),
         _segment(
             "Electrified steam & boilers",
-            [_chip("AtmosZero", "industrial heat pumps")],
+            [_chip("AtmosZero", "industrial heat pumps", "atmoszero")],
         ),
         _segment(
             "Heat-as-a-service",
-            [_chip("Zero Industrial", "decarbonized process heat")],
+            [_chip("Zero Industrial", "decarbonized process heat", "zeroindustrial")],
         ),
     ]
     return _figure(segs, caption)
@@ -272,25 +315,25 @@ def _built_map() -> str:
     segs = [
         _segment(
             "Low-carbon concrete tech",
-            [_chip("CarbonCure", "embedded CO₂ concrete")],
+            [_chip("CarbonCure", "embedded CO₂ concrete", "carboncure")],
         ),
         _segment(
             "Mass timber producers",
             [
-                _chip("Mercer Mass Timber", "cross-laminated timber"),
-                _chip("SmartLam", "glulam and CLT"),
-                _chip("Fabric Workshop", "prefab mass timber"),
+                _chip("Mercer Mass Timber", "cross-laminated timber", "mercer"),
+                _chip("SmartLam", "glulam and CLT", "smartlam"),
+                _chip("Fabric Workshop", "prefab mass timber", "fabric"),
             ],
         ),
         _segment(
             "Supply-chain platforms",
-            [_chip("Cambium", "traceable wood supply")],
+            [_chip("Cambium", "traceable wood supply", "cambium")],
         ),
         _segment(
             "Software & standards",
             [
-                _chip("One Click LCA", "whole-life carbon"),
-                _chip("Tally", "Revit embodied carbon"),
+                _chip("One Click LCA", "whole-life carbon", "oneclicklca"),
+                _chip("Tally", "Revit embodied carbon", "tally"),
             ],
         ),
     ]
@@ -308,22 +351,22 @@ def _mobility_map() -> str:
         _segment(
             "Public fast charging",
             [
-                _chip("Tesla Supercharger", "DC fast network"),
-                _chip("Electrify America", "highway corridors"),
-                _chip("EVgo", "urban fast charging"),
-                _chip("ChargePoint", "hardware and roaming"),
-                _chip("IONNA", "OEM joint network"),
+                _chip("Tesla Supercharger", "DC fast network", "tesla"),
+                _chip("Electrify America", "highway corridors", "electrifyamerica"),
+                _chip("EVgo", "urban fast charging", "evgo"),
+                _chip("ChargePoint", "hardware and roaming", "chargepoint"),
+                _chip("IONNA", "OEM joint network", "ionna"),
             ],
         ),
         _segment(
             "Smart & managed charging",
-            [_chip("PowerFlex", "fleet and workplace ACN")],
+            [_chip("PowerFlex", "fleet and workplace ACN", "powerflex")],
         ),
         _segment(
             "Vehicles (context)",
             [
-                _chip("Tesla", "EV volume leader"),
-                _chip("Rivian", "electric trucks and SUVs"),
+                _chip("Tesla", "EV volume leader", "tesla"),
+                _chip("Rivian", "electric trucks and SUVs", "rivian"),
             ],
         ),
     ]
@@ -340,29 +383,29 @@ def _industrial_map() -> str:
         _segment(
             "Industrial heat",
             [
-                _chip("Rondo Energy", "thermal batteries"),
-                _chip("Antora Energy", "thermal storage"),
-                _chip("Electrified Thermal Solutions", "firebrick heat"),
+                _chip("Rondo Energy", "thermal batteries", "rondo"),
+                _chip("Antora Energy", "thermal storage", "antora"),
+                _chip("Electrified Thermal Solutions", "firebrick heat", "electrifiedthermal"),
             ],
         ),
         _segment(
             "Green steel",
             [
-                _chip("Stegra", "hydrogen DRI steel"),
-                _chip("Boston Metal", "molten oxide electrolysis"),
+                _chip("Stegra", "hydrogen DRI steel", "stegra"),
+                _chip("Boston Metal", "molten oxide electrolysis", "bostonmetal"),
             ],
         ),
         _segment(
             "Cement technology",
             [
-                _chip("Sublime Systems", "electrochemical cement"),
-                _chip("Brimstone", "calcium silicate routes"),
-                _chip("Fortera", "low-carbon cement"),
+                _chip("Sublime Systems", "electrochemical cement", "sublime"),
+                _chip("Brimstone", "calcium silicate routes", "brimstone"),
+                _chip("Fortera", "low-carbon cement", "fortera"),
             ],
         ),
         _segment(
             "Kiln capture add-ons",
-            [_chip("Fortera ReCarb", "point-source mineralization")],
+            [_chip("Fortera ReCarb", "point-source mineralization", "fortera")],
         ),
     ]
     return _figure(segs, caption)
