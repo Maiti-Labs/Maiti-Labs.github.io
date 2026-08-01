@@ -325,7 +325,7 @@ def build_markets_section(slug: str) -> str:
     jevons_n, rebound_n = JEVONS_REFS[slug]
     data = SECTOR_SECTIONS[slug]
     intro = (
-        f"When a capability gets cheaper, people often use more of it—not less. William Stanley Jevons observed this for coal efficiency in 1865 {_c(jevons_n)}. "
+        f"When a capability gets cheaper, people often use more of it, not less. William Stanley Jevons observed this for coal efficiency in 1865 {_c(jevons_n)}. "
         f"Energy-policy reviews document similar rebound dynamics today {_c(rebound_n)}. "
         f"In this sector, falling costs can expand adoption faster than efficiency alone saves emissions."
     )
@@ -333,6 +333,7 @@ def build_markets_section(slug: str) -> str:
     charts = market_charts_html(slug)
     return f'''
         <h2>Markets</h2>
+        <h3>When cost falls, demand rises</h3>
         <p>{intro}</p>
 {rebound_cards_html(slug)}
         <div class="chart-grid">

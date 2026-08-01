@@ -109,7 +109,8 @@
 
 
         <h2>Markets</h2>
-        <p>When a capability gets cheaper, people often use more of it—not less. William Stanley Jevons observed this for coal efficiency in 1865 [<a href="#r9">9</a>]. Energy-policy reviews document similar rebound dynamics today [<a href="#r10">10</a>]. In this sector, falling costs can expand adoption faster than efficiency alone saves emissions.</p>
+        <h3>When cost falls, demand rises</h3>
+        <p>When a capability gets cheaper, people often use more of it, not less. William Stanley Jevons observed this for coal efficiency in 1865 [<a href="#r9">9</a>]. Energy-policy reviews document similar rebound dynamics today [<a href="#r10">10</a>]. In this sector, falling costs can expand adoption faster than efficiency alone saves emissions.</p>
         <div class="rebound" role="list">
           <div class="rebound-card">
             <h3>Cost going down</h3>
@@ -269,22 +270,22 @@
         </svg>
           <figcaption class="viz-caption">Any-sensor encoders accept arbitrary band combinations so one pretrained model serves many missions.</figcaption>
         </figure>
-        <h2>From fixed-sensor models to any-sensor models</h2>
+        <h3>From fixed-sensor models to any-sensor models</h3>
         <p>Most early remote-sensing foundation models were locked to one constellation or band set. The field is now pivoting to models that accept arbitrary channel combinations.</p>
         <p><a href="https://arxiv.org/abs/2503.10845">Panopticon</a> (Waldmann et al.), from UC Berkeley and the Technical University of Munich, extends DINOv2 for Earth observation. It treats co-located multi-sensor views as natural augmentations, subsamples spectral channels during training, and uses cross-attention over channels so the model can embed optical and SAR inputs with wavelength and mode metadata [<a href="#r1">1</a>]. On GEO-Bench it reports strong results on Sentinel-1 and Sentinel-2 while remaining usable on unusual sensor configurations. That is the aerospace analogue of a generalist policy: one backbone, many instruments.</p>
 
-        <h2>Scale pretraining on public satellite archives</h2>
+        <h3>Scale pretraining on public satellite archives</h3>
         <h3>SkySense and SkySense++</h3>
         <p><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Guo_SkySense_A_Multi-Modal_Remote_Sensing_Foundation_Model_Towards_Universal_Interpretation_CVPR_2024_paper.pdf">SkySense</a> pretrained a billion-scale multi-modal spatiotemporal encoder on 21.5 million temporal sequences of optical and SAR data, using multi-granularity contrastive learning and geo-context prototypes [<a href="#r2">2</a>]. The follow-on <a href="https://www.nature.com/articles/s42256-025-01078-8">SkySense++</a> work in <em>Nature Machine Intelligence</em> adds progressive representation- and semantic-enhanced pretraining on about 27 million multi-modal images, improving few-shot performance across agriculture, forestry, oceanography, atmosphere, biology, land surveying, and disaster management [<a href="#r3">3</a>]. Few-shot skill is the accessibility lever: rapid flood response cannot wait for a million new labels.</p>
 
         <h3>NASA–IBM Prithvi and Copernicus-scale models</h3>
         <p><a href="https://arxiv.org/abs/2412.02732">Prithvi-EO-2.0</a>, trained on 4.2 million global HLS time-series samples from NASA Landsat–Sentinel archives, adds explicit temporal and location embeddings. The 600M variant improves over prior Prithvi checkpoints across GEO-Bench-style evaluations and is released openly for downstream use [<a href="#r4">4</a>]. In parallel, <a href="https://arxiv.org/abs/2503.11849">Copernicus-FM</a> targets unified modeling across Sentinel missions with 18.7 million aligned observations and dynamic hypernetworks that ingest spectral and non-spectral modalities plus metadata [<a href="#r5">5</a>].</p>
 
-        <h2>Mission science: Carbon-I and observation continuity</h2>
+        <h3>Mission science: Carbon-I and observation continuity</h3>
         <p>Foundation models interpret archives. New missions define what enters those archives. <a href="https://carbon-i.github.io/">Carbon-I</a>, a Caltech-led NASA Earth System Explorer finalist with Bethany Ehlmann among the collaborators, would map CO<sub>2</sub>, CH<sub>4</sub>, and CO at roughly 300 m globally with roughly 30 m resolution over priority targets, closing tropical greenhouse-gas observation gaps that limit attribution of emissions to sources [<a href="#r7">7</a>]. That sensor layer complements Berkeley-style any-sensor encoders: one supplies trace-gas structure at scale, the other supplies transferable visual representations.</p>
         <p>Continuity planning matters as much as any single mission. Waliser and the KISS Continuity Study Team outline a U.S. framework for continuity of satellite observations so climate records remain comparable across instrument generations [<a href="#r8">8</a>]. Accessible aerospace research therefore spans pretrained models, flagship trace-gas missions, and governance for long-term records.</p>
 
-        <h2>What universities are contributing</h2>
+        <h3>What universities are contributing</h3>
         <p>Berkeley's work on Panopticon sits inside a broader campus effort on environmental data systems and open geospatial ML. Caltech's Carbon-I team connects instrument design to emissions accounting. Stanford's aerospace and Earth observation communities connect satellite products to climate risk, land use, and sustainability applications through the Doerr School. Across surveys of remote-sensing foundation models, the consensus is clear: the bottleneck is no longer collecting pixels. It is learning representations that transfer across sensors, seasons, and geographies [<a href="#r6">6</a>].</p>
         <div class="callout">
           <p>Lower-cost smallsat constellations expand coverage. Foundation models expand who can interpret that coverage. Both are required for climate research that reaches beyond specialist agencies.</p>

@@ -636,6 +636,8 @@ def split_body(body: str) -> tuple[str, str, str, str]:
         raise ValueError("Missing detail sections")
     tech_overview = detail_part[:h2].strip()
     tech_detail = detail_part[h2:].strip()
+    # Keep main outline as H2; demote nested detail headings to H3.
+    tech_detail = tech_detail.replace("<h2>", "<h3>").replace("</h2>", "</h3>")
     return callout, tech_overview, tech_detail, conclusion_part
 
 

@@ -115,7 +115,8 @@
 
 
         <h2>Markets</h2>
-        <p>When a capability gets cheaper, people often use more of it—not less. William Stanley Jevons observed this for coal efficiency in 1865 [<a href="#r13">13</a>]. Energy-policy reviews document similar rebound dynamics today [<a href="#r14">14</a>]. In this sector, falling costs can expand adoption faster than efficiency alone saves emissions.</p>
+        <h3>When cost falls, demand rises</h3>
+        <p>When a capability gets cheaper, people often use more of it, not less. William Stanley Jevons observed this for coal efficiency in 1865 [<a href="#r13">13</a>]. Energy-policy reviews document similar rebound dynamics today [<a href="#r14">14</a>]. In this sector, falling costs can expand adoption faster than efficiency alone saves emissions.</p>
         <div class="rebound" role="list">
           <div class="rebound-card">
             <h3>Cost going down</h3>
@@ -263,11 +264,11 @@
         </svg>
           <figcaption class="viz-caption">Foundation-model weather stacks pretrain on ERA5-class archives, fine-tune for tasks, then roll out deterministic or ensemble forecasts from a shared checkpoint.</figcaption>
         </figure>
-        <h2>What "foundation model" means in weather</h2>
+        <h3>What "foundation model" means in weather</h3>
         <p>In language and vision, a foundation model is pretrained once on broad data, then adapted to many tasks. Weather and climate need the same idea, but the data are gridded fields, multiple physical variables, and heterogeneous resolutions.</p>
         <p><a href="https://arxiv.org/abs/2301.10343">ClimaX</a>, developed by researchers at UCLA and Microsoft Research, was an early explicit attempt at this framing. It extends a Vision Transformer with variable tokenization and aggregation so one model can be pretrained on heterogeneous CMIP6-derived climate data, then fine-tuned for forecasting, projection, and downscaling tasks, including variables and scales not seen in pretraining [<a href="#r1">1</a>]. That is the core recipe later systems refine: pretrain broadly, specialize cheaply.</p>
 
-        <h2>The current frontier models</h2>
+        <h3>The current frontier models</h3>
         <h3>Graph neural networks and transformers at global scale</h3>
         <p>Google DeepMind's <a href="https://www.science.org/doi/10.1126/science.adi2336">GraphCast</a> (Lam et al.) encodes the atmosphere as a multi-scale mesh and rolls out 6-hour steps to produce 10-day forecasts. On WeatherBench-style evaluations it matched or exceeded ECMWF's high-resolution IFS on many variables while running orders of magnitude faster [<a href="#r2">2</a>]. Huawei's <a href="https://www.nature.com/articles/s41586-023-06185-3">Pangu-Weather</a> (Bi et al.) uses a 3D Earth Transformer and hierarchical temporal aggregation, again reporting deterministic skill competitive with operational IFS on reanalysis benchmarks [<a href="#r3">3</a>].</p>
         <p>NVIDIA's FourCastNet line [<a href="#r9">9</a>] and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) [<a href="#r12">12</a>] push the same idea into operational settings. Feldmann et al. use WeatherBench2 [<a href="#r10">10</a>] to compare Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
@@ -278,15 +279,15 @@
           <p>The practical implication for accessibility: once a strong pretrained checkpoint exists, fine-tuning for a regional hazard, an agricultural index, or an air-quality product becomes a research project rather than a national computing program.</p>
         </div>
 
-        <h2>What top labs are stressing next</h2>
+        <h3>What top labs are stressing next</h3>
         <p>Skill on ERA5 [<a href="#r11">11</a>] is necessary but not sufficient. Rackow et al. examine GraphCast, Pangu-Weather, and AIFS under climate-change-like conditions and ask whether models trained on the recent past remain reliable as the climate shifts [<a href="#r6">6</a>]. Extremes remain a hard edge: AI forecasts can be overly smooth and can understate record-breaking events even when mean scores look excellent [<a href="#r6">6</a>][<a href="#r10">10</a>].</p>
         <p>University groups are therefore focusing on hybrid designs, probabilistic ensembles, and observation-informed fine-tuning. Stanford's Doerr School and related atmospheric research communities emphasize that operational value depends on calibration for hazards people actually manage: heat, flood precursors, wind extremes, and compound events, not only RMSE on 500 hPa geopotential.</p>
 
-        <h2>Hybrid climate modeling: Google Research and Caltech CliMA</h2>
+        <h3>Hybrid climate modeling: Google Research and Caltech CliMA</h3>
         <p>Parallel to the data-driven weather wave, Caltech's Climate Modeling Alliance (CliMA), led by Tapio Schneider, pursues hybrid physics–machine learning parameterizations that keep dynamical constraints explicit while learning subgrid closures from data. Lopez-Gomez et al., with Google Research and Caltech authors, report dynamical-generative downscaling of climate model ensembles that preserves large-scale circulation while generating high-resolution fields suitable for impact studies [<a href="#r7">7</a>]. Christopoulos et al. show hybrid ML parameterizations for cloud entrainment that can be updated as observations stream in, a design point that differs from frozen pretrained forecasters [<a href="#r8">8</a>].</p>
         <p>The two agendas are complementary. Weather foundation models excel at fast, global deterministic forecasts from reanalysis. Caltech's physics-constrained climate modeling agenda targets long-horizon ensembles, process fidelity, and downscaling that remains tied to conservation laws. Accessible climate research needs both: open checkpoints for short-range hazard work and open process models for scenario stress-testing.</p>
 
-        <h2>Why this matters for accessible climate research</h2>
+        <h3>Why this matters for accessible climate research</h3>
         <p>Weather foundation models compress a capability that used to sit behind agency firewalls. Open weights, public reanalysis [<a href="#r11">11</a>], and benchmarks such as WeatherBench2 [<a href="#r10">10</a>] let students at Berkeley, researchers in the Global South, and municipal risk teams reproduce modern forecast skill. The open problem is not whether these models exist. It is how to document uncertainty, couple them to impact models, and keep evaluation honest as the climate moves [<a href="#r6">6</a>][<a href="#r10">10</a>].</p>
 
 
