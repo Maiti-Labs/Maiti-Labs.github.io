@@ -284,7 +284,8 @@ def market_map_refs_space() -> list[str]:
             'Wood Mackenzie press release on orbital data centre costs. '
             '<a href="https://www.woodmac.com/press-releases/wood-mackenzie-orbital-data-centres-cost-three-times-more-than-terrestrial-alternatives-as-global-power-demand-heads-for-3700-twh">'
             'woodmac.com</a>; Axiom Space orbital compute. '
-            '<a href="https://www.axiomspace.com/">axiomspace.com</a>',
+            '<a href="https://www.axiomspace.com/">axiomspace.com</a>; '
+            'Aethero space-rated computers. <a href="https://aethero.com/">aethero.com</a>',
         ),
     ]
 

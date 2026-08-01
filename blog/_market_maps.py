@@ -125,7 +125,10 @@ def _space_map() -> str:
         ),
         _segment(
             "Radiation-tolerant compute",
-            [_chip("Ramon.Space", "space-grade processors", "ramon")],
+            [
+                _chip("Ramon.Space", "space-grade processors", "ramon"),
+                _chip("Aethero", "space-rated edge / HPC modules", "aethero"),
+            ],
         ),
     ]
     return _figure(segs, caption)
