@@ -29,26 +29,59 @@
   <article class="article">
     <div class="wrap-narrow">
       <a class="back-link" href="index.html">‹ All research notes</a>
-      <p class="article-meta">Research note · August 1, 2026 · Sector 07</p>
+      <p class="article-meta">Research note · August 1, 2026 · Sector 07 · Shryas Bhurat</p>
+      <p class="article-author">By Shryas Bhurat</p>
       <h1>EV scale-up is constrained by finance and charging reliability</h1>
       <p class="dek">Battery packs get the headlines. Household credit and uptime statistics may decide the adoption curve.</p>
-      <figure class="viz">
+        <figure class="viz viz-hero">
+          <p class="viz-label">How it works</p>
         <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="220" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Two gates to EV adoption</text>
-          <rect x="240" y="55" width="160" height="50" rx="10" fill="#204028"/>
-          <text x="320" y="85" text-anchor="middle" fill="#f0e8cc" font-size="12" font-family="Outfit,sans-serif">Electric car</text>
-          <line class="viz-draw" x1="280" y1="105" x2="200" y2="140" stroke="#204028" stroke-width="2"/>
-          <line class="viz-draw" x1="360" y1="105" x2="440" y2="140" stroke="#204028" stroke-width="2"/>
-          <rect class="viz-pulse" x="100" y="140" width="200" height="56" rx="12" fill="#f0e8cc" stroke="#204028" stroke-width="1.2"/>
-          <text x="200" y="165" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Charger reliability</text>
-          <text x="200" y="182" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">works when you need it</text>
-          <rect class="viz-pulse" x="340" y="140" width="200" height="56" rx="12" fill="#f0e8cc" stroke="#204028" stroke-width="1.2" style="animation-delay:.25s"/>
-          <text x="440" y="165" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Loan terms</text>
-          <text x="440" y="182" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">affordable financing</text>
+          <defs>
+            <linearGradient id="mb18-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+            <linearGradient id="mb18-card" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2d5640"/>
+              <stop offset="100%" stop-color="#204028"/>
+            </linearGradient>
+            <pattern id="mb18-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+              <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#204028" stroke-width="0.4" opacity="0.07"/>
+            </pattern>
+            <filter id="mb18-shadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#204028" flood-opacity="0.1"/>
+            </filter>
+            <marker id="mb18-arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#204028"/>
+            </marker>
+            <marker id="mb18-arrm" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#5a6a5c"/>
+            </marker>
+          </defs>
+          <rect width="640" height="220" fill="url(#mb18-bg)" rx="14"/>
+          <rect width="640" height="220" fill="url(#mb18-grid)" rx="14"/>
+          <text x="320" y="34" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" letter-spacing="0.06em" font-family="Outfit,sans-serif">Two gates to adoption</text>
+
+                    <g class="viz-node viz-fade-slide viz-pulse">
+            <rect x="240" y="56" width="160" height="44" rx="12" fill="url(#mb18-card)" />
+            <text x="320.0" y="82.0" text-anchor="middle" fill="#f0e8cc" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Electric vehicle</text>
+            
+          </g>
+          <line class="viz-draw" x1="280" y1="100" x2="180" y2="138" stroke="#204028" stroke-width="1.5"/>
+          <line class="viz-draw" x1="360" y1="100" x2="460" y2="138" stroke="#204028" stroke-width="1.5"/>
+                    <g class="viz-node viz-fade-slide" style="animation-delay:0.15s">
+            <rect x="80" y="142" width="200" height="52" rx="12" fill="#f0e8cc"  stroke="#204028" stroke-width="1.2"/>
+            <text x="180.0" y="166.0" text-anchor="middle" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Financing</text>
+            <text x="180.0" y="180.0" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">loan terms</text>
+          </g>
+                    <g class="viz-node viz-fade-slide" style="animation-delay:0.25s">
+            <rect x="360" y="142" width="200" height="52" rx="12" fill="#f0e8cc"  stroke="#204028" stroke-width="1.2"/>
+            <text x="460.0" y="166.0" text-anchor="middle" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Charger uptime</text>
+            <text x="460.0" y="180.0" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">reliability</text>
+          </g>
         </svg>
-        <figcaption class="viz-caption">Better batteries help, but drivers also need chargers that work and loans that match gasoline-car terms.</figcaption>
-      </figure>
+          <figcaption class="viz-caption">Hardware improves, but credit spreads and charger reliability still gate mass adoption.</figcaption>
+        </figure>
 
       <div class="body">
 
@@ -71,8 +104,153 @@
         <div class="callout">
           <p>Emerging mobility technology is not only solid-state batteries. It is also credit models, reliability analytics, and grid-aware charging that make electrification usable.</p>
         </div>
+        <figure class="viz viz-mid">
+          <p class="viz-label">Progress</p>
+        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mb19-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+            <linearGradient id="mb19-card" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2d5640"/>
+              <stop offset="100%" stop-color="#204028"/>
+            </linearGradient>
+            <pattern id="mb19-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+              <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#204028" stroke-width="0.4" opacity="0.07"/>
+            </pattern>
+            <filter id="mb19-shadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#204028" flood-opacity="0.1"/>
+            </filter>
+            <marker id="mb19-arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#204028"/>
+            </marker>
+            <marker id="mb19-arrm" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#5a6a5c"/>
+            </marker>
+          </defs>
+          <rect width="640" height="210" fill="url(#mb19-bg)" rx="14"/>
+          <rect width="640" height="210" fill="url(#mb19-grid)" rx="14"/>
+          
 
-        <h2>Where this leaves us</h2>
+          <text x="320" y="58" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Public charging reliability</text>
+          <path d="M120 160 A100 100 0 0 1 520 160" fill="none" stroke="#f4f0e4" stroke-width="18" stroke-linecap="round"/>
+          <path class="viz-draw" d="M120 160 A100 100 0 0 1 397.1 96.3" fill="none" stroke="#2d5640" stroke-width="18" stroke-linecap="round"/>
+          <text x="320" y="148" text-anchor="middle" fill="#204028" font-size="28" font-weight="600" font-family="Outfit,sans-serif">78%</text>
+          <text x="320" y="188" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">Successful sessions (estimate)</text>
+        </svg>
+          <figcaption class="viz-caption">Review-based estimates suggest roughly one in five public charging attempts still fails.</figcaption>
+        </figure>
+
+        
+        <figure class="viz viz-loop">
+          <p class="viz-label">The rebound loop</p>
+        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mb20-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+            <linearGradient id="mb20-card" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2d5640"/>
+              <stop offset="100%" stop-color="#204028"/>
+            </linearGradient>
+            <pattern id="mb20-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+              <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#204028" stroke-width="0.4" opacity="0.07"/>
+            </pattern>
+            <filter id="mb20-shadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#204028" flood-opacity="0.1"/>
+            </filter>
+            <marker id="mb20-arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#204028"/>
+            </marker>
+            <marker id="mb20-arrm" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#5a6a5c"/>
+            </marker>
+          </defs>
+          <rect width="640" height="280" fill="url(#mb20-bg)" rx="14"/>
+          <rect width="640" height="280" fill="url(#mb20-grid)" rx="14"/>
+          
+          <path class="viz-draw" d="M 331.4 66.8 A 82 82 0 0 1 397.1 120.0" fill="none" stroke="#204028" stroke-width="1.4" marker-end="url(#mb20-arr)"/>
+          <path class="viz-draw" d="M 401.2 159.4 A 82 82 0 0 1 348.0 225.1" fill="none" stroke="#204028" stroke-width="1.4" marker-end="url(#mb20-arr)"/>
+          <path class="viz-draw" d="M 308.6 229.2 A 82 82 0 0 1 242.9 176.0" fill="none" stroke="#204028" stroke-width="1.4" marker-end="url(#mb20-arr)"/>
+          <path class="viz-draw" d="M 238.8 136.6 A 82 82 0 0 1 292.0 70.9" fill="none" stroke="#204028" stroke-width="1.4" marker-end="url(#mb20-arr)"/>
+          <g class="viz-node viz-fade-slide">
+            <rect x="268.0" y="38.0" width="104" height="36" rx="12" fill="#f0e8cc"  stroke="#204028" stroke-width="1.2"/>
+            <text x="320.0" y="60.0" text-anchor="middle" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Cheaper EVs</text>
+            
+          </g>
+          <g class="viz-node viz-fade-slide" style="animation-delay:0.12s">
+            <rect x="360.0" y="130.0" width="104" height="36" rx="12" fill="#f0e8cc"  stroke="#204028" stroke-width="1.2"/>
+            <text x="412.0" y="152.0" text-anchor="middle" fill="#204028" font-size="11" font-family="Outfit,sans-serif">More charging</text>
+            
+          </g>
+          <g class="viz-node viz-fade-slide" style="animation-delay:0.24s">
+            <rect x="268.0" y="222.0" width="104" height="36" rx="12" fill="#f0e8cc"  stroke="#204028" stroke-width="1.2"/>
+            <text x="320.0" y="244.0" text-anchor="middle" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Grid strain</text>
+            
+          </g>
+          <g class="viz-node viz-fade-slide" style="animation-delay:0.36s">
+            <rect x="176.0" y="130.0" width="104" height="36" rx="12" fill="#f0e8cc"  stroke="#204028" stroke-width="1.2"/>
+            <text x="228.0" y="152.0" text-anchor="middle" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Uptime risk</text>
+            
+          </g>
+        </svg>
+          <figcaption class="viz-caption">Lower vehicle prices drive charging demand, which stresses grid hosting and maintenance accountability.</figcaption>
+        </figure>
+        <h2>Key milestones</h2>
+        <p>Electric mobility research now treats finance and charging uptime as first-class constraints alongside batteries [<a href="#r1">1</a>][<a href="#r3">3</a>].</p>
+        <div class="timeline" role="list">
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2010s–2020s</p>
+            <p class="timeline-text">Battery costs fall and early EV models reach mass-market price bands [<a href="#r8">8</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2023+</p>
+            <p class="timeline-text">Wharton work by Bena, Bian, and Tang documents tighter EV loan terms driven by obsolescence risk [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2024–2025</p>
+            <p class="timeline-text">Harvard charging reliability studies find public uptime near 78% in large review datasets [<a href="#r3">3</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2020s</p>
+            <p class="timeline-text">Caltech ACN and PowerFlex research oversubscribed charging with grid-aware scheduling [<a href="#r5">5</a>][<a href="#r6">6</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2020s</p>
+            <p class="timeline-text">NEVI-era U.S. public charging buildout accelerates corridor coverage [<a href="#r7">7</a>].</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2026</p>
+            <p class="timeline-text">Vehicle hardware improves; credit spreads and broken chargers still gate household adoption [<a href="#r1">1</a>][<a href="#r3">3</a>].</p>
+          </div>
+        </div>
+        <p class="progress-note"><strong>Today:</strong> EVs and chargers are scaling; affordable financing and reliable public uptime remain the gating frictions [<a href="#r1">1</a>][<a href="#r3">3</a>][<a href="#r7">7</a>].</p>
+
+        <h2>When cost falls, demand rises</h2>
+        <p>Cheaper EVs can increase miles traveled and charging sessions [<a href="#r8">8</a>][<a href="#r10">10</a>]. Jevons effects show up as strained public networks, substations, and optimization layers rather than in the battery cell alone [<a href="#r9">9</a>][<a href="#r5">5</a>][<a href="#r3">3</a>].</p>
+        <div class="rebound" role="list">
+          <div class="rebound-card">
+            <h3>Cost going down</h3>
+            <p>Pack costs and operating cost per mile fall for many segments [<a href="#r8">8</a>][<a href="#r1">1</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Adoption rising</h3>
+            <p>More households and fleets electrify when sticker and fuel math works [<a href="#r1">1</a>][<a href="#r7">7</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Data problems</h3>
+            <p>Reliability metrics, tariff transparency, and residual-value data stay fragmented [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Infrastructure problems</h3>
+            <p>Charger maintenance, grid substations, and queueing under peak load [<a href="#r3">3</a>][<a href="#r5">5</a>].</p>
+          </div>
+        </div>
+        <p>Transport electrification gains stick when rebound is managed: fair credit products, published uptime standards, and grid-aware charging at scale [<a href="#r1">1</a>][<a href="#r3">3</a>][<a href="#r5">5</a>].</p>
+
+<h2>Where this leaves us</h2>
         <p>University research from Wharton, Harvard, and Caltech shows why EV transitions stall even when vehicle hardware improves: capital markets price obsolescence, public charging still fails too often, and shared infrastructure needs explicit scheduling under power limits. Climate research made accessible means publishing those frictions clearly enough for lenders, cities, and operators to fix them.</p>
 
       </div>
@@ -85,6 +263,10 @@
 <li><span id="r4"></span>Harvard BiGS. Can government fix the EV infrastructure gap? <a href="https://www.hbs.edu/bigs/can-government-fix-the-ev-infrastructure-gap">hbs.edu/bigs</a></li>
 <li><span id="r5"></span>Lee, Z. J., Low, S. H., et al. Adaptive Charging Network (ACN). <a href="https://arxiv.org/abs/2012.02636">arXiv:2012.02636</a> (Caltech).</li>
 <li><span id="r6"></span>Caltech ACN portal (ACN-Data, ACN-Sim). <a href="https://ev.caltech.edu/">ev.caltech.edu</a></li>
+<li><span id="r7"></span>U.S. Department of Energy. National Electric Vehicle Infrastructure (NEVI) Formula Program. <a href="https://afdc.energy.gov/laws/12859">AFDC summary</a>; <a href="https://www.federalregister.gov/documents/2022/02/22/2022-03423/national-electric-vehicle-infrastructure-formula-program">Federal Register (2022)</a></li>
+<li><span id="r8"></span>International Renewable Energy Agency (IRENA). (2023). Renewable power generation costs in 2022. <a href="https://www.irena.org/Publications/2023/Aug/Renewable-power-generation-costs-in-2022">irena.org</a> (battery storage cost trends).</li>
+<li><span id="r9"></span>Jevons, W. S. (1865). <em>The Coal Question: An Inquiry Concerning the Progress of the Nation, and the Probable Exhaustion of Our Coal-Mines</em>. Macmillan. <a href="https://archive.org/details/coalquestionin00jevorich">archive.org</a></li>
+<li><span id="r10"></span>Sorrell, S., Dimitropoulos, J., & Somerville, M. (2009). Empirical estimates of the direct rebound effect: A review. <em>Energy Policy</em>. <a href="https://doi.org/10.1016/j.enpol.2008.11.026">doi:10.1016/j.enpol.2008.11.026</a></li>
         </ol>
       </section>
     </div>

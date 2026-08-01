@@ -1,211 +1,662 @@
-"""Inline SVG infographics for sector research notes."""
+"""Inline SVG infographics for sector research notes — design-system driven."""
 
-def viz_figure(svg_inner, caption):
-    return f'''      <figure class="viz">
-{svg_inner}
-        <figcaption class="viz-caption">{caption}</figcaption>
-      </figure>'''
+import itertools
+import math
+from typing import Optional
 
-VIZ = {
-    "weather": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <marker id="w-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#204028"/></marker>
+_uid_gen = itertools.count()
+
+FOREST = "#204028"
+SOFT = "#2d5640"
+CREAM = "#f0e8cc"
+BG = "#faf7ef"
+BG_ALT = "#f4f0e4"
+MUTED = "#5a6a5c"
+FONT = "Outfit,sans-serif"
+
+
+def _uid(prefix: str = "v") -> str:
+    return f"{prefix}{next(_uid_gen)}"
+
+
+def _esc(text: str) -> str:
+    return (
+        text.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
+def _figure(kind: str, label: str, svg: str, caption: str) -> str:
+    return f'''        <figure class="viz viz-{kind}">
+          <p class="viz-label">{label}</p>
+{svg}
+          <figcaption class="viz-caption">{caption}</figcaption>
+        </figure>'''
+
+
+def _defs(uid: str) -> str:
+    return f"""
+            <linearGradient id="{uid}-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="{BG}"/>
+              <stop offset="100%" stop-color="{BG_ALT}"/>
+            </linearGradient>
+            <linearGradient id="{uid}-card" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="{SOFT}"/>
+              <stop offset="100%" stop-color="{FOREST}"/>
+            </linearGradient>
+            <pattern id="{uid}-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+              <path d="M 28 0 L 0 0 0 28" fill="none" stroke="{FOREST}" stroke-width="0.4" opacity="0.07"/>
+            </pattern>
+            <filter id="{uid}-shadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="{FOREST}" flood-opacity="0.1"/>
+            </filter>
+            <marker id="{uid}-arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="{FOREST}"/>
+            </marker>
+            <marker id="{uid}-arrm" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="{MUTED}"/>
+            </marker>"""
+
+
+def _svg(viewbox: str, uid: str, body: str, title: Optional[str] = None, title_x: float = 320) -> str:
+    parts = viewbox.split()
+    w, h = parts[2], parts[3]
+    title_el = ""
+    if title:
+        title_el = (
+            f'<text x="{title_x}" y="34" text-anchor="middle" fill="{FOREST}" '
+            f'font-size="12" font-weight="600" letter-spacing="0.06em" font-family="{FONT}">'
+            f"{_esc(title)}</text>"
+        )
+    return f'''        <svg aria-hidden="true" class="viz-svg" viewBox="{viewbox}" xmlns="http://www.w3.org/2000/svg">
+          <defs>{_defs(uid)}
           </defs>
-          <rect width="640" height="240" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Two ways to forecast weather</text>
-          <g class="viz-fade-slide">
-            <rect x="24" y="52" width="120" height="44" rx="10" fill="#f0e8cc" stroke="#204028" stroke-width="1.2"/>
-            <text x="84" y="78" text-anchor="middle" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Past weather data</text>
-            <line class="viz-draw" x1="144" y1="74" x2="188" y2="74" stroke="#204028" stroke-width="2" marker-end="url(#w-arrow)"/>
-            <rect x="188" y="52" width="100" height="44" rx="10" fill="#204028"/>
-            <text x="238" y="78" text-anchor="middle" fill="#f0e8cc" font-size="11" font-family="Outfit,sans-serif">AI model</text>
-            <line class="viz-draw" x1="288" y1="74" x2="332" y2="74" stroke="#204028" stroke-width="2" marker-end="url(#w-arrow)"/>
-            <rect class="viz-pulse" x="332" y="48" width="130" height="52" rx="10" fill="#2d5640"/>
-            <text x="397" y="72" text-anchor="middle" fill="#f0e8cc" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Fast forecast</text>
-            <text x="397" y="88" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">minutes</text>
+          <rect width="{w}" height="{h}" fill="url(#{uid}-bg)" rx="14"/>
+          <rect width="{w}" height="{h}" fill="url(#{uid}-grid)" rx="14"/>
+          {title_el}
+{body}
+        </svg>'''
+
+
+# Module-level uid for nodes in same svg — set before building nodes
+_active_uid: str = ""
+
+
+def _set_uid(u: str) -> str:
+    global _active_uid
+    _active_uid = u
+    return u
+
+
+def _node_simple(
+    uid: str,
+    x: float,
+    y: float,
+    w: float,
+    h: float,
+    label: str,
+    sub: str = "",
+    *,
+    variant: str = "cream",
+    primary: bool = False,
+    delay: float = 0,
+) -> str:
+    cls = "viz-node viz-fade-slide" + (" viz-pulse" if primary else "")
+    style = f' style="animation-delay:{delay}s"' if delay else ""
+    if variant == "solid":
+        rect = f'fill="{FOREST}"'
+        stroke = ""
+        tf, sf = CREAM, CREAM
+    elif variant == "primary":
+        rect = f'fill="url(#{uid}-card)"'
+        stroke = ""
+        tf, sf = CREAM, CREAM
+    elif variant == "muted":
+        rect = f'fill="{BG_ALT}"'
+        stroke = f' stroke="{MUTED}" stroke-width="1.2"'
+        tf, sf = MUTED, MUTED
+    else:
+        rect = f'fill="{CREAM}"'
+        stroke = f' stroke="{FOREST}" stroke-width="1.2"'
+        tf, sf = FOREST, MUTED
+    ty = y + (h / 2 - 2 if sub else h / 2 + 4)
+    sub_el = (
+        f'<text x="{x + w / 2}" y="{y + h / 2 + 12}" text-anchor="middle" fill="{sf}" '
+        f'font-size="10" font-family="{FONT}">{_esc(sub)}</text>'
+        if sub
+        else ""
+    )
+    fw = ' font-weight="600"' if variant in ("solid", "primary") else ""
+    return f'''          <g class="{cls}"{style}>
+            <rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" {rect} {stroke}/>
+            <text x="{x + w / 2}" y="{ty}" text-anchor="middle" fill="{tf}" font-size="11"{fw} font-family="{FONT}">{_esc(label)}</text>
+            {sub_el}
+          </g>'''
+
+
+def _chip(x: float, y: float, text: str, *, accent: bool = True) -> str:
+    fill = FOREST if accent else BG_ALT
+    fg = CREAM if accent else FOREST
+    stroke = "" if accent else f' stroke="{MUTED}" stroke-width="1"'
+    return f'''          <g class="viz-fade-slide">
+            <rect x="{x}" y="{y}" width="{len(text) * 6.2 + 20}" height="22" rx="11" fill="{fill}"{stroke}/>
+            <text x="{x + (len(text) * 6.2 + 20) / 2}" y="{y + 15}" text-anchor="middle" fill="{fg}" font-size="10" font-weight="600" font-family="{FONT}">{_esc(text)}</text>
+          </g>'''
+
+
+def _line(x1, y1, x2, y2, uid: str, *, dashed: bool = False, muted: bool = False, animate: bool = True) -> str:
+    cls = "viz-draw" if animate else ""
+    dash = ' stroke-dasharray="5 4"' if dashed else ""
+    stroke = MUTED if muted else FOREST
+    marker = f"url(#{uid}-arrm)" if muted else f"url(#{uid}-arr)"
+    return (
+        f'          <line class="{cls}" x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" '
+        f'stroke="{stroke}" stroke-width="1.5"{dash} marker-end="{marker}"/>'
+    )
+
+
+def _col_label(x: float, y: float, text: str) -> str:
+    return (
+        f'<text x="{x}" y="{y}" fill="{MUTED}" font-size="10" letter-spacing="0.08em" '
+        f'font-weight="600" font-family="{FONT}">{_esc(text.upper())}</text>'
+    )
+
+
+def _loop(uid: str, cx: float, cy: float, r: float, labels: tuple[str, str, str, str]) -> str:
+    nodes = []
+    lines = []
+    n = 4
+    for i, lab in enumerate(labels):
+        ang = -math.pi / 2 + i * (2 * math.pi / n)
+        nx = cx + r * math.cos(ang)
+        ny = cy + r * math.sin(ang)
+        nodes.append(_node_simple(uid, nx - 52, ny - 18, 104, 36, lab, variant="cream", delay=i * 0.12))
+        ang2 = -math.pi / 2 + (i + 0.85) * (2 * math.pi / n)
+        mx = cx + (r + 8) * math.cos(ang2)
+        my = cy + (r + 8) * math.sin(ang2)
+        ang1 = -math.pi / 2 + (i + 0.15) * (2 * math.pi / n)
+        mx2 = cx + (r + 8) * math.cos(ang1)
+        my2 = cy + (r + 8) * math.sin(ang1)
+    arc_paths = []
+    for i in range(n):
+        a0 = -90 + i * 90
+        a1 = a0 + 70
+        x0 = cx + (r - 10) * math.cos(math.radians(a0 + 8))
+        y0 = cy + (r - 10) * math.sin(math.radians(a0 + 8))
+        x1 = cx + (r - 10) * math.cos(math.radians(a1))
+        y1 = cy + (r - 10) * math.sin(math.radians(a1))
+        arc_paths.append(
+            f'          <path class="viz-draw" d="M {x0:.1f} {y0:.1f} A {r-10} {r-10} 0 0 1 {x1:.1f} {y1:.1f}" '
+            f'fill="none" stroke="{FOREST}" stroke-width="1.4" marker-end="url(#{uid}-arr)"/>'
+        )
+    return "\n".join(arc_paths + nodes)
+
+
+# --- Weather ---
+
+def _weather_hero():
+    uid = _set_uid(_uid("wx"))
+    body = f"""
+          {_col_label(48, 52, "New path")}
+          {_node_simple(uid, 24, 58, 118, 40, "Past weather", variant="cream", delay=0)}
+          {_line(142, 78, 178, 78, uid)}
+          {_node_simple(uid, 178, 58, 96, 40, "AI model", variant="solid", delay=0.08)}
+          {_line(274, 78, 310, 78, uid)}
+          {_node_simple(uid, 310, 52, 132, 52, "Fast forecast", "minutes", variant="primary", primary=True, delay=0.16)}
+          {_chip(448, 66, "minutes")}
+          {_col_label(48, 142, "Classic path")}
+          {_node_simple(uid, 24, 148, 118, 40, "Supercomputer", variant="muted", delay=0.2)}
+          {_line(142, 168, 310, 168, uid, dashed=True, muted=True)}
+          {_node_simple(uid, 310, 144, 132, 52, "Physics forecast", "hours", variant="muted", delay=0.28)}
+          {_chip(448, 162, "hours", accent=False)}
+          <text x="320" y="218" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Same skill bar on benchmarks; very different run time</text>"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 240", uid, body, "Two ways to forecast weather"),
+        "New AI models learn from reanalysis archives and produce forecasts in minutes. "
+        "Classical physics models on supercomputers still set quality bars, but they take hours.",
+    )
+
+
+def _weather_mid():
+    uid = _set_uid(_uid("wx"))
+    body = f"""
+          {_node_simple(uid, 28, 72, 88, 44, "ERA5 data", variant="cream", delay=0)}
+          {_line(116, 94, 148, 94, uid)}
+          {_node_simple(uid, 148, 72, 96, 44, "Pretrain", variant="cream", delay=0.1)}
+          {_line(244, 94, 276, 94, uid)}
+          {_node_simple(uid, 276, 72, 96, 44, "Fine-tune", variant="solid", delay=0.2)}
+          {_line(372, 94, 404, 94, uid)}
+          {_node_simple(uid, 404, 72, 100, 44, "Forecast", variant="primary", primary=True, delay=0.3)}
+          <g class="viz-fade-slide" style="animation-delay:.4s">
+            <path d="M520 118 Q560 72 600 118" fill="none" stroke="{SOFT}" stroke-width="1.2" opacity="0.5"/>
+            <path d="M520 130 Q560 170 600 130" fill="none" stroke="{SOFT}" stroke-width="1.2" opacity="0.35"/>
+            <path d="M520 124 Q560 100 600 124" fill="none" stroke="{FOREST}" stroke-width="1.6" opacity="0.7"/>
+            <text x="560" y="200" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Ensemble fan</text>
           </g>
-          <g class="viz-fade-slide" style="animation-delay:.35s">
-            <rect x="24" y="138" width="120" height="44" rx="10" fill="#f0e8cc" stroke="#5a6a5c" stroke-width="1.2"/>
-            <text x="84" y="164" text-anchor="middle" fill="#5a6a5c" font-size="11" font-family="Outfit,sans-serif">Supercomputer</text>
-            <line x1="144" y1="160" x2="332" y2="160" stroke="#5a6a5c" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#w-arrow)"/>
-            <rect x="332" y="134" width="130" height="52" rx="10" fill="#f4f0e4" stroke="#5a6a5c" stroke-width="1.2"/>
-            <text x="397" y="158" text-anchor="middle" fill="#5a6a5c" font-size="11" font-family="Outfit,sans-serif">Classical forecast</text>
-            <text x="397" y="174" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">hours</text>
-          </g>
-          <text x="520" y="100" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">New path</text>
-          <text x="520" y="186" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">Old path</text>
-        </svg>''',
-        "New AI models learn from past weather and produce forecasts in minutes. Traditional physics models on supercomputers still matter, but they take much longer.",
-    ),
-    "aerospace": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="220" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">From satellite pixels to useful maps</text>
-          <g class="viz-float">
-            <rect x="40" y="55" width="90" height="50" rx="8" fill="#f0e8cc" stroke="#204028"/>
-            <text x="85" y="78" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Optical</text>
-            <text x="85" y="92" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">satellite</text>
-          </g>
-          <g class="viz-float" style="animation-delay:.4s">
-            <rect x="40" y="120" width="90" height="50" rx="8" fill="#f0e8cc" stroke="#204028"/>
-            <text x="85" y="143" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Radar</text>
-            <text x="85" y="157" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">(SAR)</text>
-          </g>
-          <line class="viz-draw" x1="130" y1="80" x2="200" y2="110" stroke="#204028" stroke-width="2"/>
-          <line class="viz-draw" x1="130" y1="145" x2="200" y2="115" stroke="#204028" stroke-width="2"/>
-          <rect class="viz-pulse" x="200" y="88" width="120" height="54" rx="12" fill="#204028"/>
-          <text x="260" y="112" text-anchor="middle" fill="#f0e8cc" font-size="11" font-weight="600" font-family="Outfit,sans-serif">One flexible</text>
-          <text x="260" y="128" text-anchor="middle" fill="#f0e8cc" font-size="11" font-family="Outfit,sans-serif">AI model</text>
-          <line class="viz-draw" x1="320" y1="115" x2="380" y2="115" stroke="#204028" stroke-width="2"/>
-          <g class="viz-fade-slide">
-            <rect x="380" y="52" width="100" height="36" rx="8" fill="#2d5640"/>
-            <text x="430" y="74" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">Floods</text>
-            <rect x="380" y="96" width="100" height="36" rx="8" fill="#2d5640"/>
-            <text x="430" y="118" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">Crops</text>
-            <rect x="380" y="140" width="100" height="36" rx="8" fill="#2d5640"/>
-            <text x="430" y="162" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">Emissions</text>
-          </g>
-        </svg>''',
-        "Foundation models train on many satellite types, then adapt quickly to tasks like flood mapping, crop monitoring, or emissions tracking.",
-    ),
-    "materials": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="220" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Cement emissions: two routes</text>
-          <rect x="48" y="50" width="240" height="140" rx="12" fill="#f4f0e4" stroke="#5a6a5c" stroke-width="1.2"/>
-          <text x="168" y="78" text-anchor="middle" fill="#5a6a5c" font-size="12" font-weight="600" font-family="Outfit,sans-serif">Limestone cement</text>
-          <ellipse class="viz-pulse" cx="168" cy="120" rx="55" ry="28" fill="none" stroke="#8a7060" stroke-width="1.5" opacity=".6"/>
-          <ellipse cx="168" cy="120" rx="35" ry="18" fill="#8a7060" opacity=".35"/>
-          <text x="168" y="125" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">CO₂ from chemistry</text>
-          <rect x="352" y="50" width="240" height="140" rx="12" fill="#f0e8cc" stroke="#204028" stroke-width="1.2"/>
-          <text x="472" y="78" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" font-family="Outfit,sans-serif">New rock &amp; recycle</text>
-          <circle cx="420" cy="125" r="22" fill="#204028" opacity=".25"/>
-          <circle cx="472" cy="115" r="18" fill="#2d5640" opacity=".35"/>
-          <circle cx="520" cy="130" r="20" fill="#204028" opacity=".2"/>
-          <text x="472" y="168" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Smaller CO₂ footprint</text>
-        </svg>''',
-        "Most cement CO₂ comes from heating limestone. Labs are testing rock blends without carbonate and ways to recycle old concrete to cut those chemistry emissions.",
-    ),
-    "energy": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="220" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Balancing sun and wind on the grid</text>
-          <g class="viz-float">
-            <circle cx="80" cy="100" r="28" fill="#f0e8cc" stroke="#204028"/>
-            <text x="80" y="105" text-anchor="middle" fill="#204028" font-size="18">☀</text>
-          </g>
-          <g class="viz-float" style="animation-delay:.3s">
-            <path d="M140 115 Q155 85 175 100 Q195 70 210 115" fill="none" stroke="#204028" stroke-width="2"/>
-            <text x="175" y="135" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">wind</text>
-          </g>
-          <line class="viz-draw" x1="220" y1="100" x2="270" y2="100" stroke="#204028" stroke-width="2"/>
-          <rect x="270" y="72" width="100" height="56" rx="10" fill="#204028"/>
-          <text x="320" y="96" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">Short battery</text>
-          <text x="320" y="112" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">hours</text>
-          <line class="viz-draw" x1="370" y1="100" x2="420" y2="100" stroke="#204028" stroke-width="2"/>
-          <rect class="viz-pulse" x="420" y="68" width="110" height="64" rx="10" fill="#2d5640"/>
-          <text x="475" y="94" text-anchor="middle" fill="#f0e8cc" font-size="10" font-weight="600" font-family="Outfit,sans-serif">Long storage</text>
-          <text x="475" y="110" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">days to weeks</text>
-          <line class="viz-draw" x1="530" y1="100" x2="580" y2="100" stroke="#204028" stroke-width="2"/>
-          <rect x="560" y="85" width="60" height="30" rx="6" fill="#f0e8cc" stroke="#204028"/>
-          <text x="590" y="104" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Grid</text>
-          <text x="320" y="175" text-anchor="middle" fill="#5a6a5c" font-size="11" font-family="Outfit,sans-serif">Steady power through nights and calm weeks</text>
-        </svg>''',
-        "Solar and wind vary by hour and season. Short batteries cover evenings; long-duration storage helps keep clean grids reliable over multi-day gaps.",
-    ),
-    "manufacturing": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="200" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Factory heat: old vs new</text>
-          <rect x="40" y="55" width="250" height="115" rx="12" fill="#f4f0e4" stroke="#5a6a5c"/>
-          <text x="165" y="82" text-anchor="middle" fill="#5a6a5c" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Fossil flame</text>
-          <path d="M145 105 Q165 85 185 105 Q205 80 225 105" fill="#c06040" opacity=".7"/>
-          <text x="185" y="130" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">gas or coal burn</text>
-          <rect x="95" y="140" width="140" height="22" rx="4" fill="#5a6a5c" opacity=".3"/>
-          <text x="165" y="155" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">factory</text>
-          <rect x="350" y="55" width="250" height="115" rx="12" fill="#f0e8cc" stroke="#204028"/>
-          <text x="475" y="82" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Electric &amp; solar heat</text>
-          <circle class="viz-pulse" cx="430" cy="108" r="16" fill="#204028" opacity=".2"/>
-          <text x="430" y="113" text-anchor="middle" fill="#204028" font-size="14">⚡</text>
-          <circle class="viz-float" cx="520" cy="100" r="14" fill="#f0e8cc" stroke="#204028"/>
-          <text x="520" y="105" text-anchor="middle" fill="#204028" font-size="12">☀</text>
-          <rect x="405" y="140" width="140" height="22" rx="4" fill="#204028" opacity=".25"/>
-          <text x="475" y="155" text-anchor="middle" fill="#204028" font-size="9" font-family="Outfit,sans-serif">same factory, cleaner heat</text>
-        </svg>''',
-        "Much factory carbon comes from burning fuel for heat. Electrification and solar-driven reactors aim to deliver the same temperatures without combustion.",
-    ),
-    "built": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="240" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Carbon in a building's life</text>
-          <rect x="220" y="48" width="200" height="130" rx="6" fill="#f0e8cc" stroke="#204028" stroke-width="1.5"/>
-          <polygon points="220,48 320,18 420,48" fill="#204028" opacity=".15" stroke="#204028"/>
-          <line x1="270" y1="48" x2="270" y2="178" stroke="#204028" stroke-width="1" opacity=".4"/>
-          <line x1="370" y1="48" x2="370" y2="178" stroke="#204028" stroke-width="1" opacity=".4"/>
-          <rect x="48" y="70" width="140" height="90" rx="10" fill="#2d5640" class="viz-pulse"/>
-          <text x="118" y="100" text-anchor="middle" fill="#f0e8cc" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Embodied</text>
-          <text x="118" y="118" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">steel, concrete,</text>
-          <text x="118" y="132" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">materials</text>
-          <line class="viz-draw" x1="188" y1="115" x2="218" y2="115" stroke="#204028" stroke-width="2"/>
-          <rect x="452" y="70" width="140" height="90" rx="10" fill="#204028" class="viz-float"/>
-          <text x="522" y="100" text-anchor="middle" fill="#f0e8cc" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Operating</text>
-          <text x="522" y="118" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">heat, power,</text>
-          <text x="522" y="132" text-anchor="middle" fill="#f0e8cc" font-size="9" font-family="Outfit,sans-serif">daily use</text>
-          <line class="viz-draw" x1="422" y1="115" x2="452" y2="115" stroke="#204028" stroke-width="2"/>
-          <line x1="120" y1="200" x2="520" y2="200" stroke="#5a6a5c" stroke-width="2"/>
-          <circle class="viz-float" cx="320" cy="200" r="10" fill="#204028"/>
-          <text x="320" y="225" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">Balance shifts as grids get cleaner</text>
-        </svg>''',
-        "Embodied carbon is locked in at construction. Operating carbon comes from years of energy use. On cleaner grids, materials often matter more.",
-    ),
-    "mobility": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="220" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Two gates to EV adoption</text>
-          <rect x="240" y="55" width="160" height="50" rx="10" fill="#204028"/>
-          <text x="320" y="85" text-anchor="middle" fill="#f0e8cc" font-size="12" font-family="Outfit,sans-serif">Electric car</text>
-          <line class="viz-draw" x1="280" y1="105" x2="200" y2="140" stroke="#204028" stroke-width="2"/>
-          <line class="viz-draw" x1="360" y1="105" x2="440" y2="140" stroke="#204028" stroke-width="2"/>
-          <rect class="viz-pulse" x="100" y="140" width="200" height="56" rx="12" fill="#f0e8cc" stroke="#204028" stroke-width="1.2"/>
-          <text x="200" y="165" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Charger reliability</text>
-          <text x="200" y="182" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">works when you need it</text>
-          <rect class="viz-pulse" x="340" y="140" width="200" height="56" rx="12" fill="#f0e8cc" stroke="#204028" stroke-width="1.2" style="animation-delay:.25s"/>
-          <text x="440" y="165" text-anchor="middle" fill="#204028" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Loan terms</text>
-          <text x="440" y="182" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">affordable financing</text>
-        </svg>''',
-        "Better batteries help, but drivers also need chargers that work and loans that match gasoline-car terms.",
-    ),
-    "industrial": viz_figure(
-        '''        <svg aria-hidden="true" class="viz-svg" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
-          <rect width="640" height="240" fill="#faf7ef" rx="8"/>
-          <text x="320" y="28" text-anchor="middle" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Hard industries need a playbook</text>
-          <g class="viz-steps">
-            <rect x="32" y="55" width="88" height="48" rx="8" fill="#f0e8cc" stroke="#204028"/>
-            <text x="76" y="82" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Cement</text>
-            <rect x="32" y="115" width="88" height="48" rx="8" fill="#f0e8cc" stroke="#204028"/>
-            <text x="76" y="142" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Steel</text>
-            <rect x="32" y="175" width="88" height="48" rx="8" fill="#f0e8cc" stroke="#204028"/>
-            <text x="76" y="202" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Chemicals</text>
-          </g>
-          <line class="viz-draw" x1="120" y1="110" x2="180" y2="110" stroke="#204028" stroke-width="2"/>
-          <rect class="viz-pulse" x="180" y="78" width="140" height="64" rx="12" fill="#204028"/>
-          <text x="250" y="105" text-anchor="middle" fill="#f0e8cc" font-size="11" font-weight="600" font-family="Outfit,sans-serif">Decarbonization</text>
-          <text x="250" y="122" text-anchor="middle" fill="#f0e8cc" font-size="11" font-family="Outfit,sans-serif">playbook</text>
-          <line class="viz-draw" x1="320" y1="110" x2="360" y2="110" stroke="#204028" stroke-width="2"/>
-          <g class="viz-fade-slide">
-            <rect x="360" y="52" width="115" height="40" rx="8" fill="#2d5640"/>
-            <text x="417" y="76" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">Clean heat</text>
-            <rect x="360" y="100" width="115" height="40" rx="8" fill="#2d5640"/>
-            <text x="417" y="124" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">New materials</text>
-            <rect x="360" y="148" width="115" height="40" rx="8" fill="#2d5640"/>
-            <text x="417" y="172" text-anchor="middle" fill="#f0e8cc" font-size="10" font-family="Outfit,sans-serif">Cost tools</text>
-          </g>
-          <rect x="500" y="70" width="120" height="80" rx="10" fill="#f4f0e4" stroke="#5a6a5c"/>
-          <text x="560" y="100" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">Public evidence</text>
-          <text x="560" y="118" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">for plant</text>
-          <text x="560" y="136" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">decisions</text>
-        </svg>''',
-        "Cement, steel, and chemicals won't decarbonize from one invention. Research is bundling heat options, material swaps, and cost curves into playbooks operators can use.",
-    ),
+          <rect x="28" y="168" width="584" height="8" rx="4" fill="{BG_ALT}"/>
+          <rect x="28" y="168" width="420" height="8" rx="4" fill="{SOFT}" opacity="0.35"/>"""
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 220", uid, body, "From archive to operational forecast"),
+        "Foundation-model weather stacks pretrain on ERA5-class archives, fine-tune for tasks, "
+        "then roll out deterministic or ensemble forecasts from a shared checkpoint.",
+    )
+
+
+def _weather_loop():
+    uid = _set_uid(_uid("wx"))
+    labels = ("Cost falls", "More runs", "GPU strain", "Better verification")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels), "When forecasts get cheaper"),
+        "Cheaper inference invites more experiments and ensembles, which strains data and compute "
+        "unless verification and open benchmarks keep pace.",
+    )
+
+
+# --- Aerospace ---
+
+def _aerospace_hero():
+    uid = _set_uid(_uid("ae"))
+    body = f"""
+          {_node_simple(uid, 36, 68, 82, 46, "Optical", variant="cream", delay=0)}
+          {_node_simple(uid, 36, 128, 82, 46, "SAR", variant="cream", delay=0.08)}
+          <line class="viz-draw" x1="118" y1="91" x2="168" y2="110" stroke="{FOREST}" stroke-width="1.5"/>
+          <line class="viz-draw" x1="118" y1="151" x2="168" y2="118" stroke="{FOREST}" stroke-width="1.5"/>
+          {_node_simple(uid, 168, 88, 124, 52, "Flexible AI", variant="primary", primary=True, delay=0.16)}
+          {_line(292, 114, 332, 114, uid)}
+          {_node_simple(uid, 332, 68, 96, 36, "Floods", variant="solid", delay=0.22)}
+          {_node_simple(uid, 332, 112, 96, 36, "Crops", variant="solid", delay=0.28)}
+          {_node_simple(uid, 332, 156, 96, 36, "Emissions", variant="solid", delay=0.34)}"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 220", uid, body, "From satellite pixels to maps"),
+        "Foundation models train on optical and SAR streams, then adapt quickly to flood, crop, and emissions products.",
+    )
+
+
+def _aerospace_mid():
+    uid = _set_uid(_uid("ae"))
+    bands = ["B1", "B2", "B3", "B4", "B5", "SAR"]
+    band_nodes = "\n".join(
+        _node_simple(uid, 36 + i * 52, 78, 44, 32, b, variant="cream", delay=i * 0.06)
+        for i, b in enumerate(bands)
+    )
+    body = f"""
+          {band_nodes}
+          {_line(348, 94, 388, 94, uid)}
+          {_node_simple(uid, 388, 72, 120, 48, "One encoder", variant="primary", primary=True, delay=0.4)}
+          {_line(508, 96, 548, 96, uid)}
+          {_node_simple(uid, 548, 78, 72, 40, "Task head", variant="solid", delay=0.48)}
+          <text x="320" y="168" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Any-sensor: subsample bands at train time; embed metadata at inference</text>"""
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 200", uid, body, "Many sensors, one backbone"),
+        "Any-sensor encoders accept arbitrary band combinations so one pretrained model serves many missions.",
+    )
+
+
+def _aerospace_loop():
+    uid = _set_uid(_uid("ae"))
+    labels = ("Cheaper EO AI", "More products", "Label limits", "Downlink strain")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Lower inference cost expands downstream products, which can outrun labeling bandwidth and downlink capacity.",
+    )
+
+
+# --- Materials ---
+
+def _materials_hero():
+    uid = _set_uid(_uid("mt"))
+    body = f"""
+          <rect x="40" y="56" width="260" height="148" rx="14" fill="{BG_ALT}" stroke="{MUTED}" stroke-width="1.2"/>
+          {_col_label(168, 78, "Before")}
+          <text x="170" y="102" text-anchor="middle" fill="{MUTED}" font-size="11" font-weight="600" font-family="{FONT}">Limestone cement</text>
+          <ellipse cx="170" cy="138" rx="48" ry="26" fill="none" stroke="{MUTED}" stroke-width="1.2" opacity="0.6"/>
+          <text x="170" y="142" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">CO₂ from calcination</text>
+          <rect x="340" y="56" width="260" height="148" rx="14" fill="{CREAM}" stroke="{FOREST}" stroke-width="1.2"/>
+          {_col_label(470, 78, "After")}
+          <text x="470" y="102" text-anchor="middle" fill="{FOREST}" font-size="11" font-weight="600" font-family="{FONT}">New rock and recycle</text>
+          <circle cx="420" cy="140" r="18" fill="{SOFT}" opacity="0.35"/>
+          <circle cx="470" cy="128" r="22" fill="{FOREST}" opacity="0.25"/>
+          <circle cx="520" cy="145" r="16" fill="{SOFT}" opacity="0.3"/>
+          <text x="470" y="178" text-anchor="middle" fill="{FOREST}" font-size="10" font-family="{FONT}">Smaller process CO₂</text>"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 230", uid, body, "Cement emissions: two routes"),
+        "Most cement CO₂ comes from limestone chemistry, not fuel alone. Alternatives swap feedstock or recycle clinker.",
+    )
+
+
+def _materials_mid():
+    uid = _set_uid(_uid("mt"))
+    body = f"""
+          {_col_label(100, 58, "Conventional")}
+          {_node_simple(uid, 48, 68, 88, 40, "Quarry", variant="cream", delay=0)}
+          {_line(136, 88, 168, 88, uid)}
+          {_node_simple(uid, 168, 68, 72, 40, "Kiln", variant="cream", delay=0.1)}
+          {_line(240, 88, 272, 88, uid)}
+          {_node_simple(uid, 272, 68, 88, 40, "Clinker", variant="muted", delay=0.2)}
+          <rect x="368" y="74" width="56" height="22" rx="11" fill="{MUTED}" opacity="0.2"/>
+          <text x="396" y="89" text-anchor="middle" fill="{MUTED}" font-size="9" font-weight="600" font-family="{FONT}">CO₂</text>
+          {_col_label(420, 130, "Alternative path")}
+          {_node_simple(uid, 360, 140, 100, 40, "Igneous feed", variant="cream", delay=0.25)}
+          {_line(460, 160, 492, 160, uid)}
+          {_node_simple(uid, 492, 140, 100, 40, "Electric recycle", variant="primary", primary=True, delay=0.32)}"""
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 210", uid, body, "Process steps and swap-in paths"),
+        "Researchers map quarry-kiln-clinker emissions while testing carbonate-free feed and electrified recycling.",
+    )
+
+
+def _materials_loop():
+    uid = _set_uid(_uid("mt"))
+    labels = ("Cheaper binders", "More volume", "Supply gaps", "Standards lag")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Lower-cost green binders can raise construction demand before supply chains and codes catch up.",
+    )
+
+
+# --- Energy ---
+
+def _energy_hero():
+    uid = _set_uid(_uid("en"))
+    body = f"""
+          <circle cx="72" cy="108" r="26" fill="{CREAM}" stroke="{FOREST}" stroke-width="1.2"/>
+          <circle cx="72" cy="108" r="14" fill="{FOREST}" opacity="0.15"/>
+          <text x="72" y="112" text-anchor="middle" fill="{FOREST}" font-size="10" font-weight="600" font-family="{FONT}">Sun</text>
+          <path d="M130 118 Q150 88 172 108 Q192 78 212 118" fill="none" stroke="{FOREST}" stroke-width="1.6"/>
+          <text x="172" y="138" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Wind</text>
+          {_line(220, 108, 258, 108, uid)}
+          {_node_simple(uid, 258, 88, 98, 44, "Short storage", "hours", variant="solid", delay=0.1)}
+          {_line(356, 110, 394, 110, uid)}
+          {_node_simple(uid, 394, 84, 110, 52, "Long storage", "days–weeks", variant="primary", primary=True, delay=0.2)}
+          {_line(504, 110, 542, 110, uid)}
+          {_node_simple(uid, 542, 92, 72, 40, "Grid", variant="cream", delay=0.3)}"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 210", uid, body, "Balancing variable renewables"),
+        "Solar and wind need layered storage: short batteries for evenings, long-duration assets for calm weeks.",
+    )
+
+
+def _energy_mid():
+    uid = _set_uid(_uid("en"))
+    bars = [
+        (80, 120, 140, "4 h", "Lithium"),
+        (240, 100, 160, "10–20 h", "LDES"),
+        (420, 72, 200, "Seasonal", "H₂ / firm"),
+    ]
+    bar_svg = ""
+    for i, (x, y, w, label, sub) in enumerate(bars):
+        bar_svg += f'''
+          <g class="viz-fade-slide" style="animation-delay:{i * 0.12}s">
+            <rect x="{x}" y="{y}" width="{w}" height="{180 - y}" rx="8" fill="url(#{uid}-card)" opacity="{0.35 + i * 0.2}"/>
+            <text x="{x + w/2}" y="{y - 8}" text-anchor="middle" fill="{FOREST}" font-size="11" font-weight="600" font-family="{FONT}">{label}</text>
+            <text x="{x + w/2}" y="{200}" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">{sub}</text>
+          </g>'''
+    body = bar_svg + f'<text x="320" y="52" text-anchor="middle" fill="{MUTED}" font-size="10" letter-spacing="0.06em" font-family="{FONT}">DISPATCH DURATION SPECTRUM</text>'
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 220", uid, body),
+        "Grid models show different optimal storage durations by region: hours for solar peaks, multi-day for wind-heavy systems.",
+    )
+
+
+def _energy_loop():
+    uid = _set_uid(_uid("en"))
+    labels = ("Cheap clean power", "Electrification", "Interconnect queue", "AI load")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Cheaper renewables accelerate electrification and data-center load, stressing interconnection and planning.",
+    )
+
+
+# --- Manufacturing ---
+
+def _manufacturing_hero():
+    uid = _set_uid(_uid("mf"))
+    body = f"""
+          <rect x="36" y="58" width="268" height="130" rx="14" fill="{BG_ALT}" stroke="{MUTED}" stroke-width="1.2"/>
+          {_col_label(170, 78, "Old")}
+          <path d="M120 118 Q150 92 180 118 Q210 88 240 118" fill="none" stroke="#8a6050" stroke-width="2" opacity="0.55"/>
+          <text x="170" y="142" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Fossil flame heat</text>
+          <rect x="120" y="152" width="100" height="24" rx="6" fill="{MUTED}" opacity="0.25"/>
+          <rect x="336" y="58" width="268" height="130" rx="14" fill="{CREAM}" stroke="{FOREST}" stroke-width="1.2"/>
+          {_col_label(470, 78, "New")}
+          <rect x="400" y="108" width="36" height="36" rx="8" fill="{FOREST}" opacity="0.2"/>
+          <text x="418" y="131" text-anchor="middle" fill="{FOREST}" font-size="10" font-weight="600" font-family="{FONT}">E</text>
+          <circle cx="490" cy="126" r="20" fill="{CREAM}" stroke="{FOREST}"/>
+          <circle cx="490" cy="126" r="8" fill="{FOREST}" opacity="0.3"/>
+          <text x="470" y="158" text-anchor="middle" fill="{FOREST}" font-size="10" font-family="{FONT}">Electric and solar heat</text>"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 210", uid, body, "Factory heat: old vs new"),
+        "Industrial decarbonization targets high-temperature heat currently supplied by combustion.",
+    )
+
+
+def _manufacturing_mid():
+    uid = _set_uid(_uid("mf"))
+    layers = [("Efficiency", 0.22), ("Electrify", 0.28), ("Low-carbon fuels", 0.26), ("CCUS", 0.24)]
+    y0, h_total = 70, 120
+    stack = ""
+    y = y0 + h_total
+    for i, (name, frac) in enumerate(layers):
+        lh = h_total * frac
+        y -= lh
+        stack += f'''
+          <g class="viz-fade-slide" style="animation-delay:{i * 0.1}s">
+            <rect x="200" y="{y}" width="240" height="{lh}" fill="{SOFT if i % 2 else FOREST}" opacity="{0.35 + i * 0.15}"/>
+            <text x="420" y="{y + lh/2 + 4}" fill="{FOREST}" font-size="10" font-weight="600" font-family="{FONT}">{name}</text>
+          </g>'''
+    body = stack + f'<text x="320" y="52" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Abatement stack (illustrative sequencing)</text>'
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 220", uid, body),
+        "NSF and university work sequences efficiency, electrification, fuels, and capture by cost and temperature needs.",
+    )
+
+
+def _manufacturing_loop():
+    uid = _set_uid(_uid("mf"))
+    labels = ("Cheaper heat tech", "More output", "Grid gaps", "Data gaps")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Affordable process heat can expand production before grid and metering infrastructure keep pace.",
+    )
+
+
+# --- Built ---
+
+def _built_hero():
+    uid = _set_uid(_uid("bu"))
+    body = f"""
+          <line x1="120" y1="168" x2="520" y2="168" stroke="{MUTED}" stroke-width="2"/>
+          <polygon points="280,58 320,38 360,58" fill="{FOREST}" opacity="0.12" stroke="{FOREST}"/>
+          <rect x="280" y="58" width="80" height="110" fill="{CREAM}" stroke="{FOREST}" stroke-width="1.2"/>
+          <circle class="viz-pulse" cx="320" cy="178" r="12" fill="{FOREST}"/>
+          <rect x="48" y="88" width="130" height="72" rx="12" fill="url(#{uid}-card)"/>
+          <text x="113" y="118" text-anchor="middle" fill="{CREAM}" font-size="11" font-weight="600" font-family="{FONT}">Embodied</text>
+          <text x="113" y="134" text-anchor="middle" fill="{CREAM}" font-size="9" font-family="{FONT}">materials</text>
+          <rect x="462" y="88" width="130" height="72" rx="12" fill="{FOREST}"/>
+          <text x="527" y="118" text-anchor="middle" fill="{CREAM}" font-size="11" font-weight="600" font-family="{FONT}">Operating</text>
+          <text x="527" y="134" text-anchor="middle" fill="{CREAM}" font-size="9" font-family="{FONT}">energy use</text>
+          <text x="320" y="210" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Scale tips as grids decarbonize</text>"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 230", uid, body, "Embodied vs operating carbon"),
+        "Whole-life metrics weigh upfront material carbon against decades of operational emissions.",
+    )
+
+
+def _built_mid():
+    uid = _set_uid(_uid("bu"))
+    stages = [("A1–A3", 48), ("Use phase", 200), ("End of life", 352)]
+    stage_svg = ""
+    for i, (name, x) in enumerate(stages):
+        stage_svg += _node_simple(uid, x, 90, 120, 44, name, variant="cream" if i == 0 else ("solid" if i == 1 else "muted"), delay=i * 0.12)
+        if i < 2:
+            stage_svg += _line(x + 120, 112, stages[i + 1][1], 112, uid)
+    body = stage_svg + f'<rect x="48" y="168" width="544" height="10" rx="5" fill="{BG_ALT}"/><rect x="48" y="168" width="200" height="10" rx="5" fill="{SOFT}" opacity="0.5"/>'
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 210", uid, body, "Life-cycle stages"),
+        "Modules A1–A3 often dominate embodied totals; use-phase carbon falls as grids clean up.",
+    )
+
+
+def _built_loop():
+    uid = _set_uid(_uid("bu"))
+    labels = ("Cheap LCA tools", "More claims", "EPD noise", "Trust erodes")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Easier LCA software can flood projects with unverified embodied-carbon claims.",
+    )
+
+
+# --- Mobility ---
+
+def _mobility_hero():
+    uid = _set_uid(_uid("mb"))
+    body = f"""
+          {_node_simple(uid, 240, 56, 160, 44, "Electric vehicle", variant="primary", primary=True, delay=0)}
+          <line class="viz-draw" x1="280" y1="100" x2="180" y2="138" stroke="{FOREST}" stroke-width="1.5"/>
+          <line class="viz-draw" x1="360" y1="100" x2="460" y2="138" stroke="{FOREST}" stroke-width="1.5"/>
+          {_node_simple(uid, 80, 142, 200, 52, "Financing", "loan terms", variant="cream", delay=0.15)}
+          {_node_simple(uid, 360, 142, 200, 52, "Charger uptime", "reliability", variant="cream", delay=0.25)}"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 220", uid, body, "Two gates to adoption"),
+        "Hardware improves, but credit spreads and charger reliability still gate mass adoption.",
+    )
+
+
+def _mobility_mid():
+    uid = _set_uid(_uid("mb"))
+    pct = 78
+    ang = math.pi * (1 - pct / 100)
+    ex = 320 + 100 * math.cos(ang)
+    ey = 160 - 100 * math.sin(ang)
+    body = f"""
+          <text x="320" y="58" text-anchor="middle" fill="{FOREST}" font-size="11" font-weight="600" font-family="{FONT}">Public charging reliability</text>
+          <path d="M120 160 A100 100 0 0 1 520 160" fill="none" stroke="{BG_ALT}" stroke-width="18" stroke-linecap="round"/>
+          <path class="viz-draw" d="M120 160 A100 100 0 0 1 {ex:.1f} {ey:.1f}" fill="none" stroke="{SOFT}" stroke-width="18" stroke-linecap="round"/>
+          <text x="320" y="148" text-anchor="middle" fill="{FOREST}" font-size="28" font-weight="600" font-family="{FONT}">{pct}%</text>
+          <text x="320" y="188" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Successful sessions (estimate)</text>"""
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 210", uid, body),
+        "Review-based estimates suggest roughly one in five public charging attempts still fails.",
+    )
+
+
+def _mobility_loop():
+    uid = _set_uid(_uid("mb"))
+    labels = ("Cheaper EVs", "More charging", "Grid strain", "Uptime risk")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Lower vehicle prices drive charging demand, which stresses grid hosting and maintenance accountability.",
+    )
+
+
+# --- Industrial ---
+
+def _industrial_hero():
+    uid = _set_uid(_uid("in"))
+    sec_svg = "\n".join(
+        _node_simple(uid, 40, 56 + i * 56, 88, 44, name, variant="cream", delay=i * 0.08)
+        for i, name in enumerate(("Cement", "Steel", "Chemicals"))
+    )
+    body = f"""
+          {sec_svg}
+          {_line(128, 110, 188, 110, uid)}
+          {_node_simple(uid, 188, 88, 132, 48, "Playbook", variant="primary", primary=True, delay=0.3)}
+          {_line(320, 112, 360, 112, uid)}
+          {_node_simple(uid, 360, 72, 100, 36, "Heat", variant="solid", delay=0.38)}
+          {_node_simple(uid, 360, 116, 100, 36, "Materials", variant="solid", delay=0.44)}
+          {_node_simple(uid, 360, 160, 100, 36, "Cost tools", variant="solid", delay=0.5)}"""
+    return _figure(
+        "hero",
+        "How it works",
+        _svg("0 0 640 220", uid, body, "Hard industries need a playbook"),
+        "Cement, steel, and chemicals decarbonize through sequenced heat, material, and cost options—not one silver bullet.",
+    )
+
+
+def _industrial_mid():
+    uid = _set_uid(_uid("in"))
+    steps = [("Pilot", 48), ("Cost curve", 220), ("Deploy", 392)]
+    mid = ""
+    for i, (lab, x) in enumerate(steps):
+        mid += _node_simple(uid, x, 92, 120, 44, lab, variant="primary" if i == 1 else "cream", primary=(i == 1), delay=i * 0.12)
+        if i < 2:
+            mid += _line(x + 120, 114, steps[i + 1][1], 114, uid)
+    body = mid + f'''
+          <rect x="48" y="168" width="544" height="6" rx="3" fill="{BG_ALT}"/>
+          <rect x="48" y="168" width="360" height="6" rx="3" fill="{SOFT}" opacity="0.45"/>
+          <text x="320" y="198" text-anchor="middle" fill="{MUTED}" font-size="10" font-family="{FONT}">Evidence before scale</text>'''
+    return _figure(
+        "mid",
+        "Progress",
+        _svg("0 0 640 220", uid, body, "Pilot to deployment"),
+        "University-industry partnerships publish pilots, abatement curves, then deployment thresholds under carbon pricing.",
+    )
+
+
+def _industrial_loop():
+    uid = _set_uid(_uid("in"))
+    labels = ("Cheaper abatement", "Higher output", "MRV gaps", "Infra lag")
+    return _figure(
+        "loop",
+        "The rebound loop",
+        _svg("0 0 640 280", uid, _loop(uid, 320, 148, 92, labels)),
+        "Lower abatement cost can raise production before monitoring and infrastructure verify reductions.",
+    )
+
+
+VIZ_SETS = {
+    "weather": {"hero": _weather_hero(), "mid": _weather_mid(), "loop": _weather_loop()},
+    "aerospace": {"hero": _aerospace_hero(), "mid": _aerospace_mid(), "loop": _aerospace_loop()},
+    "materials": {"hero": _materials_hero(), "mid": _materials_mid(), "loop": _materials_loop()},
+    "energy": {"hero": _energy_hero(), "mid": _energy_mid(), "loop": _energy_loop()},
+    "manufacturing": {"hero": _manufacturing_hero(), "mid": _manufacturing_mid(), "loop": _manufacturing_loop()},
+    "built": {"hero": _built_hero(), "mid": _built_mid(), "loop": _built_loop()},
+    "mobility": {"hero": _mobility_hero(), "mid": _mobility_mid(), "loop": _mobility_loop()},
+    "industrial": {"hero": _industrial_hero(), "mid": _industrial_mid(), "loop": _industrial_loop()},
 }
+
+VIZ = {k: v["hero"] for k, v in VIZ_SETS.items()}
