@@ -135,67 +135,121 @@
             <p>GPU clusters for training and inference grow with every new product layer [<a href="#r9">9</a>][<a href="#r5">5</a>].</p>
           </div>
         </div>
+<p class="chart-section-note">Market outlook charts below combine research benchmarks with published estimates from firms such as McKinsey and Goldman Sachs. Figures are scenario estimates, not forecasts of certainty.</p>
         <div class="chart-grid">
         <figure class="viz viz-chart chart-wrap">
           <p class="viz-label">Forecast wall-clock</p>
-        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="mc37-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="mc30-bg" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="#faf7ef"/>
               <stop offset="100%" stop-color="#f4f0e4"/>
             </linearGradient>
-            <linearGradient id="mc37-bar" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#2d5640"/>
-              <stop offset="100%" stop-color="#204028"/>
-            </linearGradient>
           </defs>
-          <rect width="640" height="300" fill="url(#mc37-bg)" rx="12"/>
-          <text x="320" y="32" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" font-family="Outfit,sans-serif">Inference time (qualitative)</text>
-
-          
-          <line x1="72" y1="52" x2="72" y2="248" stroke="#204028" stroke-width="1" opacity="0.25"/>
-          <text x="66" y="266" text-anchor="end" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Wall-clock (qualitative)</text>
-          
-          <text x="24" y="82" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Classical NWP (supercomputer)</text>
-          <rect x="88" y="90" width="420" height="28" rx="6" fill="#2d5640"/>
-          <text x="516" y="96" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">hours-scale</text>
-          
-          <text x="24" y="142" fill="#204028" font-size="11" font-family="Outfit,sans-serif">AI emulators (GraphCast, FourCastNet)</text>
-          <rect x="88" y="150" width="72" height="28" rx="6" fill="#2d5640"/>
-          <text x="168" y="156" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">minutes-scale</text>
-          <text x="320" y="278" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Not to scale — orders of magnitude faster in reported benchmarks</text>
+          <rect width="640" height="320" fill="url(#mc30-bg)" rx="12"/>
+          <text x="20" y="28" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Inference time (qualitative)</text>
+          <line x1="168" y1="128" x2="620" y2="128" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="147" x2="620" y2="147" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="166" x2="620" y2="166" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="185" x2="620" y2="185" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="204" x2="620" y2="204" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <text x="150" y="152" text-anchor="end" fill="#204028" font-size="11" font-family="Outfit,sans-serif">Classical NWP (supercomputer)</text>
+          <rect x="168" y="138" width="380" height="18" rx="5" fill="#2d5640"/>
+          <text x="556" y="152" fill="#5a6a5c" font-size="11" font-weight="500" font-family="Outfit,sans-serif">hours-scale</text>
+          <text x="150" y="190" text-anchor="end" fill="#204028" font-size="11" font-family="Outfit,sans-serif">AI emulators (GraphCast, FourCastNet)</text>
+          <rect x="168" y="176" width="68" height="18" rx="5" fill="#2d5640"/>
+          <text x="244" y="190" fill="#5a6a5c" font-size="11" font-weight="500" font-family="Outfit,sans-serif">minutes-scale</text>
+          <text x="20" y="308" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">Orders of magnitude faster in reported benchmarks; not to scale.</text>
         </svg>
           <figcaption class="viz-caption">Source: Lam et al., 2023 [<a href="#r2">2</a>]; Pathak et al., 2022 [<a href="#r9">9</a>]. Absolute runtimes vary by hardware and resolution.</figcaption>
         </figure>
         <figure class="viz viz-chart chart-wrap">
           <p class="viz-label">Benchmark skill vs IFS</p>
-        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg">
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="mc38-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="mc31-bg" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="#faf7ef"/>
               <stop offset="100%" stop-color="#f4f0e4"/>
             </linearGradient>
-            <linearGradient id="mc38-bar" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#2d5640"/>
-              <stop offset="100%" stop-color="#204028"/>
-            </linearGradient>
           </defs>
-          <rect width="640" height="300" fill="url(#mc38-bg)" rx="12"/>
-          <text x="320" y="32" text-anchor="middle" fill="#204028" font-size="12" font-weight="600" font-family="Outfit,sans-serif">Deterministic skill (schematic)</text>
-
-          
-          <line x1="100" y1="52" x2="100" y2="220" stroke="#204028" stroke-width="1" opacity="0.25"/>
-          <text x="94" y="238" text-anchor="end" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">Relative skill index</text>
-          <rect x="120" y="88" width="48" height="132" rx="6" fill="#5a6a5c" opacity="0.25"/>
-          <text x="144" y="238" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">IFS baseline</text>
-          <text x="144" y="252" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">index = 1</text>
-          <rect x="280" y="72" width="48" height="148" rx="6" fill="#2d5640"/>
-          <text x="304" y="238" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Leading AI</text>
-          <text x="304" y="252" text-anchor="middle" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">match / beat on many vars</text>
-          <text x="420" y="120" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">WeatherBench2-style</text>
-          <text x="420" y="134" fill="#5a6a5c" font-size="9" font-family="Outfit,sans-serif">comparisons</text>
+          <rect width="640" height="320" fill="url(#mc31-bg)" rx="12"/>
+          <text x="20" y="28" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Deterministic skill (schematic index)</text>
+          <line x1="168" y1="52" x2="620" y2="52" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="108" x2="620" y2="108" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="164" x2="620" y2="164" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="220" x2="620" y2="220" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="276" x2="620" y2="276" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <text x="16" y="164" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif" transform="rotate(-90 16 164)">Relative skill</text>
+          <line x1="168" y1="276" x2="620" y2="276" stroke="#204028" stroke-width="1" opacity="0.2"/>
+          <rect x="326" y="96" width="56" height="180" rx="6" fill="#2d5640"/>
+          <text x="354" y="88" text-anchor="middle" fill="#204028" font-size="10" font-weight="600" font-family="Outfit,sans-serif">1.0</text>
+          <text x="354" y="294" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">IFS baseline</text>
+          <rect x="406" y="87" width="56" height="189" rx="6" fill="#2d5640"/>
+          <text x="434" y="79" text-anchor="middle" fill="#204028" font-size="10" font-weight="600" font-family="Outfit,sans-serif">match / beat</text>
+          <text x="434" y="294" text-anchor="middle" fill="#204028" font-size="10" font-family="Outfit,sans-serif">Leading AI</text>
         </svg>
           <figcaption class="viz-caption">Source: Rasp et al., 2024 [<a href="#r10">10</a>]; Lam et al., 2023 [<a href="#r2">2</a>]; Bi et al., 2023 [<a href="#r3">3</a>].</figcaption>
+        </figure>
+        <figure class="viz viz-chart chart-wrap">
+          <p class="viz-label">          <span class="chart-source">McKinsey</span>
+Space-enabled economy scale</p>
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mc32-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="320" fill="url(#mc32-bg)" rx="12"/>
+          <text x="20" y="28" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Space economy (McKinsey / WEF scenario)</text>
+          <line x1="168" y1="52" x2="620" y2="52" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="108" x2="620" y2="108" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="164" x2="620" y2="164" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="220" x2="620" y2="220" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="276" x2="620" y2="276" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <text x="16" y="164" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif" transform="rotate(-90 16 164)">USD billions</text>
+          <line x1="168" y1="276" x2="620" y2="276" stroke="#204028" stroke-width="1" opacity="0.2"/>
+          <polyline points="168.0,276.0 620.0,52.0" fill="none" stroke="#2d5640" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="168.0" cy="276.0" r="5" fill="#204028"/>
+          <text x="168.0" y="266.0" text-anchor="middle" fill="#204028" font-size="10" font-weight="600" font-family="Outfit,sans-serif">$630B</text>
+          <text x="168.0" y="294" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">2023</text>
+          <circle cx="620.0" cy="52.0" r="5" fill="#204028"/>
+          <text x="620.0" y="42.0" text-anchor="middle" fill="#204028" font-size="10" font-weight="600" font-family="Outfit,sans-serif">$1.8T</text>
+          <text x="620.0" y="294" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">2035</text>
+        </svg>
+          <figcaption class="viz-caption">McKinsey estimate with WEF framing: space-enabled services (including Earth observation, weather data, and climate insights as part of the broader space economy) from about $630B (2023) toward about $1.8T (2035) in a growth scenario [<a href="#r15">15</a>].</figcaption>
+        </figure>
+        <figure class="viz viz-chart chart-wrap chart-wrap--wide">
+          <p class="viz-label">          <span class="chart-source">Goldman Sachs</span>
+Compute power demand (enabling AI weather)</p>
+        <svg aria-hidden="true" class="viz-svg chart-svg" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mc33-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#faf7ef"/>
+              <stop offset="100%" stop-color="#f4f0e4"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="320" fill="url(#mc33-bg)" rx="12"/>
+          <text x="20" y="28" fill="#204028" font-size="13" font-weight="600" font-family="Outfit,sans-serif">Data center power vs 2023 (Goldman Sachs Research)</text>
+          <line x1="168" y1="52" x2="620" y2="52" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="108" x2="620" y2="108" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="164" x2="620" y2="164" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="220" x2="620" y2="220" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <line x1="168" y1="276" x2="620" y2="276" stroke="#204028" stroke-width="1" opacity="0.08"/>
+          <text x="16" y="164" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif" transform="rotate(-90 16 164)">Index (2023 = 100)</text>
+          <line x1="168" y1="276" x2="620" y2="276" stroke="#204028" stroke-width="1" opacity="0.2"/>
+          <polyline points="168.0,276.0 426.3,208.1 620.0,52.0" fill="none" stroke="#2d5640" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="168.0" cy="276.0" r="5" fill="#204028"/>
+          <text x="168.0" y="266.0" text-anchor="middle" fill="#204028" font-size="10" font-weight="600" font-family="Outfit,sans-serif">100</text>
+          <text x="168.0" y="294" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">2023</text>
+          <circle cx="426.3" cy="208.1" r="5" fill="#204028"/>
+          <text x="426.3" y="198.12121212121212" text-anchor="middle" fill="#204028" font-size="10" font-weight="600" font-family="Outfit,sans-serif">+50%</text>
+          <text x="426.3" y="294" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">2027</text>
+          <circle cx="620.0" cy="52.0" r="5" fill="#204028"/>
+          <text x="620.0" y="42.0" text-anchor="middle" fill="#204028" font-size="10" font-weight="600" font-family="Outfit,sans-serif">+165%</text>
+          <text x="620.0" y="294" text-anchor="middle" fill="#5a6a5c" font-size="10" font-family="Outfit,sans-serif">2030</text>
+        </svg>
+          <figcaption class="viz-caption">Goldman Sachs Research forecast: data center power demand growth that underpins large-scale AI weather workloads (indexed schematic; same outlook as hyperscale compute) [<a href="#r16">16</a>].</figcaption>
         </figure>
         </div>
 
@@ -230,7 +284,7 @@
           </ul>
         </div>
           </div>
-          <figcaption class="viz-caption">Illustrative map of notable public companies and startups; not exhaustive. Sources: company sites [<a href="#r15">15</a>][<a href="#r16">16</a>]; operational AI weather [<a href="#r17">17</a>].</figcaption>
+          <figcaption class="viz-caption">Illustrative map of notable public companies and startups; not exhaustive. Sources: company sites [<a href="#r17">17</a>][<a href="#r18">18</a>]; operational AI weather [<a href="#r19">19</a>].</figcaption>
         </figure>
 
         <p>Climate gains from faster forecasts only stick if rebound is managed: open verification, honest uncertainty, and shared obs/reanalysis quality [<a href="#r10">10</a>][<a href="#r6">6</a>][<a href="#r11">11</a>].</p>
@@ -442,9 +496,11 @@
 <li><span id="r12"></span>Lang, S., Hoyer, S., Bishnoi, A., et al. (2024). AIFS-CRPS: Ensemble forecasting using a model trained with a loss function based on the Continuous Ranked Probability Score. <a href="https://arxiv.org/abs/2406.01443">arXiv:2406.01443</a> (ECMWF).</li>
 <li><span id="r13"></span>Jevons, W. S. (1865). <em>The Coal Question: An Inquiry Concerning the Progress of the Nation, and the Probable Exhaustion of Our Coal-Mines</em>. Macmillan. <a href="https://archive.org/details/coalquestionin00jevorich">archive.org</a></li>
 <li><span id="r14"></span>Sorrell, S., Dimitropoulos, J., & Somerville, M. (2009). Empirical estimates of the direct rebound effect: A review. <em>Energy Policy</em>. <a href="https://doi.org/10.1016/j.enpol.2008.11.026">doi:10.1016/j.enpol.2008.11.026</a></li>
-<li><span id="r15"></span>Google DeepMind. GraphCast and WeatherNext. <a href="https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/">deepmind.google</a>; Microsoft Research. Aurora. <a href="https://www.microsoft.com/en-us/research/project/aurora/">microsoft.com/research</a>; NVIDIA. Earth-2. <a href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">nvidia.com</a></li>
-<li><span id="r16"></span>WindBorne Systems. <a href="https://windbornesystems.com/">windbornesystems.com</a>; Atmo. <a href="https://www.atmo.ai/">atmo.ai</a>; Jua. <a href="https://www.jua.ai/">jua.ai</a>; Tomorrow.io. <a href="https://www.tomorrow.io/">tomorrow.io</a></li>
-<li><span id="r17"></span>ACM News. (2024). AI weather forecasting goes operational. <em>Communications of the ACM</em>. <a href="https://cacm.acm.org/news/ai-weather-forecasting-goes-operational/">cacm.acm.org</a></li>
+<li><span id="r15"></span>McKinsey &amp; Company. Space: The $1.8 trillion opportunity for global economic growth (space-enabled economy scenario). <a href="https://www.mckinsey.com/industries/aerospace-and-defense/our-insights/space-the-1-point-8-trillion-dollar-opportunity-for-global-economic-growth">mckinsey.com</a></li>
+<li><span id="r16"></span>Goldman Sachs Research. AI to drive 165% increase in data center power demand by 2030 (compute stack context). <a href="https://www.goldmansachs.com/insights/articles/ai-to-drive-165-increase-in-data-center-power-demand-by-2030">goldmansachs.com</a></li>
+<li><span id="r17"></span>Google DeepMind. GraphCast and WeatherNext. <a href="https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/">deepmind.google</a>; Microsoft Research. Aurora. <a href="https://www.microsoft.com/en-us/research/project/aurora/">microsoft.com/research</a>; NVIDIA. Earth-2. <a href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">nvidia.com</a></li>
+<li><span id="r18"></span>WindBorne Systems. <a href="https://windbornesystems.com/">windbornesystems.com</a>; Atmo. <a href="https://www.atmo.ai/">atmo.ai</a>; Jua. <a href="https://www.jua.ai/">jua.ai</a>; Tomorrow.io. <a href="https://www.tomorrow.io/">tomorrow.io</a></li>
+<li><span id="r19"></span>ACM News. (2024). AI weather forecasting goes operational. <em>Communications of the ACM</em>. <a href="https://cacm.acm.org/news/ai-weather-forecasting-goes-operational/">cacm.acm.org</a></li>
         </ol>
       </section>
     </div>

@@ -472,12 +472,23 @@ a:focus-visible {
   display: grid;
   gap: 1.25rem;
   margin: 1.5rem 0 1.75rem;
+  grid-auto-flow: dense;
 }
 @media (min-width: 720px) {
   .chart-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
   }
+  .chart-grid .chart-wrap--wide {
+    grid-column: 1 / -1;
+  }
+}
+.chart-section-note {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0.75rem 0 0.25rem;
+  max-width: 44rem;
 }
 .article .viz-chart {
   margin: 0;
@@ -487,13 +498,36 @@ a:focus-visible {
   height: auto;
   display: block;
   border-radius: 12px;
+  max-height: 360px;
 }
 .article .chart-wrap .viz-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.6rem;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--faint);
   margin-bottom: 0.45rem;
+}
+.chart-source {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--forest);
+  background: rgba(45, 86, 64, 0.12);
+  border: 1px solid rgba(32, 64, 40, 0.14);
+}
+.article .viz-chart .viz-caption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
 }
 
 .market-map {

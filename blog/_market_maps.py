@@ -6,15 +6,15 @@ from _viz import _esc
 
 # Ref indices in each post's References list (appended in _generate.py).
 MARKET_MAP_REF_IDS: dict[str, tuple[int, ...]] = {
-    "space-compute": (10, 11, 12),
-    "weather-foundation-models": (15, 16, 17),
-    "aerospace-satellites": (11, 12, 13),
-    "materials": (10, 11, 12),
-    "energy-systems": (9, 10, 11),
-    "manufacturing": (9, 10, 11),
-    "built-environment": (9, 10, 11),
-    "mobility": (11, 12, 13),
-    "industrial-processes": (10, 11, 12),
+    "space-compute": (12, 13, 14),
+    "weather-foundation-models": (17, 18, 19),
+    "aerospace-satellites": (12, 13, 14),
+    "materials": (11, 12, 13),
+    "energy-systems": (11, 12, 13),
+    "manufacturing": (10, 11, 12),
+    "built-environment": (10, 11, 12),
+    "mobility": (13, 14, 15),
+    "industrial-processes": (12, 13, 14),
 }
 
 

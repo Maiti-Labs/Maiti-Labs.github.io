@@ -106,10 +106,162 @@ def ref_ashrae_240p(n: int) -> str:
     )
 
 
-def market_map_refs_space() -> list[str]:
+def consultant_refs_space() -> list[str]:
     return [
         _ref(
             10,
+            "McKinsey &amp; Company. The cost of compute: A $7 trillion race to scale data centers; "
+            "data center capacity demand charts. "
+            '<a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-cost-of-compute-a-7-trillion-dollar-race-to-scale-data-centers">'
+            "mckinsey.com</a>; "
+            '<a href="https://www.mckinsey.com/featured-insights/sustainable-inclusive-growth/charts/data-center-demands">'
+            "mckinsey.com (data center demands)</a>",
+        ),
+        _ref(
+            11,
+            "Goldman Sachs Research. AI to drive 165% increase in data center power demand by 2030. "
+            '<a href="https://www.goldmansachs.com/insights/articles/ai-to-drive-165-increase-in-data-center-power-demand-by-2030">'
+            "goldmansachs.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_weather() -> list[str]:
+    return [
+        _ref(
+            15,
+            "McKinsey &amp; Company. Space: The $1.8 trillion opportunity for global economic growth "
+            "(space-enabled economy scenario). "
+            '<a href="https://www.mckinsey.com/industries/aerospace-and-defense/our-insights/space-the-1-point-8-trillion-dollar-opportunity-for-global-economic-growth">'
+            "mckinsey.com</a>",
+        ),
+        _ref(
+            16,
+            "Goldman Sachs Research. AI to drive 165% increase in data center power demand by 2030 "
+            "(compute stack context). "
+            '<a href="https://www.goldmansachs.com/insights/articles/ai-to-drive-165-increase-in-data-center-power-demand-by-2030">'
+            "goldmansachs.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_aerospace() -> list[str]:
+    return [
+        _ref(
+            11,
+            "McKinsey &amp; Company. Space: The $1.8 trillion opportunity for global economic growth. "
+            '<a href="https://www.mckinsey.com/industries/aerospace-and-defense/our-insights/space-the-1-point-8-trillion-dollar-opportunity-for-global-economic-growth">'
+            "mckinsey.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_materials() -> list[str]:
+    return [
+        _ref(
+            10,
+            "McKinsey &amp; Company. How a materials transition can support the net-zero agenda "
+            "(low-CO₂ materials market). "
+            '<a href="https://www.mckinsey.com/capabilities/sustainability/our-insights/how-a-materials-transition-can-support-the-net-zero-agenda">'
+            "mckinsey.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_energy() -> list[str]:
+    return [
+        _ref(
+            9,
+            "McKinsey &amp; Company. Net-zero power: Long-duration energy storage for a renewable grid. "
+            '<a href="https://www.mckinsey.com/capabilities/sustainability/our-insights/net-zero-power-long-duration-energy-storage-for-a-renewable-grid">'
+            "mckinsey.com</a>",
+        ),
+        _ref(
+            10,
+            "Goldman Sachs Research. The outlook for the cost of decarbonization (battery pack cost outlook). "
+            '<a href="https://www.goldmansachs.com/insights/articles/the-outlook-for-the-cost-of-decarbonization">'
+            "goldmansachs.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_manufacturing() -> list[str]:
+    return [
+        _ref(
+            9,
+            "McKinsey &amp; Company. Infrastructure for a net-zero economy: Transformation ahead "
+            "(cement and steel unit cost scenario). "
+            '<a href="https://www.mckinsey.com/industries/infrastructure/our-insights/infrastructure-for-a-net-zero-economy-transformation-ahead">'
+            "mckinsey.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_built() -> list[str]:
+    return [
+        _ref(
+            9,
+            "McKinsey &amp; Company. Building value by decarbonizing the built environment. "
+            '<a href="https://www.mckinsey.com/industries/engineering-construction-and-building-materials/our-insights/building-value-by-decarbonizing-the-built-environment">'
+            "mckinsey.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_mobility() -> list[str]:
+    return [
+        _ref(
+            11,
+            "McKinsey &amp; Company. Battery 2030: Resilient, sustainable, and circular "
+            "(EV sales and lithium-ion demand scenario). "
+            '<a href="https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/battery-2030-resilient-sustainable-and-circular">'
+            "mckinsey.com</a>; EV share context in "
+            '<a href="https://www.mckinsey.com/industries/automotive-and-assembly/our-insights/enabling-renewable-energy-with-battery-energy-storage-systems">'
+            "BESS outlook</a>",
+        ),
+        _ref(
+            12,
+            "Goldman Sachs Research. The outlook for the cost of decarbonization (battery pack toward ~$80/kWh). "
+            '<a href="https://www.goldmansachs.com/insights/articles/the-outlook-for-the-cost-of-decarbonization">'
+            "goldmansachs.com</a>",
+        ),
+    ]
+
+
+def consultant_refs_industrial() -> list[str]:
+    return [
+        _ref(
+            10,
+            "McKinsey &amp; Company. How a materials transition can support the net-zero agenda. "
+            '<a href="https://www.mckinsey.com/capabilities/sustainability/our-insights/how-a-materials-transition-can-support-the-net-zero-agenda">'
+            "mckinsey.com</a>",
+        ),
+        _ref(
+            11,
+            "McKinsey &amp; Company. Infrastructure for a net-zero economy: Transformation ahead. "
+            '<a href="https://www.mckinsey.com/industries/infrastructure/our-insights/infrastructure-for-a-net-zero-economy-transformation-ahead">'
+            "mckinsey.com</a>",
+        ),
+    ]
+
+
+CONSULTANT_REFS_BY_SLUG = {
+    "space-compute": consultant_refs_space,
+    "weather-foundation-models": consultant_refs_weather,
+    "aerospace-satellites": consultant_refs_aerospace,
+    "materials": consultant_refs_materials,
+    "energy-systems": consultant_refs_energy,
+    "manufacturing": consultant_refs_manufacturing,
+    "built-environment": consultant_refs_built,
+    "mobility": consultant_refs_mobility,
+    "industrial-processes": consultant_refs_industrial,
+}
+
+
+def market_map_refs_space() -> list[str]:
+    return [
+        _ref(
+            12,
             'Starcloud (orbital data centers). <a href="https://starcloud.com/">starcloud.com</a>; '
             'SpaceNews coverage of Starcloud-1 and funding. '
             '<a href="https://spacenews.com/starcloud-achieves-unicorn-status-with-170-million-raise-for-orbital-data-centers/">'
@@ -117,7 +269,7 @@ def market_map_refs_space() -> list[str]:
             '<a href="https://spacenews.com/starcloud-files-plans-for-88000-satellite-constellation/">spacenews.com</a>',
         ),
         _ref(
-            11,
+            13,
             'Google Research. Exploring a space-based scalable AI infrastructure system design (Project Suncatcher). '
             '<a href="https://research.google/blog/exploring-a-space-based-scalable-ai-infrastructure-system-design/">'
             'research.google</a>; Agüera y Arcas, Beals, et al. '
@@ -126,7 +278,7 @@ def market_map_refs_space() -> list[str]:
             'planet.com</a>',
         ),
         _ref(
-            12,
+            14,
             'Bain &amp; Company. Orbital data centers: beyond the grid. '
             '<a href="https://www.bain.com/insights/orbital-data-centers-beyond-the-grid/">bain.com</a>; '
             'Wood Mackenzie press release on orbital data centre costs. '
@@ -140,7 +292,7 @@ def market_map_refs_space() -> list[str]:
 def market_map_refs_weather() -> list[str]:
     return [
         _ref(
-            15,
+            17,
             'Google DeepMind. GraphCast and WeatherNext. '
             '<a href="https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/">'
             'deepmind.google</a>; Microsoft Research. Aurora. '
@@ -148,13 +300,13 @@ def market_map_refs_weather() -> list[str]:
             'NVIDIA. Earth-2. <a href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">nvidia.com</a>',
         ),
         _ref(
-            16,
+            18,
             'WindBorne Systems. <a href="https://windbornesystems.com/">windbornesystems.com</a>; '
             'Atmo. <a href="https://www.atmo.ai/">atmo.ai</a>; Jua. <a href="https://www.jua.ai/">jua.ai</a>; '
             'Tomorrow.io. <a href="https://www.tomorrow.io/">tomorrow.io</a>',
         ),
         _ref(
-            17,
+            19,
             'ACM News. (2024). AI weather forecasting goes operational. '
             '<em>Communications of the ACM</em>. '
             '<a href="https://cacm.acm.org/news/ai-weather-forecasting-goes-operational/">cacm.acm.org</a>',
@@ -165,17 +317,17 @@ def market_map_refs_weather() -> list[str]:
 def market_map_refs_aerospace() -> list[str]:
     return [
         _ref(
-            11,
+            12,
             'Payload. (2024). The state of Earth observation. '
             '<a href="https://payloadspace.com/the-state-of-earth-observation-2024/">payloadspace.com</a>',
         ),
         _ref(
-            12,
+            13,
             'TerraWatch. Earth observation investment and market landscape summaries. '
             '<a href="https://terrawatchspace.com/">terrawatchspace.com</a>',
         ),
         _ref(
-            13,
+            14,
             'Company sites: Planet. <a href="https://www.planet.com/">planet.com</a>; Capella Space. '
             '<a href="https://www.capellaspace.com/">capellaspace.com</a>; GHGSat. '
             '<a href="https://www.ghgsat.com/">ghgsat.com</a>; Spire. <a href="https://spire.com/">spire.com</a>',
@@ -186,19 +338,19 @@ def market_map_refs_aerospace() -> list[str]:
 def market_map_refs_materials() -> list[str]:
     return [
         _ref(
-            10,
+            11,
             'Wilson, A. GreenBuildingAdvisor. Six startups with novel approaches to low-carbon cement. '
             '<a href="https://www.greenbuildingadvisor.com/article/six-startups-with-novel-approaches-to-low-carbon-cement">'
             'greenbuildingadvisor.com</a>',
         ),
         _ref(
-            11,
+            12,
             'Canary Media. Fortera and low-carbon cement coverage. '
             '<a href="https://www.canarymedia.com/articles/clean-industry/fortera-is-making-cement-that-absorbs-co2-instead-of-emitting-it">'
             'canarymedia.com</a>',
         ),
         _ref(
-            12,
+            13,
             'Company sites: Sublime Systems. <a href="https://www.sublime-systems.com/">sublime-systems.com</a>; '
             'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>; Brimstone. '
             '<a href="https://www.brimstone.com/">brimstone.com</a>',
@@ -209,19 +361,19 @@ def market_map_refs_materials() -> list[str]:
 def market_map_refs_energy() -> list[str]:
     return [
         _ref(
-            9,
+            11,
             'Form Energy. <a href="https://formenergy.com/">formenergy.com</a>; Energy Vault. '
             '<a href="https://energyvault.com/">energyvault.com</a>; Hydrostor. '
             '<a href="https://www.hydrostor.ca/">hydrostor.ca</a>',
         ),
         _ref(
-            10,
+            12,
             'ESS Inc. <a href="https://essinc.com/">essinc.com</a>; Quidnet Energy. '
             '<a href="https://www.quidnetenergy.com/">quidnetenergy.com</a>; Malta Inc. '
             '<a href="https://www.maltainc.com/">maltainc.com</a>',
         ),
         _ref(
-            11,
+            13,
             'MarketsandMarkets. Long-duration energy storage company landscape (industry summary). '
             '<a href="https://www.marketsandmarkets.com/ResearchInsight/long-duration-energy-storage-market.asp">'
             'marketsandmarkets.com</a>',
@@ -232,18 +384,18 @@ def market_map_refs_energy() -> list[str]:
 def market_map_refs_manufacturing() -> list[str]:
     return [
         _ref(
-            9,
+            10,
             'Canary Media. Thermal batteries for industrial heat. '
             '<a href="https://www.canarymedia.com/articles/clean-industry/thermal-batteries-could-help-decarbonize-industry">'
             'canarymedia.com</a>',
         ),
         _ref(
-            10,
+            11,
             'Rondo Energy. <a href="https://www.rondo.com/">rondo.com</a>; Antora Energy. '
             '<a href="https://www.antora.com/">antora.com</a>',
         ),
         _ref(
-            11,
+            12,
             'Electrified Thermal Solutions. <a href="https://www.electrifiedthermal.com/">electrifiedthermal.com</a>; '
             'AtmosZero. <a href="https://www.atmoszero.energy/">atmoszero.energy</a>',
         ),
@@ -253,16 +405,16 @@ def market_map_refs_manufacturing() -> list[str]:
 def market_map_refs_built() -> list[str]:
     return [
         _ref(
-            9,
+            10,
             'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>',
         ),
         _ref(
-            10,
+            11,
             'Cambium. <a href="https://www.cambiumcarbon.com/">cambiumcarbon.com</a>; Cambium funding coverage. '
             '<a href="https://techcrunch.com/2023/06/14/cambium-raises-8-5m-to-track-sustainable-wood/">techcrunch.com</a>',
         ),
         _ref(
-            11,
+            12,
             'Fabric Workshop. Mass timber prefabrication. '
             '<a href="https://www.fabricworkshop.com/">fabricworkshop.com</a>; BuildingGreen mass timber resources. '
             '<a href="https://www.buildinggreen.com/primer/mass-timber">buildinggreen.com</a>',
@@ -273,18 +425,18 @@ def market_map_refs_built() -> list[str]:
 def market_map_refs_mobility() -> list[str]:
     return [
         _ref(
-            11,
+            13,
             'ElectronsX. Charge point operator directory and network summaries. '
             '<a href="https://electronsx.com/">electronsx.com</a>',
         ),
         _ref(
-            12,
+            14,
             'PowerFlex (EDF). Adaptive charging and fleet software. '
             '<a href="https://www.powerflex.com/">powerflex.com</a>; Caltech ACN lineage. '
             '<a href="https://ev.caltech.edu/">ev.caltech.edu</a>',
         ),
         _ref(
-            13,
+            15,
             'U.S. public charging network coverage summaries (EVWire / industry reports). '
             '<a href="https://www.evwire.com/">evwire.com</a>; ChargePoint. '
             '<a href="https://www.chargepoint.com/">chargepoint.com</a>',
@@ -295,17 +447,17 @@ def market_map_refs_mobility() -> list[str]:
 def market_map_refs_industrial() -> list[str]:
     return [
         _ref(
-            10,
+            12,
             'Boston Metal. Molten oxide electrolysis steel. '
             '<a href="https://www.bostonmetal.com/">bostonmetal.com</a>',
         ),
         _ref(
-            11,
+            13,
             'Stegra (formerly H2 Green Steel). Fossil-free steel. '
             '<a href="https://www.stegra.com/">stegra.com</a>',
         ),
         _ref(
-            12,
+            14,
             'Fortera. Low-carbon cement and ReCarb kiln integration. '
             '<a href="https://www.fortera.com/">fortera.com</a>; Rondo Energy. '
             '<a href="https://www.rondo.com/">rondo.com</a>',
@@ -956,7 +1108,12 @@ def write_posts():
     for p in POSTS:
         viz_key = p.get("viz_key", "")
         body = assemble_body(p["body"], p["slug"], viz_key)
-        refs = list(p["refs"]) + MARKET_MAP_REFS_BY_SLUG[p["slug"]]()
+        slug = p["slug"]
+        refs = (
+            list(p["refs"])
+            + CONSULTANT_REFS_BY_SLUG[slug]()
+            + MARKET_MAP_REFS_BY_SLUG[slug]()
+        )
         html = page(
             p["title"],
             p["description"],
