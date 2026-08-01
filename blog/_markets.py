@@ -1,5 +1,6 @@
 """Markets section: Jevons intro, rebound cards, and cited SVG charts per sector."""
 
+from _market_maps import market_map_html
 from _timelines import SECTOR_SECTIONS, rebound_cards_html
 from _viz import BG, BG_ALT, CREAM, FONT, FOREST, MUTED, SOFT, _esc, _uid
 
@@ -331,6 +332,7 @@ def build_markets_section(slug: str) -> str:
     )
     closing = data["rebound_closing"]
     charts = market_charts_html(slug)
+    market_map = market_map_html(slug)
     return f'''
         <h2>Markets</h2>
         <h3>When cost falls, demand rises</h3>
@@ -339,5 +341,6 @@ def build_markets_section(slug: str) -> str:
         <div class="chart-grid">
 {charts}
         </div>
+{market_map}
         <p>{closing}</p>
 '''

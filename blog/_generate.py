@@ -106,6 +106,194 @@ def ref_ashrae_240p(n: int) -> str:
     )
 
 
+def market_map_refs_weather() -> list[str]:
+    return [
+        _ref(
+            15,
+            'Google DeepMind. GraphCast and WeatherNext. '
+            '<a href="https://deepmind.google/discover/blog/graphcast-ai-model-for-faster-and-more-accurate-global-weather-forecasting/">'
+            'deepmind.google</a>; Microsoft Research. Aurora. '
+            '<a href="https://www.microsoft.com/en-us/research/project/aurora/">microsoft.com/research</a>; '
+            'NVIDIA. Earth-2. <a href="https://www.nvidia.com/en-us/high-performance-computing/earth-2/">nvidia.com</a>',
+        ),
+        _ref(
+            16,
+            'WindBorne Systems. <a href="https://windbornesystems.com/">windbornesystems.com</a>; '
+            'Atmo. <a href="https://www.atmo.ai/">atmo.ai</a>; Jua. <a href="https://www.jua.ai/">jua.ai</a>; '
+            'Tomorrow.io. <a href="https://www.tomorrow.io/">tomorrow.io</a>',
+        ),
+        _ref(
+            17,
+            'ACM News. (2024). AI weather forecasting goes operational. '
+            '<em>Communications of the ACM</em>. '
+            '<a href="https://cacm.acm.org/news/ai-weather-forecasting-goes-operational/">cacm.acm.org</a>',
+        ),
+    ]
+
+
+def market_map_refs_aerospace() -> list[str]:
+    return [
+        _ref(
+            11,
+            'Payload. (2024). The state of Earth observation. '
+            '<a href="https://payloadspace.com/the-state-of-earth-observation-2024/">payloadspace.com</a>',
+        ),
+        _ref(
+            12,
+            'TerraWatch. Earth observation investment and market landscape summaries. '
+            '<a href="https://terrawatchspace.com/">terrawatchspace.com</a>',
+        ),
+        _ref(
+            13,
+            'Company sites: Planet. <a href="https://www.planet.com/">planet.com</a>; Capella Space. '
+            '<a href="https://www.capellaspace.com/">capellaspace.com</a>; GHGSat. '
+            '<a href="https://www.ghgsat.com/">ghgsat.com</a>; Spire. <a href="https://spire.com/">spire.com</a>',
+        ),
+    ]
+
+
+def market_map_refs_materials() -> list[str]:
+    return [
+        _ref(
+            10,
+            'Wilson, A. GreenBuildingAdvisor. Six startups with novel approaches to low-carbon cement. '
+            '<a href="https://www.greenbuildingadvisor.com/article/six-startups-with-novel-approaches-to-low-carbon-cement">'
+            'greenbuildingadvisor.com</a>',
+        ),
+        _ref(
+            11,
+            'Canary Media. Fortera and low-carbon cement coverage. '
+            '<a href="https://www.canarymedia.com/articles/clean-industry/fortera-is-making-cement-that-absorbs-co2-instead-of-emitting-it">'
+            'canarymedia.com</a>',
+        ),
+        _ref(
+            12,
+            'Company sites: Sublime Systems. <a href="https://www.sublime-systems.com/">sublime-systems.com</a>; '
+            'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>; Brimstone. '
+            '<a href="https://www.brimstone.com/">brimstone.com</a>',
+        ),
+    ]
+
+
+def market_map_refs_energy() -> list[str]:
+    return [
+        _ref(
+            9,
+            'Form Energy. <a href="https://formenergy.com/">formenergy.com</a>; Energy Vault. '
+            '<a href="https://energyvault.com/">energyvault.com</a>; Hydrostor. '
+            '<a href="https://www.hydrostor.ca/">hydrostor.ca</a>',
+        ),
+        _ref(
+            10,
+            'ESS Inc. <a href="https://essinc.com/">essinc.com</a>; Quidnet Energy. '
+            '<a href="https://www.quidnetenergy.com/">quidnetenergy.com</a>; Malta Inc. '
+            '<a href="https://www.maltainc.com/">maltainc.com</a>',
+        ),
+        _ref(
+            11,
+            'MarketsandMarkets. Long-duration energy storage company landscape (industry summary). '
+            '<a href="https://www.marketsandmarkets.com/ResearchInsight/long-duration-energy-storage-market.asp">'
+            'marketsandmarkets.com</a>',
+        ),
+    ]
+
+
+def market_map_refs_manufacturing() -> list[str]:
+    return [
+        _ref(
+            9,
+            'Canary Media. Thermal batteries for industrial heat. '
+            '<a href="https://www.canarymedia.com/articles/clean-industry/thermal-batteries-could-help-decarbonize-industry">'
+            'canarymedia.com</a>',
+        ),
+        _ref(
+            10,
+            'Rondo Energy. <a href="https://www.rondo.com/">rondo.com</a>; Antora Energy. '
+            '<a href="https://www.antora.com/">antora.com</a>',
+        ),
+        _ref(
+            11,
+            'Electrified Thermal Solutions. <a href="https://www.electrifiedthermal.com/">electrifiedthermal.com</a>; '
+            'AtmosZero. <a href="https://www.atmoszero.energy/">atmoszero.energy</a>',
+        ),
+    ]
+
+
+def market_map_refs_built() -> list[str]:
+    return [
+        _ref(
+            9,
+            'CarbonCure. <a href="https://www.carboncure.com/">carboncure.com</a>',
+        ),
+        _ref(
+            10,
+            'Cambium. <a href="https://www.cambiumcarbon.com/">cambiumcarbon.com</a>; Cambium funding coverage. '
+            '<a href="https://techcrunch.com/2023/06/14/cambium-raises-8-5m-to-track-sustainable-wood/">techcrunch.com</a>',
+        ),
+        _ref(
+            11,
+            'Fabric Workshop. Mass timber prefabrication. '
+            '<a href="https://www.fabricworkshop.com/">fabricworkshop.com</a>; BuildingGreen mass timber resources. '
+            '<a href="https://www.buildinggreen.com/primer/mass-timber">buildinggreen.com</a>',
+        ),
+    ]
+
+
+def market_map_refs_mobility() -> list[str]:
+    return [
+        _ref(
+            11,
+            'ElectronsX. Charge point operator directory and network summaries. '
+            '<a href="https://electronsx.com/">electronsx.com</a>',
+        ),
+        _ref(
+            12,
+            'PowerFlex (EDF). Adaptive charging and fleet software. '
+            '<a href="https://www.powerflex.com/">powerflex.com</a>; Caltech ACN lineage. '
+            '<a href="https://ev.caltech.edu/">ev.caltech.edu</a>',
+        ),
+        _ref(
+            13,
+            'U.S. public charging network coverage summaries (EVWire / industry reports). '
+            '<a href="https://www.evwire.com/">evwire.com</a>; ChargePoint. '
+            '<a href="https://www.chargepoint.com/">chargepoint.com</a>',
+        ),
+    ]
+
+
+def market_map_refs_industrial() -> list[str]:
+    return [
+        _ref(
+            10,
+            'Boston Metal. Molten oxide electrolysis steel. '
+            '<a href="https://www.bostonmetal.com/">bostonmetal.com</a>',
+        ),
+        _ref(
+            11,
+            'Stegra (formerly H2 Green Steel). Fossil-free steel. '
+            '<a href="https://www.stegra.com/">stegra.com</a>',
+        ),
+        _ref(
+            12,
+            'Fortera. Low-carbon cement and ReCarb kiln integration. '
+            '<a href="https://www.fortera.com/">fortera.com</a>; Rondo Energy. '
+            '<a href="https://www.rondo.com/">rondo.com</a>',
+        ),
+    ]
+
+
+MARKET_MAP_REFS_BY_SLUG = {
+    "weather-foundation-models": market_map_refs_weather,
+    "aerospace-satellites": market_map_refs_aerospace,
+    "materials": market_map_refs_materials,
+    "energy-systems": market_map_refs_energy,
+    "manufacturing": market_map_refs_manufacturing,
+    "built-environment": market_map_refs_built,
+    "mobility": market_map_refs_mobility,
+    "industrial-processes": market_map_refs_industrial,
+}
+
+
 NAV = '''  <nav class="nav" id="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="../index.html" aria-label="Maiti Labs home">
@@ -675,10 +863,11 @@ def write_posts():
     for p in POSTS:
         viz_key = p.get("viz_key", "")
         body = assemble_body(p["body"], p["slug"], viz_key)
+        refs = list(p["refs"]) + MARKET_MAP_REFS_BY_SLUG[p["slug"]]()
         html = page(
             p["title"],
             p["description"],
-            article(p["meta"], p["title"], p["dek"], body, p["refs"], viz_html=""),
+            article(p["meta"], p["title"], p["dek"], body, refs, viz_html=""),
         )
         (ROOT / f"{p['slug']}.html").write_text(html, encoding="utf-8")
         cards.append(p)
