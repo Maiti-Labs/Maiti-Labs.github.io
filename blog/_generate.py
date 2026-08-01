@@ -7,6 +7,104 @@ from _viz import VIZ
 
 ROOT = Path(__file__).resolve().parent
 
+
+def _ref(n: int, body: str) -> str:
+    return f'<span id="r{n}"></span>{body}'
+
+
+def ref_fourcastnet(n: int) -> str:
+    return _ref(
+        n,
+        'Pathak, J., Subramanian, S., Harrington, P., et al. (2022). FourCastNet: A global data-driven '
+        'high-resolution weather model using adaptive Fourier neural operators. '
+        '<a href="https://arxiv.org/abs/2202.11214">arXiv:2202.11214</a>',
+    )
+
+
+def ref_weatherbench2(n: int) -> str:
+    return _ref(
+        n,
+        'Rasp, S., Hoyer, S., Merose, A., et al. (2024). WeatherBench 2: A benchmark for the next '
+        'generation of data-driven global weather forecasting. <em>Journal of Advances in Modeling '
+        'Earth Systems</em>. <a href="https://doi.org/10.1029/2023MS004019">doi:10.1029/2023MS004019</a>',
+    )
+
+
+def ref_era5(n: int) -> str:
+    return _ref(
+        n,
+        'Hersbach, H., Bell, B., Berrisford, P., et al. (2020). The ERA5 global reanalysis. '
+        '<em>Quarterly Journal of the Royal Meteorological Society</em>. '
+        '<a href="https://doi.org/10.1002/qj.3803">doi:10.1002/qj.3803</a>',
+    )
+
+
+def ref_aifs(n: int) -> str:
+    return _ref(
+        n,
+        'Lang, S., Hoyer, S., Bishnoi, A., et al. (2024). AIFS-CRPS: Ensemble forecasting using a '
+        'model trained with a loss function based on the Continuous Ranked Probability Score. '
+        '<a href="https://arxiv.org/abs/2406.01443">arXiv:2406.01443</a> (ECMWF).',
+    )
+
+
+def ref_jevons(n: int) -> str:
+    return _ref(
+        n,
+        'Jevons, W. S. (1865). <em>The Coal Question: An Inquiry Concerning the Progress of the Nation, '
+        'and the Probable Exhaustion of Our Coal-Mines</em>. Macmillan. '
+        '<a href="https://archive.org/details/coalquestionin00jevorich">archive.org</a>',
+    )
+
+
+def ref_rebound_review(n: int) -> str:
+    return _ref(
+        n,
+        'Sorrell, S., Dimitropoulos, J., & Somerville, M. (2009). Empirical estimates of the direct '
+        'rebound effect: A review. <em>Energy Policy</em>. '
+        '<a href="https://doi.org/10.1016/j.enpol.2008.11.026">doi:10.1016/j.enpol.2008.11.026</a>',
+    )
+
+
+def ref_iea_cement(n: int) -> str:
+    return _ref(
+        n,
+        'International Energy Agency. (2023). Cement. In industry and emissions briefs. '
+        '<a href="https://www.iea.org/energy-system/industry/cement">iea.org/energy-system/industry/cement</a>; '
+        'IPCC AR6 WGIII, Ch. 11 (industry emissions). '
+        '<a href="https://www.ipcc.ch/report/ar6/wg3/chapter/chapter-11/">ipcc.ch</a>',
+    )
+
+
+def ref_irena_battery(n: int) -> str:
+    return _ref(
+        n,
+        'International Renewable Energy Agency (IRENA). (2023). Renewable power generation costs in 2022. '
+        '<a href="https://www.irena.org/Publications/2023/Aug/Renewable-power-generation-costs-in-2022">irena.org</a> '
+        '(battery storage cost trends).',
+    )
+
+
+def ref_nevi(n: int) -> str:
+    return _ref(
+        n,
+        'U.S. Department of Energy. National Electric Vehicle Infrastructure (NEVI) Formula Program. '
+        '<a href="https://afdc.energy.gov/laws/12859">AFDC summary</a>; '
+        '<a href="https://www.federalregister.gov/documents/2022/02/22/2022-03423/national-electric-vehicle-infrastructure-formula-program">'
+        'Federal Register (2022)</a>',
+    )
+
+
+def ref_ashrae_240p(n: int) -> str:
+    return _ref(
+        n,
+        'ASHRAE &amp; ICC. (2024). Public review: proposed ASHRAE/ICC Standard 240P, '
+        'Standard for Building Decarbonization: Whole Life Carbon. '
+        '<a href="https://www.ashrae.org/about/news/2024/ashrae-and-icc-announce-public-review-for-proposed-whole-life-carbon-standard">'
+        'ashrae.org</a>',
+    )
+
+
 NAV = '''  <nav class="nav" id="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="../index.html" aria-label="Maiti Labs home">
@@ -100,9 +198,9 @@ POSTS.append({
     "description": "Emerging weather foundation models from DeepMind, Microsoft, ECMWF, and university labs, with citations.",
     "body": '''
         <div class="callout callout-plain">
-          <p><strong>In plain terms.</strong> Weather AI learns patterns from decades of global data, then rolls out a forecast in minutes on a single machine. Classic physics models on supercomputers still set the quality bar, but they take hours and sit behind agency walls.</p>
+          <p><strong>In plain terms.</strong> Weather AI learns patterns from decades of global data, then rolls out a forecast in minutes on a single machine [<a href="#r9">9</a>]. Classic physics models on supercomputers still set the quality bar, but they take hours and sit behind agency walls [<a href="#r2">2</a>].</p>
         </div>
-        <p>For decades, skillful medium-range forecasts meant one thing: a physics-based numerical weather prediction (NWP) system on a supercomputer. That stack still matters. Data-driven models trained on reanalysis archives can now produce competitive forecasts in minutes on commodity hardware.</p>
+        <p>For decades, skillful medium-range forecasts meant one thing: a physics-based numerical weather prediction (NWP) system on a supercomputer. That stack still matters. Data-driven models trained on reanalysis archives can now produce competitive forecasts in minutes on commodity hardware [<a href="#r9">9</a>][<a href="#r11">11</a>].</p>
         <p>This is not a cosmetic speedup. It changes access. University labs, national agencies, and climate-risk teams that could never operate a full IFS-class system can now evaluate ensemble-scale experiments, downscaling pipelines, and early-warning prototypes. The research question has shifted from "can AI forecast weather?" to "which foundation-model designs generalize under climate change, extremes, and sparse observations?"</p>
 
         <h2>What "foundation model" means in weather</h2>
@@ -112,7 +210,7 @@ POSTS.append({
         <h2>The current frontier models</h2>
         <h3>Graph neural networks and transformers at global scale</h3>
         <p>Google DeepMind's <a href="https://www.science.org/doi/10.1126/science.adi2336">GraphCast</a> (Lam et al.) encodes the atmosphere as a multi-scale mesh and rolls out 6-hour steps to produce 10-day forecasts. On WeatherBench-style evaluations it matched or exceeded ECMWF's high-resolution IFS on many variables while running orders of magnitude faster [<a href="#r2">2</a>]. Huawei's <a href="https://www.nature.com/articles/s41586-023-06185-3">Pangu-Weather</a> (Bi et al.) uses a 3D Earth Transformer and hierarchical temporal aggregation, again reporting deterministic skill competitive with operational IFS on reanalysis benchmarks [<a href="#r3">3</a>].</p>
-        <p>NVIDIA's FourCastNet line and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) push the same idea into operational settings. Feldmann et al. use WeatherBench2 to compare Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
+        <p>NVIDIA's FourCastNet line [<a href="#r9">9</a>] and ECMWF's Artificial Intelligence Integrated Forecasting System (AIFS) [<a href="#r12">12</a>] push the same idea into operational settings. Feldmann et al. use WeatherBench2 [<a href="#r10">10</a>] to compare Pangu-Weather, GraphCast, and FourCastNet against IFS-HRES for severe convective environments, showing that AI models can produce useful large-scale convective outlooks far faster than classical pipelines [<a href="#r4">4</a>].</p>
 
         <h3>Toward multi-domain atmospheric foundation models</h3>
         <p>Microsoft Research's <a href="https://doi.org/10.1038/s41586-025-09005-y">Aurora</a> (Bodnar et al.) widens the pretraining mixture beyond ERA5 weather fields, incorporating air quality, ocean, and climate-model outputs into one flexible backbone [<a href="#r5">5</a>]. That is closer to a true Earth-system foundation model than a single-task emulator.</p>
@@ -121,7 +219,7 @@ POSTS.append({
         </div>
 
         <h2>What top labs are stressing next</h2>
-        <p>Skill on ERA5 is necessary but not sufficient. Rackow et al. examine GraphCast, Pangu-Weather, and AIFS under climate-change-like conditions and ask whether models trained on the recent past remain reliable as the climate shifts [<a href="#r6">6</a>]. Extremes remain a hard edge: AI forecasts can be overly smooth and can understate record-breaking events even when mean scores look excellent.</p>
+        <p>Skill on ERA5 [<a href="#r11">11</a>] is necessary but not sufficient. Rackow et al. examine GraphCast, Pangu-Weather, and AIFS under climate-change-like conditions and ask whether models trained on the recent past remain reliable as the climate shifts [<a href="#r6">6</a>]. Extremes remain a hard edge: AI forecasts can be overly smooth and can understate record-breaking events even when mean scores look excellent [<a href="#r6">6</a>][<a href="#r10">10</a>].</p>
         <p>University groups are therefore focusing on hybrid designs, probabilistic ensembles, and observation-informed fine-tuning. Stanford's Doerr School and related atmospheric research communities emphasize that operational value depends on calibration for hazards people actually manage: heat, flood precursors, wind extremes, and compound events, not only RMSE on 500 hPa geopotential.</p>
 
         <h2>Hybrid climate modeling: Google Research and Caltech CliMA</h2>
@@ -129,7 +227,7 @@ POSTS.append({
         <p>The two agendas are complementary. Weather foundation models excel at fast, global deterministic forecasts from reanalysis. Caltech's physics-constrained climate modeling agenda targets long-horizon ensembles, process fidelity, and downscaling that remains tied to conservation laws. Accessible climate research needs both: open checkpoints for short-range hazard work and open process models for scenario stress-testing.</p>
 
         <h2>Why this matters for accessible climate research</h2>
-        <p>Weather foundation models compress a capability that used to sit behind agency firewalls. Open weights, public reanalysis, and benchmarks such as WeatherBench2 let students at Berkeley, researchers in the Global South, and municipal risk teams reproduce modern forecast skill. The open problem is not whether these models exist. It is how to document uncertainty, couple them to impact models, and keep evaluation honest as the climate moves.</p>
+        <p>Weather foundation models compress a capability that used to sit behind agency firewalls. Open weights, public reanalysis [<a href="#r11">11</a>], and benchmarks such as WeatherBench2 [<a href="#r10">10</a>] let students at Berkeley, researchers in the Global South, and municipal risk teams reproduce modern forecast skill. The open problem is not whether these models exist. It is how to document uncertainty, couple them to impact models, and keep evaluation honest as the climate moves [<a href="#r6">6</a>][<a href="#r10">10</a>].</p>
 
         <h2>Where this leaves us</h2>
         <p>The emerging stack looks familiar to anyone who watched language models mature: pretrain on the broadest physics-consistent archive available, specialize with modest data, evaluate on tasks that matter, and publish the checkpoints. Climate research becomes more accessible when that stack is open, cited, and usable outside a handful of forecasting centers.</p>
@@ -143,6 +241,12 @@ POSTS.append({
         '<span id="r6"></span>Rackow, T., Koldunov, N., Lessig, C., et al. (2024). Robustness of AI-based weather forecasts in a changing climate. <a href="https://arxiv.org/abs/2409.18529">arXiv:2409.18529</a> (ECMWF / AWI).',
         '<span id="r7"></span>Lopez-Gomez, I., Wan, Z. Y., Zepeda-Núñez, L., et al. (2025). Dynamical-generative downscaling of climate model ensembles. <em>PNAS</em>. <a href="https://doi.org/10.1073/pnas.2420288122">doi:10.1073/pnas.2420288122</a> (Google Research; Tapio Schneider, Caltech).',
         '<span id="r8"></span>Christopoulos, C., Lopez-Gomez, I., Beucler, T., et al. (2024). Online learning of entrainment closures for hybrid ML parameterization. <em>Journal of Advances in Modeling Earth Systems</em>. <a href="https://doi.org/10.1029/2024MS004485">doi:10.1029/2024MS004485</a> (Caltech CliMA).',
+        ref_fourcastnet(9),
+        ref_weatherbench2(10),
+        ref_era5(11),
+        ref_aifs(12),
+        ref_jevons(13),
+        ref_rebound_review(14),
     ],
 })
 
@@ -198,6 +302,8 @@ POSTS.append({
         '<span id="r6"></span>Lu, S., et al. (2024). Foundation models for remote sensing and Earth observation: A survey. <a href="https://arxiv.org/abs/2410.16602">arXiv:2410.16602</a>',
         '<span id="r7"></span>Carbon-I mission (Caltech-led NASA Earth System Explorer finalist; Bethany Ehlmann among collaborators). <a href="https://carbon-i.github.io/">carbon-i.github.io</a>; <a href="https://www.caltech.edu/about/news/caltech-led-mission-to-map-greenhouse-gas-emissions-named-finalist-by-nasa">Caltech news</a>',
         '<span id="r8"></span>Waliser, D. E., &amp; KISS Continuity Study Team (2024). Toward a US framework for continuity of satellite observations of Earth\'s changing climate. <em>Earth\'s Future</em>. <a href="https://doi.org/10.1029/2023EF003757">doi:10.1029/2023EF003757</a>',
+        ref_jevons(9),
+        ref_rebound_review(10),
     ],
 })
 
@@ -217,7 +323,7 @@ POSTS.append({
         <div class="callout callout-plain">
           <p><strong>In plain terms.</strong> Cement releases CO<sub>2</sub> when limestone is heated, not only from fuel. Researchers are testing new rock recipes, recycled concrete, and solar-driven chemistry to shrink that footprint.</p>
         </div>
-        <p>Concrete is the world's most-used building material. Cement production alone accounts for roughly 8% of global CO<sub>2</sub> emissions, much of it from limestone calcination rather than fuel burn. That chemistry constraint is why incremental kiln efficiency is not enough, and why materials research has become central to climate strategy.</p>
+        <p>Concrete is the world's most-used building material. Cement production alone accounts for roughly 8% of global CO<sub>2</sub> emissions, much of it from limestone calcination rather than fuel burn [<a href="#r7">7</a>]. That chemistry constraint is why incremental kiln efficiency is not enough, and why materials research has become central to climate strategy.</p>
         <p>The emerging technologies worth watching are not marketing labels. They are process inventions that remove carbonate feedstock, recycle existing concrete, or quantify which substitutions actually scale.</p>
 
         <h2>Replacing limestone chemistry</h2>
@@ -246,6 +352,9 @@ POSTS.append({
         '<span id="r4"></span>Cargnello, M., Moise, H. Low-emissions hydrogen and low-cost performance cement via methane pyrolysis. Stanford Sustainability Accelerator.',
         '<span id="r5"></span>UC Berkeley Center for the Built Environment. Cost-Effectiveness and Mitigation Potential of Low-Carbon Building Material Alternatives. <a href="https://cbe.berkeley.edu/research/low-carbon-building-material-alternatives/">cbe.berkeley.edu</a>',
         '<span id="r6"></span>Su, M. P., Aitbekova, A., Salazar, M., et al. (2024). Photothermocatalytic reactor and selective solar absorbers for sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; Caltech news. <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>',
+        ref_iea_cement(7),
+        ref_jevons(8),
+        ref_rebound_review(9),
     ],
 })
 
@@ -265,7 +374,7 @@ POSTS.append({
         <div class="callout callout-plain">
           <p><strong>In plain terms.</strong> Batteries that last a few hours cover evening peaks. Multi-day storage fills the gaps when wind and sun dip for days or weeks. Grid models now spell out when each layer pays for itself.</p>
         </div>
-        <p>Variable renewables have won the cheap-electron contest in many regions. The research frontier has moved to balancing: how much lithium-ion is enough, when multi-day storage becomes valuable, and which firm resources reduce total system cost.</p>
+        <p>Variable renewables have won the cheap-electron contest in many regions [<a href="#r6">6</a>]. The research frontier has moved to balancing: how much lithium-ion is enough, when multi-day storage becomes valuable, and which firm resources reduce total system cost [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
         <p>University capacity-expansion models are doing the unglamorous work of answering those questions with geographic detail rather than slogans.</p>
 
         <h2>What grid models now show about LDES</h2>
@@ -292,6 +401,9 @@ POSTS.append({
         '<span id="r3"></span>Energy storage in combined gas-electric energy transitions models: The case of California. BRIDGES model results summarized via OSTI. <a href="https://www.osti.gov/biblio/2562162">OSTI 2562162</a>',
         '<span id="r4"></span>Aljubran, M. J., et al. (2025). Enhanced Geothermal Systems for Reliable Decarbonization of the California Energy Grid. Stanford Geothermal Workshop. <a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Aljubran.pdf">PDF</a>',
         '<span id="r5"></span>Smart grid solutions for California renewables (Caltech and Pasadena Water and Power). <a href="https://www.caltech.edu/about/news/smart-grid-solutions-california-renewables">caltech.edu</a>; Resnick Sustainability Institute, Kimberly See, sustainable battery chemistries (Watson lecture / RSI).',
+        ref_irena_battery(6),
+        ref_jevons(7),
+        ref_rebound_review(8),
     ],
 })
 
@@ -339,6 +451,8 @@ POSTS.append({
         '<span id="r4"></span>UC Berkeley Goldman School working paper (2025 draft). Integrating renewable energy with industrial heat demand. <a href="https://gspp.berkeley.edu/archived/files/page/Integrating_Renewable_Energy_with_Industrial_Heat_Demand_-_V20251212.pdf">PDF</a>',
         '<span id="r5"></span>Glenk, G., Meier, R., Reichelstein, S. J. (2024). Assessing the Costs of Industrial Decarbonization. Stanford GSB Working Paper 4202. <a href="https://www.gsb.stanford.edu/faculty-research/working-papers/assessing-costs-industrial-decarbonization">gsb.stanford.edu</a>',
         '<span id="r6"></span>Su, M. P., Aitbekova, A., Salazar, M., et al. (2024). Photothermocatalytic reactor and selective solar absorbers for sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>',
+        ref_jevons(7),
+        ref_rebound_review(8),
     ],
 })
 
@@ -384,6 +498,9 @@ POSTS.append({
         '<span id="r3"></span>Stanford CIFE. Reduction of operational carbon in existing buildings through energy efficiency. <a href="https://cife.stanford.edu/reduction-operational-carbon-existing-buildings-through-energy-efficiency">cife.stanford.edu</a>',
         '<span id="r4"></span>Ashtiani, M., et al. (2025). Embodied Carbon Pathways to 2050 for the United States. Carbon Leadership Forum / RMI / UW Life Cycle Lab. <a href="https://carbonleadershipforum.org/embodied-carbon-pathways-to-2050-for-the-united-states/">carbonleadershipforum.org</a>',
         '<span id="r5"></span>Resnick Sustainability Center highlights campus-wide focus on pressing global issues (mass timber, LEED Platinum track, rooftop PV). <a href="https://www.caltech.edu/about/news/resnick-sustainability-center-highlights-campus-wide-focus-on-pressing-global-issues">caltech.edu</a>',
+        ref_ashrae_240p(6),
+        ref_jevons(7),
+        ref_rebound_review(8),
     ],
 })
 
@@ -430,6 +547,10 @@ POSTS.append({
         '<span id="r4"></span>Harvard BiGS. Can government fix the EV infrastructure gap? <a href="https://www.hbs.edu/bigs/can-government-fix-the-ev-infrastructure-gap">hbs.edu/bigs</a>',
         '<span id="r5"></span>Lee, Z. J., Low, S. H., et al. Adaptive Charging Network (ACN). <a href="https://arxiv.org/abs/2012.02636">arXiv:2012.02636</a> (Caltech).',
         '<span id="r6"></span>Caltech ACN portal (ACN-Data, ACN-Sim). <a href="https://ev.caltech.edu/">ev.caltech.edu</a>',
+        ref_nevi(7),
+        ref_irena_battery(8),
+        ref_jevons(9),
+        ref_rebound_review(10),
     ],
 })
 
@@ -477,6 +598,8 @@ POSTS.append({
         '<span id="r5"></span>Stanford Sustainability Accelerator. Phlego cement. <a href="https://sustainability-accelerator.stanford.edu/phlego-cement-sustainable-innovation-seamless-integration">Project page</a>',
         '<span id="r6"></span>Glenk, G., Meier, R., Reichelstein, S. J. (2024). Assessing the Costs of Industrial Decarbonization. Stanford GSB Working Paper 4202.',
         '<span id="r7"></span>Su, M. P., Aitbekova, A., Salazar, M., et al. (2024). Photothermocatalytic reactor and selective solar absorbers for sustainable fuels. <em>Device</em>. <a href="https://doi.org/10.1016/j.device.2024.100604">doi:10.1016/j.device.2024.100604</a>; <a href="https://www.caltech.edu/about/news/harnessing-sunlight-to-make-sustainable-fuels">caltech.edu</a>; Resnick Sustainability Institute industrial and climate initiatives.',
+        ref_jevons(8),
+        ref_rebound_review(9),
     ],
 })
 
