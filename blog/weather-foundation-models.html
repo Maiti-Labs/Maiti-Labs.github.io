@@ -98,7 +98,60 @@
         <h2>Why this matters for accessible climate research</h2>
         <p>Weather foundation models compress a capability that used to sit behind agency firewalls. Open weights, public reanalysis, and benchmarks such as WeatherBench2 let students at Berkeley, researchers in the Global South, and municipal risk teams reproduce modern forecast skill. The open problem is not whether these models exist. It is how to document uncertainty, couple them to impact models, and keep evaluation honest as the climate moves.</p>
 
-        <h2>Where this leaves us</h2>
+        
+        <h2>Key milestones</h2>
+        <p>AI weather models moved from research papers to open checkpoints in just a few years.</p>
+        <div class="timeline" role="list">
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2018–2020</p>
+            <p class="timeline-text">Early machine-learning weather emulators show that reanalysis archives can train competitive short-range models.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2022</p>
+            <p class="timeline-text">NVIDIA's FourCastNet line demonstrates fast global forecasts on commodity GPUs.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2023</p>
+            <p class="timeline-text">Pangu-Weather in <em>Nature</em>, GraphCast in <em>Science</em>, and ClimaX at ICML establish foundation-model-style pretraining for the atmosphere.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2024</p>
+            <p class="timeline-text">Aurora preprint, WeatherBench2 comparisons, and ECMWF's AIFS path push AI toward operational evaluation.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2025</p>
+            <p class="timeline-text">Aurora published in <em>Nature</em> as a broader Earth-system foundation model.</p>
+          </div>
+          <div class="timeline-item" role="listitem">
+            <p class="timeline-year">2026</p>
+            <p class="timeline-text">Minutes-scale global forecasts and open weights are routine for research teams outside major forecasting centers.</p>
+          </div>
+        </div>
+        <p class="progress-note"><strong>Today:</strong> Fast, accessible forecasts are working for many variables; extremes, calibration, and performance under climate shift remain early.</p>
+
+        <h2>When cost falls, demand rises</h2>
+        <p>When each forecast costs less compute, teams run more ensembles, products, and experiments. That is Jevons paradox in weather: cheaper capability drives more use, which creates new bottlenecks.</p>
+        <div class="rebound" role="list">
+          <div class="rebound-card">
+            <h3>Cost going down</h3>
+            <p>Single-GPU rollouts replace hours on agency supercomputers for many benchmark tasks.</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Adoption rising</h3>
+            <p>More ensemble runs, downscaling pipelines, and AI weather startups compete on speed.</p>
+          </div>
+          <div class="rebound-card">
+            <h3>Data problems</h3>
+            <p>ERA5 quality, observation gaps, and verification datasets strain under heavier use.</p>
+          </div>
+          <div class="rebound-card">
+            <h3>AI / compute demand</h3>
+            <p>GPU clusters for training and inference grow with every new product layer.</p>
+          </div>
+        </div>
+        <p>Climate gains from faster forecasts only stick if rebound is managed: open verification, honest uncertainty, and shared obs/reanalysis quality.</p>
+
+<h2>Where this leaves us</h2>
         <p>The emerging stack looks familiar to anyone who watched language models mature: pretrain on the broadest physics-consistent archive available, specialize with modest data, evaluate on tasks that matter, and publish the checkpoints. Climate research becomes more accessible when that stack is open, cited, and usable outside a handful of forecasting centers.</p>
 
       </div>

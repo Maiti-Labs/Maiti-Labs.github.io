@@ -2,6 +2,7 @@
 """Generate sector research posts in Physical Intelligence-inspired format."""
 from pathlib import Path
 
+from _timelines import inject_before_leaves_us
 from _viz import VIZ
 
 ROOT = Path(__file__).resolve().parent
@@ -484,10 +485,11 @@ def write_posts():
     cards = []
     for p in POSTS:
         viz_html = VIZ.get(p.get("viz_key", ""), "")
+        body = inject_before_leaves_us(p["body"], p["slug"])
         html = page(
             p["title"],
             p["description"],
-            article(p["meta"], p["title"], p["dek"], p["body"], p["refs"], viz_html=viz_html),
+            article(p["meta"], p["title"], p["dek"], body, p["refs"], viz_html=viz_html),
         )
         (ROOT / f"{p['slug']}.html").write_text(html, encoding="utf-8")
         cards.append(p)

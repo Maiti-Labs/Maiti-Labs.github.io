@@ -366,3 +366,83 @@ a:focus-visible {
   font-weight: 600;
   color: var(--accent);
 }
+
+.timeline {
+  margin: 1.25rem 0 1.75rem;
+  border-left: 2px solid var(--line);
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 1rem;
+}
+.timeline-item {
+  position: relative;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.28rem;
+  top: 0.35rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(32, 64, 40, 0.12);
+}
+.timeline-year {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+}
+.timeline-text {
+  font-size: 0.98rem;
+  color: var(--muted);
+  margin: 0;
+}
+.rebound {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 1.25rem 0 1rem;
+}
+@media (max-width: 560px) {
+  .rebound { grid-template-columns: 1fr; }
+}
+.rebound-card {
+  background: var(--bg-white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.95rem 1rem;
+}
+.rebound-card h3 {
+  font-size: 0.92rem;
+  margin: 0 0 0.35rem;
+}
+.rebound-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0;
+}
+.progress-note {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .timeline-item {
+    animation: viz-fade-slide 0.65s ease-out both;
+  }
+  .timeline-item:nth-child(2) { animation-delay: 0.06s; }
+  .timeline-item:nth-child(3) { animation-delay: 0.12s; }
+  .timeline-item:nth-child(4) { animation-delay: 0.18s; }
+  .timeline-item:nth-child(5) { animation-delay: 0.24s; }
+  .timeline-item:nth-child(6) { animation-delay: 0.3s; }
+  .timeline-item:nth-child(7) { animation-delay: 0.36s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item {
+    animation: none !important;
+  }
+}
