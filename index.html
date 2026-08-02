@@ -127,19 +127,22 @@
     line-height: 1.05;
   }
   .hero-sub {
-    max-width: 34rem;
+    max-width: 38rem;
     margin: 1.35rem auto 0;
-    font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+    font-size: clamp(1.05rem, 1.7vw, 1.22rem);
     font-weight: 400;
     color: var(--muted);
     letter-spacing: -0.015em;
+    line-height: 1.45;
+    text-wrap: pretty;
   }
   .hero-actions {
     margin-top: 1.9rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.7rem 1rem;
+    align-items: center;
+    gap: 0.75rem 1.1rem;
   }
   .btn {
     display: inline-flex;
@@ -191,6 +194,7 @@
   @media (min-width: 860px) {
     #research .split {
       gap: clamp(2.75rem, 6vw, 5.5rem);
+      align-items: center;
     }
     #research .split h2 { max-width: 12ch; }
   }
@@ -210,10 +214,11 @@
   }
   .lede {
     margin-top: 0.9rem;
-    max-width: 34rem;
+    max-width: 36rem;
     font-size: clamp(1.02rem, 1.5vw, 1.15rem);
     color: var(--muted);
     letter-spacing: -0.01em;
+    line-height: 1.5;
   }
 
   .split {
@@ -235,67 +240,83 @@
   }
   .prose p + p { margin-top: 0.95rem; }
 
+  #sectors .sectors-head {
+    max-width: 40rem;
+  }
+  #sectors .sectors-head h2 {
+    max-width: none;
+  }
   .focus-grid {
-    margin-top: clamp(1.75rem, 4vh, 2.5rem);
+    margin-top: clamp(2rem, 4.5vh, 2.85rem);
     display: grid;
-    gap: 0;
-    border-top: 1px solid var(--line);
+    gap: 0.85rem;
   }
   @media (min-width: 700px) {
-    .focus-grid { grid-template-columns: repeat(2, 1fr); }
+    .focus-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
   }
-  @media (min-width: 1000px) {
-    .focus-grid { grid-template-columns: repeat(4, 1fr); }
+  @media (min-width: 980px) {
+    .focus-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.05rem;
+    }
   }
   a.focus-item {
-    display: block;
-    padding: 1.35rem 0;
-    border-bottom: 1px solid var(--line);
-    transition: opacity .2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 11.5rem;
+    padding: 1.25rem 1.2rem 1.3rem;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bg-white);
+    text-decoration: none;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
   }
-  a.focus-item:hover { opacity: 0.72; }
-  .focus-item {
-    padding: 1.35rem 0;
-    border-bottom: 1px solid var(--line);
-  }
-  @media (min-width: 700px) {
-    .focus-item {
-      padding: 1.4rem 1.15rem 1.4rem 0;
-    }
-    .focus-item:nth-child(even) {
-      padding-left: 1.15rem;
-      padding-right: 0;
-      border-left: 1px solid var(--line);
-    }
-  }
-  @media (min-width: 1000px) {
-    .focus-item {
-      padding: 1.5rem 1.1rem;
-      border-right: 1px solid var(--line);
-    }
-    .focus-item:nth-child(even) {
-      padding-left: 1.1rem;
-      border-left: none;
-    }
-    .focus-item:nth-child(4n) { border-right: none; }
-    .focus-item:nth-child(4n + 1) { padding-left: 0; }
+  a.focus-item:hover {
+    border-color: rgba(32, 64, 40, 0.28);
+    box-shadow: 0 10px 28px rgba(32, 64, 40, 0.07);
+    transform: translateY(-2px);
+    opacity: 1;
   }
   .focus-item .num {
     font-size: 0.72rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--faint);
-    margin-bottom: 0.4rem;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.7rem;
+    line-height: 1;
   }
   .focus-item h3 {
-    font-size: 1.02rem;
+    font-size: 1.05rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    margin-bottom: 0.3rem;
+    margin: 0 0 0.45rem;
+    line-height: 1.25;
+    color: var(--ink);
   }
   .focus-item p {
+    margin: 0;
     color: var(--muted);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    line-height: 1.45;
     letter-spacing: -0.01em;
+  }
+  .focus-item .focus-link {
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  a.focus-item:hover .focus-link {
+    color: var(--accent-soft);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    a.focus-item:hover { transform: none; }
   }
 
   .footer {
@@ -383,56 +404,65 @@
 
   <section class="section" id="sectors">
     <div class="wrap">
-      <div class="reveal">
+      <div class="sectors-head reveal">
         <p class="eyebrow">Sectors</p>
         <h2>Across every domain.</h2>
-        <p class="lede">Each sector advances climate research that people can access and put to work.</p>
+        <p class="lede">Nine research notes on climate tech, from orbital compute and weather AI to materials, energy, and industry.</p>
       </div>
       <div class="focus-grid">
         <a class="focus-item reveal" href="blog/space-compute.html">
           <p class="num">01</p>
           <h3>Space Compute</h3>
           <p>AI data centers strain grids on Earth; orbit offers continuous solar and radiative cooling if launch costs fall.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/weather-foundation-models.html">
           <p class="num">02</p>
           <h3>Weather Foundation Models</h3>
           <p>GraphCast, Aurora, and ClimaX match classic forecasts on many scores, far faster.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/aerospace-satellites.html">
           <p class="num">03</p>
           <h3>Aerospace &amp; Satellites</h3>
           <p>Berkeley Panopticon, Carbon-I, and large-scale pretraining make satellite analysis transfer across missions.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/materials.html">
           <p class="num">04</p>
           <h3>Materials</h3>
           <p>Stanford, Berkeley, and Caltech work shows materials science is now a direct climate tool.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/energy-systems.html">
           <p class="num">05</p>
           <h3>Energy Systems</h3>
           <p>Grid models show when multi-day storage earns its keep alongside short-duration batteries.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/manufacturing.html">
           <p class="num">06</p>
           <h3>Manufacturing</h3>
           <p>NSF and university work on electrification and factory data make manufacturing a climate research domain.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/built-environment.html">
           <p class="num">07</p>
           <h3>Built Environment</h3>
           <p>Whole-life assessment shows embodied carbon rivaling operations as grids decarbonize.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/mobility.html">
           <p class="num">08</p>
           <h3>Mobility</h3>
           <p>Wharton, Harvard, and Caltech research show loans and uptime constrain electric mobility.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
         <a class="focus-item reveal" href="blog/industrial-processes.html">
           <p class="num">09</p>
           <h3>Industrial Processes</h3>
           <p>University playbooks and abatement curves turn industrial decarbonization into transferable methods.</p>
+          <span class="focus-link">Read note ›</span>
         </a>
       </div>
     </div>
