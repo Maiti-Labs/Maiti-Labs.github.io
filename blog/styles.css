@@ -515,17 +515,14 @@ a:focus-visible {
 
 .chart-grid {
   display: grid;
-  gap: 1.15rem;
-  margin: 1.5rem 0 1.75rem;
-  grid-auto-flow: dense;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 1.75rem 0 2.1rem;
 }
-@media (min-width: 760px) {
-  .chart-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-  }
-  .chart-grid .chart-wrap--wide {
-    grid-column: 1 / -1;
+@media (min-width: 860px) {
+  .article .chart-grid {
+    width: min(100vw - 3.5rem, var(--max-wide));
+    margin-left: calc(50% - min(50vw - 1.75rem, calc(var(--max-wide) / 2)));
   }
 }
 .chart-section-note {
@@ -537,16 +534,17 @@ a:focus-visible {
 }
 .article .viz-chart {
   margin: 0;
-  padding: 1.15rem 1.2rem 1.05rem;
+  padding: 1.35rem 1.4rem 1.25rem;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  width: 100%;
 }
 .article .viz-chart .chart-svg {
   width: 100%;
   height: auto;
+  min-height: 280px;
   display: block;
-  border-radius: 10px;
+  border-radius: 12px;
   max-height: none;
   border: 1px solid rgba(32, 64, 40, 0.08);
 }
