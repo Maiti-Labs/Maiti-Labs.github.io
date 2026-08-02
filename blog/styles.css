@@ -622,17 +622,12 @@ a:focus-visible {
   display: grid;
   gap: 0.9rem;
   margin-bottom: 0.9rem;
-  align-items: start;
+  align-items: stretch;
 }
 @media (min-width: 640px) {
   .mm-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.95rem 1rem;
-  }
-}
-@media (min-width: 980px) {
-  .mm-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 .mm-seg {
