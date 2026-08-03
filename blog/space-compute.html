@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Orbital compute meets the terrestrial power wall · Maiti Labs</title>
-<meta name="description" content="Emerging orbital data center and space compute research from Google, industry analysts, and orbital DC startups, with citations." />
+<title>Launch cost, not orbital solar, gates space compute parity · Maiti Labs</title>
+<meta name="description" content="Orbital data center and space compute research from Google, Bain, Wood Mackenzie, and orbital DC startups, with citations." />
 <link rel="icon" href="../logo.png" type="image/png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +31,13 @@
       <a class="back-link" href="index.html">‹ All research notes</a>
       <p class="article-meta">Research note · August 1, 2026 · Sector 01 · Shryas Bhurat</p>
       <p class="article-author">By Shryas Bhurat</p>
-      <h1>Orbital compute meets the terrestrial power wall</h1>
-      <p class="dek">Always-on solar in orbit is real. Cost parity still depends on launch.</p>
+      <h1>Launch cost, not orbital solar, gates space compute parity</h1>
+      <p class="dek">Continuous sun and space cooling are real. Analysts still put rough cost parity about seventy percent below today's launch stack.</p>
       <div class="body">
 
         <h2>Technology</h2>
         <div class="callout callout-plain">
-          <p><strong>In plain terms.</strong> Training and serving AI needs enormous electricity, cooling water, and new grid connections on Earth [<a href="#r4">4</a>]. Some teams want to run accelerators in orbit where the sun never sets on a well-chosen path and heat radiates to space, then beam results down by laser or radio [<a href="#r1">1</a>]. Today that still costs far more than a terrestrial rack unless launch gets much cheaper [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
+          <p><strong>The takeaway.</strong> Orbital AI is credible as an engineering direction, not as a default climate win. Launch and lifecycle cost still dominate; climate value depends on substituting terrestrial grid build, not adding a parallel compute boom [<a href="#r3">3</a>][<a href="#r4">4</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
         </div>
         <figure class="viz viz-hero">
           <p class="viz-label">How it works</p>
@@ -112,8 +112,8 @@
         </svg>
           <figcaption class="viz-caption">Terrestrial data centers hit grid and cooling limits; orbital designs chase sun and passive heat rejection.</figcaption>
         </figure>
-        <p>Terrestrial hyperscale data centers are colliding with the same constraints climate policy already tracks: power purchase agreements, substation queues, freshwater for cooling, and siting fights in communities that did not sign up to host gigawatt-class AI load [<a href="#r4">4</a>]. Orbital compute is not a fantasy escape hatch. It is an engineering bet that continuous solar illumination and radiative cooling can offset the penalty of lifting mass and maintaining links through the atmosphere [<a href="#r1">1</a>][<a href="#r3">3</a>].</p>
-        <p>For accessible climate research, the question is not whether orbit is "green" by default. It is whether a watt of inference delivered from space avoids a watt of fossil-backed grid build on the ground, after counting launch, replacement, spectrum, and ground-station energy. Public preprints, analyst models, and early demos are finally making that accounting possible [<a href="#r1">1</a>][<a href="#r4">4</a>][<a href="#r5">5</a>].</p>
+        <p>Hyperscale AI on Earth now competes for the same scarce inputs climate planners track: substation queues, power purchase agreements, freshwater for cooling, and community pushback on gigawatt-class load [<a href="#r4">4</a>]. Orbit relocates solar collection and heat rejection; it does not erase energy use [<a href="#r1">1</a>][<a href="#r3">3</a>]. The decision question for accessible climate research is net substitution after launch, replacement, spectrum, and ground-station energy [<a href="#r1">1</a>][<a href="#r4">4</a>][<a href="#r5">5</a>].</p>
+        <p>Public preprints, analyst scenarios, and in-orbit GPU demos finally make that accounting legible. Until launch economics move, treat orbit as option value for latency-tolerant workloads, not as relief for grid-bound training clusters [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
         <blockquote class="pull-quote">
           <p class="pull-quote-text">“In space, you get almost unlimited, low-cost renewable energy.”</p>
           <footer class="pull-quote-attr">
@@ -126,27 +126,27 @@
 
 
         <h2>Markets</h2>
-        <h3>When cost falls, demand rises</h3>
-        <p>When a capability gets cheaper, people often use more of it, not less. William Stanley Jevons observed this for coal efficiency in 1865 [<a href="#r7">7</a>]. Energy-policy reviews document similar rebound dynamics today [<a href="#r8">8</a>]. In this sector, falling costs can expand adoption faster than efficiency alone saves emissions.</p>
+        <h3>Cheaper capability usually expands demand, not just efficiency</h3>
+        <p>Cheaper capability often expands use faster than efficiency cuts total resource demand. Jevons documented the pattern for coal in 1865 [<a href="#r7">7</a>]; energy-policy reviews find direct rebound effects in modern sectors [<a href="#r8">8</a>]. For climate decisions, treat cost declines as adoption accelerators until substitution and policy cap total emissions.</p>
         <div class="rebound" role="list">
           <div class="rebound-card">
-            <h3>Cost going down</h3>
+            <h3>Launch and ops costs fall</h3>
             <p>Reusable launch and sunlit orbits target lower $/FLOP for latency-tolerant jobs [<a href="#r3">3</a>][<a href="#r1">1</a>].</p>
           </div>
           <div class="rebound-card">
-            <h3>Adoption rising</h3>
-            <p>Hyperscalers and startups file constellations and fly GPU demos [<a href="#r5">5</a>][<a href="#r6">6</a>].</p>
+            <h3>Constellations and demos multiply</h3>
+            <p>Hyperscalers and startups file large systems and fly GPU proofs [<a href="#r5">5</a>][<a href="#r6">6</a>].</p>
           </div>
           <div class="rebound-card">
-            <h3>Data problems</h3>
-            <p>Link budgets, radiation error rates, and lifecycle LCAs stay thin in public [<a href="#r1">1</a>][<a href="#r4">4</a>].</p>
+            <h3>Public LCAs and link data lag</h3>
+            <p>Link budgets, radiation error rates, and lifecycle accounts stay thin in open literature [<a href="#r1">1</a>][<a href="#r4">4</a>].</p>
           </div>
           <div class="rebound-card">
-            <h3>Infrastructure problems</h3>
-            <p>Spectrum, debris, thermal limits, and ground stations cap usable capacity [<a href="#r3">3</a>][<a href="#r6">6</a>].</p>
+            <h3>Spectrum and ground assets cap throughput</h3>
+            <p>Spectrum, debris, thermal limits, and ground stations bound usable capacity [<a href="#r3">3</a>][<a href="#r6">6</a>].</p>
           </div>
         </div>
-<p class="chart-section-note">Market outlook charts below combine research benchmarks with published estimates from firms such as McKinsey and Goldman Sachs. Figures are scenario estimates, not forecasts of certainty.</p>
+<p class="chart-section-note">Charts combine cited research benchmarks with published scenario estimates (including McKinsey and Goldman Sachs where noted). Treat figures as directional scenarios, not point forecasts.</p>
         <div class="chart-grid">
         <figure class="viz viz-chart chart-wrap">
           <p class="viz-label"><span class="chart-source">WoodMac</span><span class="chart-label-text">Orbital vs terrestrial cost</span></p>
@@ -284,7 +284,7 @@
           <figcaption class="viz-caption">Illustrative map of orbital compute players; not exhaustive. Landscape survey [<a href="#r12">12</a>]; company sites [<a href="#r13">13</a>][<a href="#r14">14</a>]; platform and analyst context [<a href="#r15">15</a>].</figcaption>
         </figure>
 
-        <p>Climate value from space compute holds only if rebound is managed: open cost models, verified substitution for grid build, and spectrum/debris rules that match constellation scale [<a href="#r4">4</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
+        <p>Count climate value only with open cost models, verified substitution for grid build, and rules that match constellation scale [<a href="#r4">4</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
 
         <blockquote class="pull-quote">
           <p class="pull-quote-text">“We're just seeing so much demand from people for AI. So, we wanted to figure out a solution for compute that could work no matter how large demand might grow.”</p>
@@ -349,25 +349,25 @@
         </svg>
           <figcaption class="viz-caption">Google Suncatcher-style designs chain solar power, accelerators, optical inter-satellite links, and ground terminals.</figcaption>
         </figure>
-        <h3>Why the grid feels like a wall</h3>
-        <p>Global electricity demand from data centers is rising quickly enough that analysts now treat AI load as a macro grid variable, not a niche IT line item [<a href="#r4">4</a>]. Regions with cheap renewables still face interconnection delays, transformer lead times, and water limits for evaporative cooling. That friction pushes hyperscalers toward long-lead power deals and novel cooling, and it opens room for architectures that move compute where energy is structurally easier to collect [<a href="#r3">3</a>].</p>
-        <p>Orbit does not remove energy use. It relocates collection and rejection. A satellite in a suitable low-Earth path can see repeated sunlit intervals without nights as long as a fixed surface site, while dumping waste heat to deep space instead of warming local rivers [<a href="#r1">1</a>]. The trade is capital cost in launch, radiation tolerance, thermal design, and laser or RF backhaul rather than land and permitting [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
+        <h3>Terrestrial grids and cooling are binding constraints on AI scale</h3>
+        <p>Analysts now treat data-center electricity as a macro grid variable [<a href="#r4">4</a>]. Even regions with cheap renewables face transformer lead times, interconnection delays, and water limits on evaporative cooling. That friction opens room for architectures that collect energy where structure favors it, at the price of launch capital and link latency [<a href="#r3">3</a>].</p>
+        <p>A well-chosen low-Earth path can shorten effective night relative to a fixed site and reject waste heat to space instead of local water bodies [<a href="#r1">1</a>]. For operators, the trade is radiation-hardened silicon, thermal design, and laser or RF backhaul versus land, permitting, and cooling water [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
 
-        <h3>Google Project Suncatcher and the research stack</h3>
-        <p>Google Research's Project Suncatcher sketches a constellation of solar-powered satellites carrying Trillium TPUs, linked by free-space optical inter-satellite links, operating in dawn-dusk sun-synchronous orbits so arrays stay sunlit while still overflying populated regions for ground contact [<a href="#r1">1</a>]. The team published a system design preprint, "Towards a future space-based, highly scalable AI infrastructure system design," and reported radiation testing on Trillium hardware [<a href="#r1">1</a>]. Planet agreed to build and operate advanced space platforms for two Suncatcher prototypes targeted for roughly early 2027, connecting Google's moonshot to a flight-proven smallsat operator [<a href="#r2">2</a>].</p>
-        <p>This is foundation-model-scale thinking applied to infrastructure: treat compute, power, and networking as one co-designed stack rather than a warehouse full of air-conditioned racks. University labs contribute adjacent pieces, from space systems engineering to the grid and lifecycle footprint of AI, but the most detailed public orbital-AI architecture today comes from Google Research and open preprints rather than campus press releases [<a href="#r1">1</a>].</p>
+        <h3>Project Suncatcher co-designs compute, power, and optical mesh as one stack</h3>
+        <p>Google Research's Project Suncatcher proposes solar-powered satellites with Trillium TPUs, free-space optical inter-satellite links, and dawn-dusk sun-synchronous orbits that keep arrays sunlit while overflying population centers for ground contact [<a href="#r1">1</a>]. The team published a system design preprint and reported radiation testing on Trillium hardware [<a href="#r1">1</a>]. Planet agreed to build two prototype platforms targeted for roughly early 2027 [<a href="#r2">2</a>].</p>
+        <p>The design logic matches foundation-model infrastructure thinking: one co-designed stack instead of a warehouse of air-conditioned racks. University work on space systems and AI lifecycle footprints complements the story, but the most detailed public orbital-AI architecture today sits in Google Research preprints [<a href="#r1">1</a>].</p>
 
-        <h3>Economics: Bain, Wood Mackenzie, and launch math</h3>
-        <p>Bain argues orbital data centers could begin scaling in the early 2030s if launch costs fall and operators can close the business case for latency-tolerant workloads, with SpaceX's January 2026 FCC filing for an orbital data center system treated as a signal that majors are exploring the category [<a href="#r3">3</a>]. Wood Mackenzie estimates that roughly one gigawatt of orbital data center capacity could cost on the order of US$170 billion, more than three times a terrestrial equivalent, with launch and satellite manufacturing comprising about sixty percent of that stack [<a href="#r4">4</a>]. Their headline message is blunt: on the order of a seventy percent cost reduction would be needed for rough parity with ground build [<a href="#r4">4</a>].</p>
-        <p>Those numbers are scenario-dependent, but they set the debate correctly. Orbital compute wins only where energy and siting savings plus utilization from sunlit orbits outweigh launch and maintenance. Until that crossover moves, most training and serving stays on Earth, and orbit remains a niche for demos, defense, and experiments that tolerate link latency [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
+        <h3>Analyst models say launch must fall sharply before orbit matches ground build</h3>
+        <p>Bain argues orbital data centers could scale in the early 2030s if launch costs fall and latency-tolerant workloads close a business case, citing SpaceX's January 2026 FCC filing as a signal that majors are exploring the category [<a href="#r3">3</a>]. Wood Mackenzie estimates roughly one gigawatt of orbital capacity at on the order of US$170 billion, more than three times a terrestrial equivalent, with launch and satellite manufacturing about sixty percent of the stack [<a href="#r4">4</a>]. They headline roughly seventy percent cost reduction for rough parity with ground build [<a href="#r4">4</a>].</p>
+        <p>Scenario details vary, but the implication for decisions is stable: orbit wins only where sunlit utilization and siting savings outweigh launch and maintenance. Until that crossover shifts, Earth keeps most training and serving; orbit stays demos, defense, and latency-tolerant experiments [<a href="#r3">3</a>][<a href="#r4">4</a>].</p>
 
-        <h3>Hardware in flight and filings on the ground</h3>
-        <p>Starcloud (formerly Lumen Orbit) reported flying an Nvidia H100 in orbit on Starcloud-1 in November 2025, with SpaceNews coverage of a large Series A raise and an FCC plan for a very large constellation scale [<a href="#r5">5</a>][<a href="#r6">6</a>]. Axiom Space markets orbital compute nodes as part of its commercial space station roadmap [<a href="#r9">9</a>]. Lonestar and similar firms pitch lunar or edge storage as complementary niches rather than wholesale replacement for hyperscale training clusters, useful to mention carefully as edge cases, not the center of mass [<a href="#r9">9</a>].</p>
-        <p>SpaceX's orbital data center application, widely reported alongside the FCC docket in early 2026, matters because it couples the world's lowest marginal launch provider with explicit intent to host compute in space [<a href="#r3">3</a>][<a href="#r6">6</a>]. Whether that filing becomes hardware or stays strategic option value, it changes how regulators and grid planners should treat orbit as a competitor to terrestrial build [<a href="#r3">3</a>].</p>
+        <h3>Flight demos and FCC filings show orbit is real option value, not niche fiction</h3>
+        <p>Starcloud (formerly Lumen Orbit) reported an Nvidia H100 in orbit on Starcloud-1 in November 2025, alongside SpaceNews coverage of a large Series A and a very large constellation filing [<a href="#r5">5</a>][<a href="#r6">6</a>]. Axiom Space markets orbital compute nodes on its commercial station roadmap [<a href="#r9">9</a>]. Lonestar and peers pitch lunar or edge storage as complements, not wholesale replacements for hyperscale training [<a href="#r9">9</a>].</p>
+        <p>SpaceX's orbital data center application, widely reported in early 2026, couples low marginal launch with explicit compute-in-space intent [<a href="#r3">3</a>][<a href="#r6">6</a>]. Regulators and grid planners should score orbit as a competitor to terrestrial build whether or not every filing becomes hardware [<a href="#r3">3</a>].</p>
 
 
         <h2>Timeline</h2>
-        <p>Orbital AI moved from radiation-hardened satellite computers to accelerator demos and hyperscale research designs in a few years [<a href="#r1">1</a>][<a href="#r5">5</a>].</p>
+        <p>Orbital AI crossed from radiation-tolerant edge compute to GPU demos and hyperscale architecture papers in a few years [<a href="#r1">1</a>][<a href="#r5">5</a>].</p>
         <div class="timeline" role="list">
           <div class="timeline-item" role="listitem">
             <p class="timeline-year">Pre-2020s</p>
@@ -394,7 +394,7 @@
             <p class="timeline-text">Google and Planet target Suncatcher prototype platforms for flight test [<a href="#r1">1</a>][<a href="#r2">2</a>].</p>
           </div>
         </div>
-        <p class="progress-note"><strong>Today:</strong> Demos and public architectures exist; launch cost, link latency, and grid substitution math still gate scale [<a href="#r3">3</a>][<a href="#r4">4</a>][<a href="#r5">5</a>].</p>
+        <p class="progress-note"><strong>Today:</strong> Demos and public architectures exist; launch cost, link latency, and verified grid substitution still gate scale [<a href="#r3">3</a>][<a href="#r4">4</a>][<a href="#r5">5</a>].</p>
 
         <h2>Future impact</h2>
         <figure class="viz viz-loop">
@@ -457,17 +457,17 @@
           <figcaption class="viz-caption">Falling launch cost expands orbital AI, which stresses spectrum, debris rules, and thermal design before climate benefit is proven.</figcaption>
         </figure>
 
-        <p>If orbital inference gets cheaper, demand for AI compute may rise faster than terrestrial grids decarbonize, a Jevons-style dynamic unless workloads truly substitute for ground build [<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
-        <p><strong>Cost going down.</strong> Reusable launch and sunlit orbits target lower $/FLOP for latency-tolerant jobs [<a href="#r3">3</a>][<a href="#r1">1</a>].</p>
-        <p><strong>Adoption rising.</strong> Hyperscalers and startups file constellations and fly GPU demos [<a href="#r5">5</a>][<a href="#r6">6</a>].</p>
-        <p><strong>Data problems.</strong> Link budgets, radiation error rates, and lifecycle LCAs stay thin in public [<a href="#r1">1</a>][<a href="#r4">4</a>].</p>
-        <p><strong>Infrastructure problems.</strong> Spectrum, debris, thermal limits, and ground stations cap usable capacity [<a href="#r3">3</a>][<a href="#r6">6</a>].</p>
-        <p class="progress-note"><strong>Looking ahead:</strong> Demos and public architectures exist; launch cost, link latency, and grid substitution math still gate scale [<a href="#r3">3</a>][<a href="#r4">4</a>][<a href="#r5">5</a>].</p>
-        <p>Climate value from space compute holds only if rebound is managed: open cost models, verified substitution for grid build, and spectrum/debris rules that match constellation scale [<a href="#r4">4</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
+        <p>Cheaper orbital inference can expand total AI compute faster than grids decarbonize unless workloads substitute for ground build [<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
+        <p><strong>Launch and ops costs fall.</strong> Reusable launch and sunlit orbits target lower $/FLOP for latency-tolerant jobs [<a href="#r3">3</a>][<a href="#r1">1</a>].</p>
+        <p><strong>Constellations and demos multiply.</strong> Hyperscalers and startups file large systems and fly GPU proofs [<a href="#r5">5</a>][<a href="#r6">6</a>].</p>
+        <p><strong>Public LCAs and link data lag.</strong> Link budgets, radiation error rates, and lifecycle accounts stay thin in open literature [<a href="#r1">1</a>][<a href="#r4">4</a>].</p>
+        <p><strong>Spectrum and ground assets cap throughput.</strong> Spectrum, debris, thermal limits, and ground stations bound usable capacity [<a href="#r3">3</a>][<a href="#r6">6</a>].</p>
+        <p class="progress-note"><strong>Looking ahead:</strong> Demos and public architectures exist; launch cost, link latency, and verified grid substitution still gate scale [<a href="#r3">3</a>][<a href="#r4">4</a>][<a href="#r5">5</a>].</p>
+        <p>Count climate value only with open cost models, verified substitution for grid build, and rules that match constellation scale [<a href="#r4">4</a>][<a href="#r7">7</a>][<a href="#r8">8</a>].</p>
 
 
         <h2>Conclusion</h2>
-        <p>Space compute sits at the intersection of climate stress on terrestrial AI and aerospace industrialization. The credible near-term story is hybrid: Earth keeps most latency-sensitive inference; orbit tests sun-powered accelerators, optical mesh networking, and radiation-hardened silicon for workloads that can tolerate link delay [<a href="#r1">1</a>][<a href="#r5">5</a>]. Climate gains appear only if orbital watts truly substitute for fossil-backed grid expansion, not if they add a parallel compute boom driven by cheaper orbital cycles [<a href="#r7">7</a>][<a href="#r8">8</a>]. Open cost models, cited demos, and honest link budgets are how this sector stays accessible research rather than launch hype.</p>
+        <p>Plan for a hybrid decade: Earth retains latency-sensitive inference; orbit proves sun-powered accelerators, optical mesh, and hardened silicon for delay-tolerant jobs [<a href="#r1">1</a>][<a href="#r5">5</a>]. Count climate gains only when orbital watts verifiably substitute for fossil-backed grid expansion, and manage Jevons-style rebound if cheaper orbital cycles expand total compute [<a href="#r7">7</a>][<a href="#r8">8</a>]. Open cost models, cited demos, and honest link budgets keep this sector accessible research rather than launch hype [<a href="#r4">4</a>].</p>
 
       </div>
       <section class="refs">
